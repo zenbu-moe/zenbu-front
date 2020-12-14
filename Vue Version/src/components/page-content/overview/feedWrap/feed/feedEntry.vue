@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="entry-settings">
-                    <button-more class="button"><i class="fas fa-ellipsis-h"></i></button-more>
+                    <buttonMore />
                 </div>
             </div>
             <div class="text-markdown">
@@ -20,7 +20,7 @@
         <div class="misc">
             <div class="entry-actions">
                 <div class="reply-button">
-                    <button-reply class="button"><i class="fas fa-reply"></i></button-reply>
+                    <button-reply class="button" @click="setVisible()"><i class="fas fa-reply"></i></button-reply>
                 </div>
                 <likeButton />
             </div>
@@ -29,31 +29,48 @@
                 <span> comments</span>
             </div>
         </div>
+        <feedReply v-if="repliesVisible" />
     </div>
 </template>
 
 <script>
 import likeButton from '../../../../likeButton';
+import buttonMore from '../../../../buttonMore';
+import feedReply from './feedReply';
 
 export default {
     name: 'feedEntry',
     components: {
-        likeButton
+        likeButton,
+        feedReply,
+        buttonMore
+    },
+    data() {
+        return {
+            repliesVisible: false
+        }
+    },
+    methods: {
+        setVisible() {
+            this.repliesVisible = !this.repliesVisible
+        }
     }
 }
 </script>
 
-<style>
+<style scoped>
     .feed-entry {
-        background-color: white;
+        background-color: rgb(224, 224, 224);
         border-radius: 20px;
-        padding: 10px;
         margin: 20px 0px;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
     }
 
     .entry-body {
-        padding: 10px;
+        background-color: white;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        padding: 20px;
     }
 
     .entry-body .header {
@@ -71,28 +88,14 @@ export default {
         color: black;
     }
 
-    .entry-body .header .entry-settings button-more {
-        display: inline-block;
-        color: gray;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        border-radius: 50%;
-        padding: 11px;
-        transition: 0.3s ease-out;
-        cursor: pointer;
-    }
-
-    .entry-body .header .entry-settings button-more:hover {
-        background-color: rgba(232,232,232,1.00);
-        transition: 0.1s;
-    }
-
     .feed-entry .misc {
+        background-color: white;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0px 10px 0px 10px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        padding: 10px 20px 10px 20px;
     }
 
     .entry-actions {
