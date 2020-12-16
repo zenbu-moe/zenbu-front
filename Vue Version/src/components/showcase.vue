@@ -2,10 +2,10 @@
     <div class="page-showcase">
         <div class="section-header">
             <h3><a href="">Popular this season</a></h3>
-            <a class="button-more"><i class="fas fa-angle-right"></i></a>
+            <a class="button-more"><i class="fas fa-angle-right"></i></a> <!-- button should lead somewhere %TODO% -->
         </div>
         <div class="showcase">
-            <div v-for="item in 7" :key="item.name">
+            <div v-for="item in 7" :key="item.name"> <!-- this should be array.slice(0,7), not just 7 %TODO% -->
                 <showcaseItem />
             </div>
         </div>

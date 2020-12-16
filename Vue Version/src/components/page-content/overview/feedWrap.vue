@@ -1,7 +1,12 @@
 <template>
     <div>
+        <!-- this looks horrible bc it is, sorry for that... layout is determined by current 'wrapState' which is ok
+        but then i build layout with if-statements... not very modular but who cares, 3 states is all i'll ever have
+        
+        well maybe 4 or 5, but adding 1 or 2 isnt really an issue.. takes less time than fucking with javascript trust me -->
+
         <div class="wrap column" v-if="wrapState == 0">
-            <feed />
+            <feed :state="wrapState"/>
             <div class="content-box" >
                 <infoActivities @set-wrap="setWrap" :state="wrapState"/>
                 <infoActivitiesFriend @set-wrap="setWrap" @expand="expandActivity" :state="wrapState"/>
@@ -17,7 +22,7 @@
                 </div>
             </div>
             <div class="wrap column">
-                <feed />
+                <feed :state="wrapState"/>
             </div>           
         </div>
         <div class="wrap activities" v-if="wrapState == 2">
@@ -30,7 +35,7 @@
                 </div>
             </div>
             <div class="wrap column">
-                <feed />
+                <feed :state="wrapState"/>
             </div> 
         </div>
     </div>
@@ -50,11 +55,11 @@ export default {
     },
     data() {
         return {
-            wrapState: 0,
-            expandedActivity: 0
+            wrapState: 0, // layout state (0 - default, feed in focus; 1 - user activities in focus; 2 - friend activities in focus)
+            expandedActivity: null // records if any activity had repliesExpand called from within it before DOM update
         }
     },
-    methods: {
+    methods: {  // below are some shenanigans that set some values to some parameters that you should care about its all frontend anyways
         setWrap(id) {
             this.wrapState = id;
         },

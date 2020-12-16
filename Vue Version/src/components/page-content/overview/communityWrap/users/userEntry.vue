@@ -1,5 +1,5 @@
 <template>
-    <div class="feed-entry">
+    <div class="user-entry">
         <div class="entry-body">
             <div class="header">
                 <div class="profile">
@@ -20,7 +20,7 @@
         <div class="misc">
             <div class="entry-actions">
                 <div class="reply-button">
-                    <buttonReply @click="setVisible(); $emit('expand')" />
+                    <buttonReply @click="setVisible()" />
                 </div>
                 <likeButton />
             </div>
@@ -29,7 +29,7 @@
                 <span> replies</span>
             </div>
         </div>
-        <feedReply v-if="repliesVisible" :replies="entry.replies" ref="feedReplies"/>
+        <feedReply v-if="repliesVisible && state == 1" :replies="entry.replies"/>
     </div>
 </template>
 
@@ -37,10 +37,10 @@
 import likeButton from '../../../../likeButton';
 import buttonMore from '../../../../buttonMore';
 import buttonReply from '../../../../buttonReply';
-import feedReply from './feedReply';
+import feedReply from '../../feedWrap/feed/feedReply';
 
 export default {
-    name: 'feedEntry',
+    name: 'userEntry',
     props: ["entry", "state", "expanded"],
     components: {
         likeButton,
@@ -50,16 +50,21 @@ export default {
     },
     data() {
         return {
-            repliesVisible: false
+            repliesVisible: false,
+            id: this.entry.id
         }
     },
     methods: {
         setVisible() {
             this.repliesVisible = !this.repliesVisible
+            if (this.state != 1) {
+                this.$emit('set-wrap', 1);
+                this.$emit('expand', this.entry.id)
+            }
         }
     },
     beforeMount() {
-        if (this.entry.id == this.expanded) {
+        if (this.id == this.expanded) {
             this.repliesVisible = true
         }
     }
@@ -67,10 +72,10 @@ export default {
 </script>
 
 <style scoped>
-    .feed-entry {
+    .user-entry {
         background-color: rgb(var(--color-foreground));
         border-radius: 20px;
-        margin: 20px 0px;
+        margin-bottom: 20px;
         padding: 10px;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
         animation: zoomIn 0.3s;
@@ -93,7 +98,7 @@ export default {
         align-items: flex-start;
     }
 
-    .feed-entry .misc {
+    .user-entry .misc {
         display: flex;
         justify-content: space-between;
         align-items: center;

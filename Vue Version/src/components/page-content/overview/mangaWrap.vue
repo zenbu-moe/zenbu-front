@@ -1,5 +1,8 @@
 <template>
     <div>
+        <!-- I'm pretty sure you are familiar with my amazing method of choosing the layout with if statements... well,
+        it's in this component as well HAHAHAH lol -->
+
         <div class="wrap column" v-if="wrapState == 0">
             <div class="content-box">
                 <latestUpdates :manga="releasingManga"/>
@@ -17,6 +20,8 @@
                 <currentlyReading :manga="readingManga" @expand="setWrap" :state="wrapState" />
                 <latestUpdates :manga="airingManga"/>
                 <topmanga :manga="topManga"/>
+                <topManhwa :manga="topManhwa"/>
+                <topManhua :manga="topManhua"/>
             </div>
             <div class="content-box">
                 <infoActivities />
@@ -44,7 +49,7 @@ export default {
         infoActivities
     },
     data() {
-        return {
+        return { // this should contain references to databases from where it will assemble an array of mangaItems
             wrapState: 0,
             topManga: [],
             topManhwa: [],

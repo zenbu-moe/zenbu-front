@@ -6,6 +6,10 @@
             </div>
         </div>
         <div class="overview">
+            <!-- uhhhh this is horrible but this is all i'll ever have, and writing it in js is a pain -->
+            <!-- this is also funny bc up there in 'nav' buttons arent hardcoded, so i guess i originally
+            thought of modular functionality, but this project doesnt require it so cbf -->
+            
             <feedWrap v-if="currentTab == 1" />
             <animeWrap v-if="currentTab == 2" />
             <mangaWrap v-if="currentTab == 3" />

@@ -1,5 +1,7 @@
 <template>
     <div class="showcase-item">
+        <!-- this shit is as raw as a living animal... need to fix it and not forget %TODO% -->
+
         <div class="showcase-cover">
         </div>
         <div class="showcase-details">

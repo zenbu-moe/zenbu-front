@@ -1,5 +1,8 @@
 <template>
     <div>
+        <!-- I'm pretty sure you are familiar with my amazing method of choosing the layout with if statements... well,
+        it's in this component as well HAHAHAH lol -->
+
         <div class="wrap column" v-if="wrapState == 0">
             <div class="content-box">
                 <latestUpdates :ranobe="releasingRanobe"/>
@@ -38,7 +41,7 @@ export default {
         infoActivities
     },
     data() {
-        return {
+        return { // this should contain references to databases from where it will assemble an array of ranobeItems
             wrapState: 0,
             topRanobe: [],
             releasingRanobe: [],

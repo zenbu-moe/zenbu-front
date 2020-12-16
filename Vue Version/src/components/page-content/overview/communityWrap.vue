@@ -1,12 +1,71 @@
 <template>
-    <div class="wrap">
-        
+    <div>
+        <!-- Based on the value of 'wrapState', different layout is chosen (0 is default) -->
+        <div class="wrap column" v-if="wrapState == 0"> 
+            <div class="content-box">
+                <topGroups :group="topGroups" :state="wrapState" @set-wrap="setState"/>
+                <recentGroups @set-wrap="setState" :expanded="expandedGroupActivity" @expand="expandGroupActivity" :state="wrapState"/>
+            </div>
+            <div class="content-box">
+                <recentUserUpdates @expand="expandUserActivity" @set-wrap="setState" :state="wrapState"/>
+            </div>
+        </div>
+        <div class="wrap column" v-if="wrapState == 1">
+            <div class="content-box">
+                <recentUserUpdates @expand="expandUserActivity" @set-wrap="setState(0)" :state="wrapState" :expanded="expandedUserActivity"/>
+            </div>
+            <div class="content-box">
+                <recentGroups @set-wrap="setState" :expanded="expandedGroupActivity" @expand="expandGroupActivity" :state="wrapState"/>
+                <topGroups :group="topGroups" :state="wrapState" @set-wrap="setState"/>
+            </div>
+        </div>
+        <div class="wrap column" v-if="wrapState == 2">
+            <div class="content-box">
+                <recentGroups @set-wrap="setState(0)" :expanded="expandedGroupActivity" @expand="expandGroupActivity" :state="wrapState"/>
+            </div>
+            <div class="content-box">
+                <recentUserUpdates @expand="expandUserActivity" @set-wrap="setState" :state="wrapState" :expanded="expandedUserActivity"/>
+                <topGroups :group="topGroups" :state="wrapState" @set-wrap="setState"/>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import topGroups from './communityWrap/topGroups';
+import recentGroups from './communityWrap/recentGroups';
+import recentUserUpdates from './communityWrap/recentUserUpdates';
+
 export default {
-    name: 'communityWrap'
+    name: 'communityWrap',
+    components: {
+        topGroups,
+        recentGroups,
+        recentUserUpdates
+    },
+    data () {
+        return {
+            wrapState: 0, // Layout state
+            expandedGroupActivity: null, // records the activity from which repliesExpand was emitted before DOM update
+            expandedUserActivity: null, // records the activity from which repliesExpand was emitted before DOM update
+            topGroups: [],
+        }
+    },
+    methods: {
+        setState(id) {
+            this.wrapState = id // sets certain layout style (0 - default, top groups in focus; 1 - user feed in focus; 2 - group feed in focus)
+        },
+        expandUserActivity(id) {
+            this.expandedUserActivity = id // sets the thing to id
+        },
+        expandGroupActivity(id) {
+            this.expandedGroupActivity = id // sets the thing to id
+        }  
+    },
+    updated() {
+        this.expandedGroupActivity = null // sets the thing to null
+        this.expandedUserActivity = null // sets the thing to null
+    }
 }
 </script>
 

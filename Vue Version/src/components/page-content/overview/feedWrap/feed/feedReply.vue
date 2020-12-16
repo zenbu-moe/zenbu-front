@@ -5,7 +5,7 @@
         </div>
         <div class="textbox">
             <form>
-				<input style="width: 100%" type="text" placeholder="Reply...">
+				<input ref="feedReply" style="width: 100%" type="text" placeholder="Reply...">
 			</form>
         </div>
     </div>

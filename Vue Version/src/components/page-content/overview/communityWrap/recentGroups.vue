@@ -1,27 +1,35 @@
 <template>
     <div class="feed">
-        <h3>Feed</h3>
-        <div class="textbox">
-            <form>
-				<input style="width: 100%" type="text" placeholder="What's on your mind?">
-			</form>
+        <div class="section-header">
+            <h3 @click="$emit('set-wrap', 2)"><a>Recent group activity</a></h3>
+            <a @click="$emit('set-wrap', 2)" class="button-more"><i class="fas fa-angle-right"></i></a>
         </div>
-        <div v-for="entry in feedEntries" :key="entry.id">
-            <feedEntry :entry="entry" :state="state"/>
+        <!-- next code block checks if group feed is in focus, and if not, it only displays 2 latest posts -->
+        <div v-if="state == 1">
+            <div v-for="entry in feedEntries.slice(0,2)" :key="entry.id">
+                <groupEntry :entry="entry" :expanded="expanded" :state="state" @set-wrap="$emit('set-wrap', 2)" @expand="$emit('expand', entry.id)"/>
+            </div>
         </div>
+        <div v-if="state != 1">
+            <div v-for="entry in feedEntries" :key="entry.id">
+                <groupEntry :entry="entry" :expanded="expanded" :state="state" @set-wrap="$emit('set-wrap', 2)" @expand="$emit('expand', entry.id)"/>
+            </div>
+        </div>
+        <!-- end of weird code block -->
     </div>
 </template>
 
 <script>
-import feedEntry from './feed/feedEntry';
+import groupEntry from './groups/groupEntry';
+
 export default {
-    name: 'feed',
-    props: ["state"],
+    name: 'recentGroups',
     components: {
-        feedEntry
+        groupEntry
     },
+    props: ["expanded", "state"],
     data() {
-        return { // this is where feed data should enter
+        return {
             feedEntries: [
                 {
                     username: 'Sigma',
@@ -76,10 +84,6 @@ export default {
         color: rgb(var(--color-text))
     }
 
-    .feed {
-        padding: 10px;
-    }
-
     .textbox {
         background-color: rgb(var(--color-foreground));
         border-radius: 20px;
@@ -87,6 +91,15 @@ export default {
         margin-bottom: 30px;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
         transition: 1s;
+    }
+
+    .section-header a {
+        text-decoration: none;
+        color: rgb(var(--color-text));
+    }
+
+    .group-entry {
+        margin-top: 0px;
     }
 
     .textbox form {

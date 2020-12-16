@@ -1,5 +1,5 @@
 <template>
-    <div class="feed-entry">
+    <div class="group-entry">
         <div class="entry-body">
             <div class="header">
                 <div class="profile">
@@ -20,7 +20,7 @@
         <div class="misc">
             <div class="entry-actions">
                 <div class="reply-button">
-                    <buttonReply @click="setVisible(); $emit('expand')" />
+                    <buttonReply @click="setVisible()" />
                 </div>
                 <likeButton />
             </div>
@@ -29,7 +29,7 @@
                 <span> replies</span>
             </div>
         </div>
-        <feedReply v-if="repliesVisible" :replies="entry.replies" ref="feedReplies"/>
+        <feedReply v-if="repliesVisible && (state != 1 )" :replies="entry.replies" ref="feedReplies"/>
     </div>
 </template>
 
@@ -37,10 +37,10 @@
 import likeButton from '../../../../likeButton';
 import buttonMore from '../../../../buttonMore';
 import buttonReply from '../../../../buttonReply';
-import feedReply from './feedReply';
+import feedReply from '../../feedWrap/feed/feedReply';
 
 export default {
-    name: 'feedEntry',
+    name: 'groupEntry',
     props: ["entry", "state", "expanded"],
     components: {
         likeButton,
@@ -56,6 +56,10 @@ export default {
     methods: {
         setVisible() {
             this.repliesVisible = !this.repliesVisible
+            if (this.state == 1) {
+                this.$emit('set-wrap', 2);
+                this.$emit('expand', this.entry.id)
+            }
         }
     },
     beforeMount() {
@@ -67,7 +71,7 @@ export default {
 </script>
 
 <style scoped>
-    .feed-entry {
+    .group-entry {
         background-color: rgb(var(--color-foreground));
         border-radius: 20px;
         margin: 20px 0px;
@@ -93,7 +97,7 @@ export default {
         align-items: flex-start;
     }
 
-    .feed-entry .misc {
+    .group-entry .misc {
         display: flex;
         justify-content: space-between;
         align-items: center;

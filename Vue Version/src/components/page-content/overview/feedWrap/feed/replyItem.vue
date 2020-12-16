@@ -55,7 +55,8 @@ export default {
     },
     methods: {
         setRepliesVisible() {
-            this.replyToVisible = !this.replyToVisible
+            this.replyToVisible = !this.replyToVisible;
+            this.$nextTick(() =>  this.$refs.replyToBox.focus());
         }
     }
 }

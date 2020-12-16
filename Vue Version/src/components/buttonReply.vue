@@ -1,5 +1,7 @@
 <template>
     <div class="reply-button" id="reply">
+        <!-- this doesnt deserve its own component but i was too lazy to copypaste the code all the time -->
+        
         <reply-button class="button"><i class="fas fa-reply"></i></reply-button>
     </div>	
 </template>

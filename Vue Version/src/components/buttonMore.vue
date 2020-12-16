@@ -1,5 +1,7 @@
 <template>
     <div class="more-button" id="more">
+        <!-- i really thought id make it modular originally didnt i...... -->
+
         <more-button class="button"><i class="fas fa-ellipsis-h"></i></more-button>
     </div>	
 </template>

@@ -2,6 +2,7 @@
     <div class="info-box">
         <div class="section-header">
             <h3><a >Top Anime</a></h3>
+            <!-- kinda ugly button change implementation -->
             <a class="button-more browse more" @click="expand()" v-if="!isExpanded"><p>MORE</p><i class="fas fa-angle-down"></i></a>
             <a class="button-more browse less" @click="expand()" v-if="isExpanded"><p>LESS</p><i class="fas fa-angle-up"></i></a>
         </div>

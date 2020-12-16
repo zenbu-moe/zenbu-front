@@ -1,27 +1,34 @@
 <template>
     <div class="feed">
-        <h3>Feed</h3>
-        <div class="textbox">
-            <form>
-				<input style="width: 100%" type="text" placeholder="What's on your mind?">
-			</form>
+        <div class="section-header">
+            <h3 @click="$emit('set-wrap', 1)"><a>Recent user activity</a></h3>
+            <a @click="$emit('set-wrap', 1)" class="button-more"><i class="fas fa-angle-right"></i></a>
         </div>
-        <div v-for="entry in feedEntries" :key="entry.id">
-            <feedEntry :entry="entry" :state="state"/>
+        <!-- next code block checks if user feed is in focus, and if not, it only displays 2 latest posts -->
+        <div v-if="state == 1">
+            <div v-for="entry in feedEntries" :key="entry.id">
+                <userEntry :entry="entry" @expand="$emit('expand', entry.id)" :state="state" :expanded="expanded" @set-wrap="$emit('set-wrap', 1)"/>
+            </div>
         </div>
+        <div v-else>
+            <div v-for="entry in feedEntries.slice(0,2)" :key="entry.id">
+                <userEntry :entry="entry" @expand="$emit('expand', entry.id)" :state="state" :expanded="expanded" @set-wrap="$emit('set-wrap', 1)"/>
+            </div>
+        </div>
+        <!-- end of weird code block -->
     </div>
 </template>
 
 <script>
-import feedEntry from './feed/feedEntry';
+import userEntry from './users/userEntry';
 export default {
-    name: 'feed',
-    props: ["state"],
+    name: 'recentUserUpdates',
     components: {
-        feedEntry
+        userEntry
     },
+    props: ["state", "expanded"],
     data() {
-        return { // this is where feed data should enter
+        return {
             feedEntries: [
                 {
                     username: 'Sigma',
@@ -76,8 +83,9 @@ export default {
         color: rgb(var(--color-text))
     }
 
-    .feed {
-        padding: 10px;
+    .section-header a {
+        text-decoration: none;
+        color: rgb(var(--color-text));
     }
 
     .textbox {

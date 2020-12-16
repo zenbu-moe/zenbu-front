@@ -1,5 +1,7 @@
 <template>
     <div class="item-cover">
+        <!-- this is very fucking empty -->
+        <!-- apparently some code should be here but i havent decided yet -->
     </div>
 </template>
 
