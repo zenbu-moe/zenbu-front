@@ -132,9 +132,10 @@ export default {
         height: 40px;
         border-radius: 50%;
         display: inline-block;
-        background-color: rgb(var(--color-gray-dark));
+        background-color: rgb(var(--color-foreground-dark));
         background-size: cover;
         background-position: center;
+        transition: 1s;
     }
 
     .text-markdown {

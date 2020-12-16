@@ -67,7 +67,7 @@ export default {
     }
 
     .reply-body {
-        background-color: rgb(var(--color-gray));
+        background-color: rgb(var(--color-background-dark));
         border-radius: 20px;
         padding: 15px;
         margin-bottom: 10px;
@@ -119,9 +119,10 @@ export default {
         height: 35px;
         border-radius: 50%;
         display: inline-block;
-        background-color: rgb(var(--color-gray-dark));
+        background-color: rgb(var(--color-foreground-dark));
         background-size: cover;
         background-position: center;
+        transition: 1s;
     }
 
     .entry-settings {
@@ -156,7 +157,7 @@ export default {
     }
 
     .textbox {
-        background-color: rgb(var(--color-gray));
+        background-color: rgb(var(--color-background-dark));
         border-radius: 20px;
         margin-left: 50px;
         margin-bottom: 20px;

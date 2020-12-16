@@ -1,8 +1,8 @@
 <template>
-    <div class="showcase-item">
-        <div class="showcase-cover">
+    <div class="anime-item">
+        <div class="item-cover">
         </div>
-        <div class="showcase-details">
+        <div class="item-details">
             <span class="title">Anime Title</span>
             <span class="studio">Studio Name</span>
         </div>
@@ -11,21 +11,22 @@
 
 <script>
 export default {
-    name: 'showcaseItem'
+    name: 'animeItem'
 }
 </script>
 
 <style scoped>
-    .showcase-item {
-        height: 240px;
+    .anime-item {
+        height: 230px;
         display: flex;
         flex-direction: column;
         align-content: center;
         justify-content: center;
         cursor: pointer;
+        animation: zoomIn 0.3s;
     }
 
-    .showcase-cover {
+    .item-cover {
         width: 135px;
         min-height: 190px;
         max-height: 190px;
@@ -34,27 +35,27 @@ export default {
         position: relative;
         transition: 0.3s;
         margin-bottom: 5px;
-        background-color: rgb(var(--color-foreground));
+        background-color: rgb(var(--color-gray));
         transition: 1s;
     }
 
-    .showcase-cover img {
+    .item-cover img {
         height: 200px;
         position: absolute;
     }
 
-    .showcase-cover:hover {
-        box-shadow: 0px 0px 50px rgba(var(--color-text),0.2);
+    .item-cover:hover {
+        box-shadow: 0px 0px 10px rgba(var(--color-text),0.2);
         transition: 0.2s ease;
     }
 
-    .showcase-details {
+    .item-details {
         width: 135px;
         display: flex;
         flex-direction: column;
     }
 
-    .showcase-details .title {
+    .item-details .title {
         font-family: "Raleway";
         font-weight: 600;
         white-space: nowrap;
@@ -63,7 +64,7 @@ export default {
         color: rgb(var(--color-text));
     }
 
-    .showcase-details .studio {
+    .item-details .studio {
         font-size: 13px;
         font-weight: 300;
         color: rgb(var(--color-text));

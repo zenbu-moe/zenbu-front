@@ -32,7 +32,7 @@ export default {
     }
 
     .textbox {
-        background-color: rgb(var(--color-gray));
+        background-color: rgb(var(--color-background-dark));
         border-radius: 20px;
         padding: 3px 5px;
         transition: 1s;

@@ -1,18 +1,76 @@
 <template>
-    <div class="animeWrap">
-        <h3>Anime</h3>
+    <div>
+        <div class="wrap column" v-if="wrapState == 0">
+            <div class="content-box">
+                <latestUpdates :anime="airingAnime"/>
+                <topAnime :anime="topAnime"/>
+                <seasonalAnime :anime="seasonalAnime"/>
+            </div>
+            <div class="content-box">
+                <currentlyWatching :anime="watchingAnime" @expand="setWrap" :state="wrapState"/>
+                <infoActivities />
+            </div>
+        </div>
+        <div class="wrap column" v-if="wrapState == 1">
+            <div class="content-box">
+                <currentlyWatching :anime="watchingAnime" @expand="setWrap" :state="wrapState" />
+                <latestUpdates :anime="airingAnime"/>
+                <topAnime :anime="topAnime"/>
+                <seasonalAnime :anime="seasonalAnime"/>
+            </div>
+            <div class="content-box">
+                <infoActivities />
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import latestUpdates from './animeWrap/latestUpdates';
+import currentlyWatching from './animeWrap/currentlyWatching';
+import topAnime from './animeWrap/topAnime';
+import seasonalAnime from './animeWrap/seasonalAnime';
+import infoActivities from './feedWrap/sidebar/infoActivities';
+
 export default {
-    name: 'animeWrap'
+    name: 'animeWrap',
+    components: {
+        latestUpdates,
+        currentlyWatching,
+        topAnime,
+        seasonalAnime,
+        infoActivities
+    },
+    data() {
+        return {
+            wrapState: 0,
+            topAnime: [],
+            airingAnime: [],
+            seasonalAnime: [],
+            watchingAnime: []
+        }
+    },
+    methods: {
+        setWrap(id) {
+            this.wrapState = id
+        }
+    }
 }
 </script>
 
 <style scoped>
-    .animeWrap {
-        padding: 15px;
+    .wrap {
+        display: grid;
+        grid-gap: 10px;
         animation: fadeInUp 0.5s;
     }
+
+    .column {
+        grid-template-columns: auto 440px;
+    }
+
+    .content-box {
+        padding: 10px;
+    }
+
 </style>

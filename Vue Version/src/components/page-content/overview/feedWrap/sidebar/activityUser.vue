@@ -101,9 +101,10 @@ export default {
         min-height: 84px;
         border-radius: 10px;
         display: inline-block;
-        background-color: rgba(236,236,236,1.00);
+        background-color: rgb(var(--color-foreground-dark));
         background-size: cover;
         background-position: center;
+        transition: 1s;
     }
 
     .activity-entry .details {
@@ -149,10 +150,11 @@ export default {
         height: 35px;
         border-radius: 50%;
         display: inline-block;
-        background-color: rgba(236,236,236,1.00);
+        background-color: rgb(var(--color-foreground-dark));
         background-size: cover;
         background-position: center;
         margin-right: 8px;
+        transition: 1s;
     }
 
     .activity-entry .details .profile p {

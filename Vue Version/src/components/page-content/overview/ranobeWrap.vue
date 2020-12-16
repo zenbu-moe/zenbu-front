@@ -1,15 +1,71 @@
 <template>
-    <div class="ranobeWrap">
-        <h3>Ranobe</h3>
+    <div>
+        <div class="wrap column" v-if="wrapState == 0">
+            <div class="content-box">
+                <latestUpdates :ranobe="releasingRanobe"/>
+                <topRanobe :ranobe="topRanobe"/>
+            </div>
+            <div class="content-box">
+                <currentlyReading :ranobe="readingRanobe" @expand="setWrap" :state="wrapState"/>
+                <infoActivities />
+            </div>
+        </div>
+        <div class="wrap column" v-if="wrapState == 1">
+            <div class="content-box">
+                <currentlyReading :ranobe="readingRanobe" @expand="setWrap" :state="wrapState" />
+                <latestUpdates :ranobe="airingRanobe"/>
+                <topRanobe :ranobe="topRanobe"/>
+            </div>
+            <div class="content-box">
+                <infoActivities />
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import latestUpdates from './ranobeWrap/latestUpdates';
+import currentlyReading from './ranobeWrap/currentlyReading';
+import topRanobe from './ranobeWrap/topRanobe';
+import infoActivities from './feedWrap/sidebar/infoActivities';
+
 export default {
-    name: 'ranobeWrap'
+    name: 'RanobeWrap',
+    components: {
+        latestUpdates,
+        currentlyReading,
+        topRanobe,
+        infoActivities
+    },
+    data() {
+        return {
+            wrapState: 0,
+            topRanobe: [],
+            releasingRanobe: [],
+            readingRanobe: []
+        }
+    },
+    methods: {
+        setWrap(id) {
+            this.wrapState = id
+        }
+    }
 }
 </script>
 
 <style scoped>
+    .wrap {
+        display: grid;
+        grid-gap: 10px;
+        animation: fadeInUp 0.5s;
+    }
+
+    .column {
+        grid-template-columns: auto 440px;
+    }
+
+    .content-box {
+        padding: 10px;
+    }
 
 </style>

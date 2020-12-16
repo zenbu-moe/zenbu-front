@@ -64,10 +64,10 @@ export default {
 
   .site-dark-mode {
     --color-background: 14, 9, 18;
-    --color-foreground: 50,44,55;
+    --color-foreground: 32, 29, 36;
     --color-foreground-dark: 75, 69, 82;
     --color-background-dark: 22, 18, 26;
-    --color-navigation: 50,44,55;
+    --color-navigation: 32, 29, 36;
     --color-gray: 57, 50, 64;
     --color-gray-dark: 218,218,218;
     --color-gray-darker: 147, 145, 148;
@@ -81,7 +81,7 @@ export default {
   body, #app {
     margin: 0;
     font-family: "Roboto";
-
+    background-color: rgba(var(--color-background));
     overflow: overlay;
     font-size: 1rem;
     animation: fadeIn 0.5s;
@@ -112,27 +112,52 @@ export default {
   }
 
   .section-header {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
 
   .button-more {
-      cursor: pointer;
-      font-size: 17px;
-      border-radius: 50%;
-      text-align: center;
-      transition: 0.3s;
-      width: 20px;
-      height: 20px;
-      margin-left: 5px;
-      animation: rotateIn 0.5s;
+    cursor: pointer;
+    font-size: 17px;
+    border-radius: 50%;
+    text-align: center;
+    transition: 0.3s;
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
   }
 
   .button-more:hover {
-      background: rgba(188,195,208,1.00);
-      transition: 0.1s;
-  }              
+    background: rgba(188,195,208,1.00);
+    transition: 0.1s;
+  }
+  
+  .browse {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .more {
+    width: 63px;
+  }
+
+  .less {
+    width: 58px;
+  }
+
+  .open-browse {
+    width: 115px;
+  }
+
+  .browse p {
+    font-family: "Raleway";
+    font-weight: bold;
+    margin: 0px 5px;
+    font-size: 12px;
+    color: rgb(var(--color-gray-darker))
+  }
 
   body::-webkit-scrollbar       {background-color: transparent; width: 6px;}
   body::-webkit-scrollbar-track {background-color: transparent;}

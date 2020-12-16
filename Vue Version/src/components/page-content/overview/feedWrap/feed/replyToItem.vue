@@ -35,7 +35,7 @@ export default {
 
 <style scoped>
     .reply-to-body {
-        background-color: rgb(var(--color-gray));
+        background-color: rgb(var(--color-background-dark));
         border-radius: 20px;
         padding: 15px;
         min-width: 50%;
@@ -60,9 +60,10 @@ export default {
         height: 25px;
         border-radius: 50%;
         display: inline-block;
-        background-color: rgb(228, 228, 228);
+        background-color: rgb(var(--color-foreground-dark));
         background-size: cover;
         background-position: center;
+        transition: 1s;
     }
 
     .reply-to-body .name-block {

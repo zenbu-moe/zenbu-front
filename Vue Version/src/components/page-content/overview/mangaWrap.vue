@@ -1,15 +1,79 @@
 <template>
-    <div class="mangaWrap">
-        <h3>Manga</h3>
+    <div>
+        <div class="wrap column" v-if="wrapState == 0">
+            <div class="content-box">
+                <latestUpdates :manga="releasingManga"/>
+                <topManga :manga="topManga"/>
+                <topManhwa :manga="topManhwa"/>
+                <topManhua :manga="topManhua"/>
+            </div>
+            <div class="content-box">
+                <currentlyReading :manga="readingManga" @expand="setWrap" :state="wrapState"/>
+                <infoActivities />
+            </div>
+        </div>
+        <div class="wrap column" v-if="wrapState == 1">
+            <div class="content-box">
+                <currentlyReading :manga="readingManga" @expand="setWrap" :state="wrapState" />
+                <latestUpdates :manga="airingManga"/>
+                <topmanga :manga="topManga"/>
+            </div>
+            <div class="content-box">
+                <infoActivities />
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import latestUpdates from './mangaWrap/latestUpdates';
+import currentlyReading from './mangaWrap/currentlyReading';
+import topManga from './mangaWrap/topManga';
+import topManhwa from './mangaWrap/topManhwa';
+import topManhua from './mangaWrap/topManhua';
+import infoActivities from './feedWrap/sidebar/infoActivities';
+
 export default {
-    name: 'mangaWrap'
+    name: 'mangaWrap',
+    components: {
+        latestUpdates,
+        currentlyReading,
+        topManga,
+        topManhwa,
+        topManhua,
+        infoActivities
+    },
+    data() {
+        return {
+            wrapState: 0,
+            topManga: [],
+            topManhwa: [],
+            topManhua: [],
+            releasingManga: [],
+            readingManga: []
+        }
+    },
+    methods: {
+        setWrap(id) {
+            this.wrapState = id
+        }
+    }
 }
 </script>
 
 <style scoped>
+    .wrap {
+        display: grid;
+        grid-gap: 10px;
+        animation: fadeInUp 0.5s;
+    }
+
+    .column {
+        grid-template-columns: auto 440px;
+    }
+
+    .content-box {
+        padding: 10px;
+    }
 
 </style>
