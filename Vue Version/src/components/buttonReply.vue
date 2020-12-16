@@ -1,6 +1,6 @@
 <template>
-    <div class="more-button" id="more">
-        <more-button class="button"><i class="fas fa-ellipsis-h"></i></more-button>
+    <div class="reply-button" id="reply">
+        <reply-button class="button"><i class="fas fa-reply"></i></reply-button>
     </div>	
 </template>
 
@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style>
-    more-button {
+    reply-button {
         display: inline-block;
         color: rgb(var(--color-button));
         width: 35px;
@@ -24,16 +24,9 @@ export default {
         cursor: pointer;
     }
 
-    .more-button:hover more-button {
-        background-color: rgba(var(--color-button), 0.2);
+    reply-button:hover {
+        background-color: rgba(167, 156, 236, 0.1);
+        color: rgb(112, 107, 206);
         transition: 0.1s;
-    }
-
-    .more-button .is-not-clicked {
-        color: rgb(var(--color-button));
-    }
-
-    .more-button .is-clicked {
-        color: rgb(235, 235, 235);
     }
 </style>

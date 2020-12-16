@@ -42,7 +42,7 @@ export default {
     }
 
     .showcase-cover:hover {
-        box-shadow: 0px 0px 50px rgba(0,0,0,0.2);
+        box-shadow: 0px 0px 50px rgba(var(--color-text),0.2);
         transition: 0.2s ease;
     }
 
@@ -58,10 +58,12 @@ export default {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        color: rgb(var(--color-text));
     }
 
     .showcase-details .studio {
         font-size: 13px;
         font-weight: 300;
+        color: rgb(var(--color-text));
     }
 </style>

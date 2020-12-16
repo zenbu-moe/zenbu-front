@@ -2,7 +2,7 @@
     <div class="navbar">
         <navleft />
         <navmid />
-        <navright />
+        <navright @change-theme="$emit('change-theme')" :isDark="isDark"/>
     </div>
 </template>
 
@@ -17,7 +17,8 @@ export default {
         navleft,
         navmid,
         navright
-    }
+    },
+    props: ["isDark"]
 }
 </script>
 

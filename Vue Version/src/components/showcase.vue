@@ -5,13 +5,9 @@
             <a class="button-more"><i class="fas fa-angle-right"></i></a>
         </div>
         <div class="showcase">
-            <showcaseItem />
-            <showcaseItem />
-            <showcaseItem />
-            <showcaseItem />
-            <showcaseItem />
-            <showcaseItem />
-            <showcaseItem />
+            <div v-for="item in 7" :key="item.name">
+                <showcaseItem />
+            </div>
         </div>
     </div>
 </template>
@@ -23,6 +19,33 @@ export default {
     name: 'showcase',
     components: {
         showcaseItem
+    },
+    data() {
+        return {
+            showcaseItems: [
+                {
+                    title: "Akudama Drive",
+                    cover: "url()",
+                    studio: "Studio Pierrot",
+                    link: "#",
+                    id: 1
+                },
+                {
+                    title: "Nisemonogatari",
+                    cover: "url()",
+                    studio: "SHAFT",
+                    link: "#",
+                    id: 2
+                },
+                {
+                    title: "Toaru Kagaku no Railgun",
+                    cover: "url()",
+                    studio: "J.C.Staff",
+                    link: "#",
+                    id: 3
+                },
+            ]
+        }
     }
 }
 </script>
@@ -30,7 +53,7 @@ export default {
 <style scoped>
     a {
         text-decoration: none;
-        color: black;
+        color: rgb(var(--color-text));
     }
 
     .page-showcase {
@@ -64,7 +87,6 @@ export default {
     .showcase {
         margin-top: -5px;
         height: 270px;
-        background-color: rgba(228,231,236,1.00);
         display: flex;
         justify-content: space-between;
     }

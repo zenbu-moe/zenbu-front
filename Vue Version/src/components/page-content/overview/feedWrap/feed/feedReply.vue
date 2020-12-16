@@ -1,9 +1,11 @@
 <template>
     <div class="entry-reply">
-        <replyItem />
+        <div v-for="reply in replies" :key="reply.id">
+            <replyItem :reply="reply"/>
+        </div>
         <div class="textbox">
             <form>
-				<input type="text" placeholder="Reply...">
+				<input style="width: 100%" type="text" placeholder="Reply...">
 			</form>
         </div>
     </div>
@@ -16,23 +18,31 @@ export default {
     name: 'feedReply',
     components: {
         replyItem
-    }
+    },
+    props: ["replies"]
 }
 </script>
 
 <style scoped>
     .entry-reply {
-        padding: 10px
+        padding: 15px;
+        animation: zoomIn 0.3s;
+        border-top: 2px solid rgb(var(--color-foreground-dark));
+        transition: 1s;
     }
 
     .textbox {
-        background-color: white;
+        background-color: rgb(var(--color-gray));
         border-radius: 20px;
-        padding: 5px 5px;
-        box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+        padding: 3px 5px;
+        transition: 1s;
     }
 
     .textbox form {
         padding: 5px;
+    }
+
+    input[type = text]{
+        color: rgb(var(--color-text-markdown))
     }
 </style>

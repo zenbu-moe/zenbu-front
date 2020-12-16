@@ -1,6 +1,6 @@
 <template>
     <div class="navmid">
-        <a href="" class="button-nav"><i class="fa fa-home"></i></a>
+        <a href="" class="button-nav"><i class="fas fa-home"></i></a>
         <a href="" class="button-nav"><i class="fas fa-user"></i></a>
         <a href="" class="button-nav"><i class="fas fa-comments"></i></a>
     </div>

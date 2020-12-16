@@ -5,33 +5,58 @@
                 <div class="profile">
                     <a href="" class="avatar" style="background-image: url('{{ placeholder }}')"></a>
                     <div class="name-block">
-                        <a href="" class="name">{{ placeholder }}</a>
-                        <p class="date">{{ placeholder }}</p>
+                        <a href="" class="name">{{ reply.username }}</a>
+                        <p class="date">5 min</p>
                     </div>
                 </div>
                 <div class="entry-settings">
+                    <likeButton />
+                    <p class="count">{{ reply.replies.length }}</P>
+                    <buttonReply @click="setRepliesVisible()"/>
                     <buttonMore />
                 </div>
             </div>
             <div class="text-markdown">
-                {{ placeholder }}
+                {{ reply.content }}
             </div>
         </div>
-        <div class="actions">
-            <likeButton />
+        <div v-if="replyToVisible">
+            <div v-for="replyTo in reply.replies" :key="replyTo.id">
+                <replyToItem :replyTo="replyTo"/>
+            </div>
+        </div>
+        <div class="textbox" v-if="replyToVisible">
+            <form>
+				<input style="width: 100%" ref="replyToBox" type="text" placeholder="Reply...">
+			</form>
         </div>
     </div>
 </template>
 
 <script>
-import buttonMore from '../../../../buttonMore.vue'
-import likeButton from '../../../../likeButton'
+import buttonMore from '../../../../buttonMore';
+import likeButton from '../../../../likeButton';
+import buttonReply from '../../../../buttonReply';
+import replyToItem from './replyToItem';
 
 export default {
     name: 'replyItem',
     components: {
         likeButton,
-        buttonMore
+        buttonMore,
+        buttonReply,
+        replyToItem
+    },
+    props: ["reply"],
+    data() {
+        return {
+            replyToVisible: false
+        }
+    },
+    methods: {
+        setRepliesVisible() {
+            this.replyToVisible = !this.replyToVisible
+        }
     }
 }
 </script>
@@ -42,10 +67,11 @@ export default {
     }
 
     .reply-body {
-        background-color: white;
-        border-top-right-radius: 20px;
-        border-top-left-radius: 20px;
-        padding: 20px;
+        background-color: rgb(var(--color-gray));
+        border-radius: 20px;
+        padding: 15px;
+        margin-bottom: 10px;
+        transition: 1s;
     }
 
     .reply-body .header {
@@ -55,63 +81,97 @@ export default {
 
     .reply-body .header .profile {
         display: flex;
-        align-items: flex-start;
-    }
-
-    .reply-body .header .profile .name-block a {
-        text-decoration: none;
-        color: black;
+        align-items: center;
+        margin-bottom: 5px;
     }
 
     span {
         font-family: "Raleway";
     }
 
-    .name-block {
+    .reply-body .name-block {
         display: flex;
-        flex-direction: column;
-        margin-left: 15px;	
+        margin-left: 8px;	
+    }
+
+    .reply-to-body .name-block {
+        display: flex;
+        margin-left: 8px;
+        margin-top: 3px;
+        font-size: 14px;	
     }
 
     .name {
         font-family: "Raleway";
         font-weight: bold;
-        color: black;
+        color: rgba(var(--color-link));
     }
 
     .date {
         font-family: "Raleway";
-        margin-top: 0px;
-        color: rgba(31,31,31,0.65);
+        margin-left: 5px;
+        color: rgba(var(--color-gray-darker));
+        font-size: 0.8rem;
     }
 
-    .avatar {
-        width: 40px;
-        height: 40px;
+    .reply-body .avatar {
+        width: 35px;
+        height: 35px;
         border-radius: 50%;
         display: inline-block;
-        background-color: rgba(236,236,236,1.00);
+        background-color: rgb(var(--color-gray-dark));
         background-size: cover;
         background-position: center;
     }
 
-    .text-markdown {
-        color: black;
-        font-weight: 300;
+    .entry-settings {
+        display: flex;
+        align-items: center;
     }
 
-    .actions {
-        background-color: white;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        border-bottom-right-radius: 20px;
-        border-bottom-left-radius: 20px;
-        padding: 10px 20px 10px 20px;
+    .text-markdown {
+        color: rgba(var(--color-text-markdown));;
+        font-weight: 300;
+        margin-left: 43px;
+        font-size: 1rem;
     }
 
     .like-button {
         flex-direction: row-reverse;
+        margin-right: 5px;
+    }
+
+    .reply-button {
+        margin-right: 5px;
+    }
+
+    .count {
+        margin-right: 2px;
+        color: rgb(var(--color-button));
+        font-family: "Raleway";
+    }
+
+    p {
+        margin: 0px;
+    }
+
+    .textbox {
+        background-color: rgb(var(--color-gray));
+        border-radius: 20px;
+        margin-left: 50px;
+        margin-bottom: 20px;
+        max-width: 80%;
+        padding: 0px 8px;
+        animation: zoomIn 0.3s;
+    }
+
+    .textbox form {
+        padding: 5px;
+        width: 100%;
+    }
+
+    input[type = text]{
+        color: rgb(var(--color-text-markdown))
     }
 
 </style>

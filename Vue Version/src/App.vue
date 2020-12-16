@@ -1,6 +1,6 @@
 <template>
-  <div class="container" id="app">
-    <navigation />
+  <div class="container" id="app" :class="{'site-light-mode': !isDarkTheme, 'site-dark-mode': isDarkTheme}">
+    <navigation @change-theme="changeTheme()" :isDark="isDarkTheme"/>
     <showcase />
     <pageContent />
   </div>
@@ -17,6 +17,16 @@ export default {
     navigation,
     showcase,
     pageContent,
+  },
+  data() {
+    return {
+      isDarkTheme: false
+    }
+  },
+  methods: {
+    changeTheme() {
+      this.isDarkTheme = !this.isDarkTheme
+    }
   }
 }
 </script>
@@ -33,13 +43,48 @@ export default {
 
   a {
     text-decoration: none;
-    color: rgba(49,53,90,1.00);
+    color: rgba(var(--color-link));
+  }
+
+  .site-light-mode {
+    --color-background: 228,231,236;
+    --color-foreground: 255,255,255;
+    --color-foreground-dark: 224,224,224;
+    --color-background-dark: 240,242,245;
+    --color-navigation: 50,44,55;
+    --color-gray: 245,245,245;
+    --color-gray-dark: 218,218,218;
+    --color-gray-darker: 31,31,31;
+    --color-text: 0,0,0;
+    --color-link: 49,53,90;
+    --color-button: 129, 129, 129;
+    --color-text-markdown: 0,0,0;
+    --color-activity-progress-background: 198,198,198
+  }
+
+  .site-dark-mode {
+    --color-background: 14, 9, 18;
+    --color-foreground: 50,44,55;
+    --color-foreground-dark: 75, 69, 82;
+    --color-background-dark: 22, 18, 26;
+    --color-navigation: 50,44,55;
+    --color-gray: 57, 50, 64;
+    --color-gray-dark: 218,218,218;
+    --color-gray-darker: 147, 145, 148;
+    --color-text: 157, 148, 166;
+    --color-link: 209, 203, 214;
+    --color-button: 133, 124, 138;
+    --color-text-markdown: 209, 205, 212;
+    --color-activity-progress-background: 75, 69, 82;
   }
 
   body, #app {
     margin: 0;
     font-family: "Roboto";
-    background-color: rgba(228,231,236,1.00);
+
+    overflow: overlay;
+    font-size: 1rem;
+    animation: fadeIn 0.5s;
   }
 
   input:focus,
@@ -61,7 +106,36 @@ export default {
     margin-left: auto;
     margin-right: auto;
     height: 100%;
-    background-color: rgba(228,231,236,1.00);
+    background-color: rgba(var(--color-background));
     position: relative;
+    transition: 1s;
   }
+
+  .section-header {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+  }
+
+  .button-more {
+      cursor: pointer;
+      font-size: 17px;
+      border-radius: 50%;
+      text-align: center;
+      transition: 0.3s;
+      width: 20px;
+      height: 20px;
+      margin-left: 5px;
+      animation: rotateIn 0.5s;
+  }
+
+  .button-more:hover {
+      background: rgba(188,195,208,1.00);
+      transition: 0.1s;
+  }              
+
+  body::-webkit-scrollbar       {background-color: transparent; width: 6px;}
+  body::-webkit-scrollbar-track {background-color: transparent;}
+  body::-webkit-scrollbar-thumb {background-color: rgba(50,44,55,0.50);; border-radius:15px; width: 4px}
+
 </style>

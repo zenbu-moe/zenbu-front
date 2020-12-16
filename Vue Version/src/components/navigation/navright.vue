@@ -1,5 +1,7 @@
 <template>
     <div class="navright">
+        <button-user v-if="!isDark" @click="$emit('change-theme')"><i class="far fa-moon"></i></button-user>
+        <button-user v-if="isDark" @click="$emit('change-theme')"><i class="fas fa-moon"></i></button-user>
         <button-user>S</button-user>
         <button-user><i class="fas fa-bell"></i></button-user>
         <button-user><i class="fas fa-envelope"></i></button-user>
@@ -11,7 +13,8 @@ export default {
     name: 'navright',
     components: {
 
-    }
+    },
+    props: ["isDark"]
 }
 </script>
 

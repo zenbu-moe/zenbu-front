@@ -75,14 +75,15 @@ export default {
         max-width: 1280px;
         margin: auto; 
         height: auto;
-        background-color: rgb(240,242,245);
+        background-color: rgb(var(--color-background-dark));
         border-radius: 10px;
+        transition: 1s;
     }
 
     .nav {
         padding: 0px 0px;
         border-radius: 10px;
-        background-color: rgba(50,44,55,1.00);
+        background-color: rgba(var(--color-navigation));
         display: flex;
         align-items: center;
         justify-content: center;
@@ -101,6 +102,7 @@ export default {
         border-left: none;
         border-right: none;
         border-top: 2px solid rgba(0,0,0,0.00);
+        border-bottom: 2px solid rgba(var(--color-navigation));
         cursor: pointer;
     }
 

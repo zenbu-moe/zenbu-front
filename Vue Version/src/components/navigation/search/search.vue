@@ -17,7 +17,7 @@ export default {
 <style scoped>
     .search {
         background: rgba(255,255,255,0.05);
-        padding: 5px 10px;
+        padding: 5px 10px 2px 10px;
         border-radius: 30px;
         display: inline-flex;
     }
