@@ -1,8 +1,8 @@
 <template>
     <div class="navmid">
-        <a href="" class="button-nav"><i class="fas fa-home"></i></a>
-        <a href="" class="button-nav"><i class="fas fa-user"></i></a>
-        <a href="" class="button-nav"><i class="fas fa-comments"></i></a>
+        <a href="/index.html" class="button-nav"><i class="fas fa-home"></i></a>
+        <a href="/about.html" class="button-nav"><i class="fas fa-user"></i></a>
+        <a href="/forum.html" class="button-nav"><i class="fas fa-comments"></i></a>
     </div>
 </template>
 
