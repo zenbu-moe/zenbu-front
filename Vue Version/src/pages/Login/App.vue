@@ -1,6 +1,6 @@
 <template>
-  <div class="container" id="app" :class="{'site-light-mode': !isDarkTheme, 'site-dark-mode': isDarkTheme}">
-    <navigation @change-theme="changeTheme()" :isDark="isDarkTheme"/>
+  <div class="container" id="app" :class="{'site-light-mode': !isDarkTheme, 'site-dark-mode': isDarkTheme}" @click="clickHandler">
+    <navigation @change-theme="changeTheme()" :isDark="isDarkTheme" @open-popup="openPopup(id)" />
     <pageContent />
   </div>
 </template>
@@ -17,13 +17,13 @@ export default {
   },
   data() {
     return {
-      isDarkTheme: false
+      isDarkTheme: false,
     }
   },
   methods: {
     changeTheme() {
       this.isDarkTheme = !this.isDarkTheme
-    }
+    },
   }
 }
 </script>

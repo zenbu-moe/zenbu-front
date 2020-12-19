@@ -45,17 +45,18 @@
                     </form>
                     <p v-if="!passwordsMatch">Passwords must match</p>
                 </div>
-                <div class="terms">
+                <!-- <div class="terms">
                     <form>
                         <i class="fas fa-circle" v-if="!isChecked" @click="check()" style="color: rgb(var(--color-gray-dark));"></i>
                         <i class="fas fa-check-circle" v-if="isChecked" @click="check()" style="color: rgb(145, 125, 177);"></i>
                         <p>I agree to Zenbu's <a href="">Terms of Service</a></p>
                     </form>
-                </div>
+                </div> -->
                 <div class="captcha">
                 </div>
+                <p style="width: 50%; text-align: center; font-size: 12px; margin-top: -10px; margin-bottom: 30px">By clicking "Create account" you agree to our <a style="font-size: 12px" href="">Terms of Service</a></p>
                 <div class="button-wrap">
-                    <btn-submit class="button-submit">Sign Up</btn-submit>
+                    <btn-submit class="button-submit">Create account</btn-submit>
                 </div>
             </div>
         </div>
@@ -179,14 +180,14 @@ export default {
 
     .button-submit {
         display: flex;
-        width: 100px;
+        width: 150px;
         justify-content: center;
         transition: 0.15s ease-out;
         margin-bottom: 20px;
     }
 
     .button-submit:hover {
-        width: 150px;
+        width: 200px;
         transition: 0.15s ease-out;
     }
 

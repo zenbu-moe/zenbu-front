@@ -2,7 +2,7 @@
     <div class="navbar">
         <navleft />
         <navmid />
-        <navright @change-theme="$emit('change-theme')" :isDark="isDark"/>
+        <navright @change-theme="$emit('change-theme')" :isDark="isDark" @open-popup="$emit('open-popup', id)" />
     </div>
 </template>
 
@@ -18,11 +18,18 @@ export default {
         navmid,
         navright
     },
-    props: ["isDark"]
+    props: ["isDark"],
+    data() {
+        return {
+            isOverlayVisible: true
+        }
+    }
 }
 </script>
 
 <style scoped>
+    @import url('../fonts/bootstrap-icons/bootstrap-icons.css');
+
     .navbar {
         display: flex;
         justify-content: center;
@@ -32,7 +39,7 @@ export default {
         background-color: rgb(var(--color-navigation));
         position: fixed;
         padding: 5px 0px 5px 0px;
-        z-index: 1;
+        z-index: 999;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.4);
         transition: 1s;
     }

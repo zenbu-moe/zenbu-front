@@ -1,9 +1,9 @@
 <template>
     <div class="navright">
-        <button-user v-if="!isDark" @click="$emit('change-theme')" class="dark"><i class="far fa-moon"></i></button-user>
-        <button-user v-if="isDark" @click="$emit('change-theme')" class="dark"><i class="fas fa-moon"></i></button-user>
-        <button-user @click="setProfileVisible(true)">
-            <div class="dropdown" v-if="profileDropdownVisible" @mouseleave="setProfileVisible(false)">
+        <!-- <button-user v-if="!isDark" @click="$emit('change-theme')" class="dark"><i class="bi-brightness-high-fill"></i></button-user>
+        <button-user v-if="isDark" @click="$emit('change-theme')" class="dark"><i class="bi-moon"></i></button-user> -->
+        <button-user @click="profileDropdownVisible = true" @mouseleave="profileDropdownVisible = false">
+            <div class="dropdown" v-if="profileDropdownVisible" >
                 <div class="button-wrap">
                     <a class="avatar"></a>
                     <div class="details">
@@ -27,22 +27,24 @@
                             <p>Dark mode</p>
                         </div>
                         <div class="switch">
-                            <i v-if="!isDark" class="fas fa-toggle-off"></i>
-                            <i v-if="isDark" class="fas fa-toggle-on"></i>
+                            <i v-if="!isDark" class="far fa-toggle-off"></i>
+                            <i v-if="isDark" class="far fa-toggle-on"></i>
                         </div>
                     </div>
                 </div>
                 <hr>
                 <div class="button-wrap settings">
-                    <i class="fas fa-sign-out-alt"></i>
+                    <i class="fas fa-sign-out"></i>
                     <p>Log out</p>
                 </div>
             </div>
+            <div class="overlay" v-if="profileDropdownVisible">
+            </div>
         </button-user>
         <button-user>
-            <i class="fas fa-bell"></i>
+            <i class="fal fa-bell"></i>
         </button-user>
-        <button-user><i class="fas fa-envelope"></i></button-user>
+        <button-user><i class="fal fa-inbox"></i></button-user>
     </div>
 </template>
 
@@ -61,33 +63,44 @@ export default {
         }
     },
     methods: {
-        setProfileVisible(bool) {
-            this.profileDropdownVisible = bool
+        setProfileVisible() {
+            this.profileDropdownVisible = !this.profileDropdownVisible
         }
     }
 }
 </script>
 
 <style scoped>
+    .overlay {
+        position: absolute;
+        width: 80px;
+        top: 30px;
+        height: 10vh;
+        z-index: 2;
+        margin-left: -20px;
+    }
+
     .navright {
         width: 30%;
         display: inline-flex;
         min-width: 160px;
         justify-content: flex-start;
         flex-direction: row-reverse;
+        position: relative;
+        z-index: 1000;
     }
 
     button-user {
         justify-content: center;
         text-align: center;
-        font-size: 18px;
+        font-size: 1.3rem;
         color: white;
         background: rgba(255,255,255,0.1);
         margin-right: 15px;
         border-radius: 50%;
         width: 40px;
         height: 40px;
-        padding-top: 9px;
+        padding-top: 7px;
         cursor: pointer;
         transition: background 0.3s ease 0s;
     }
@@ -116,11 +129,12 @@ export default {
         flex-direction: column;
         align-items: center;
         margin-left: -170px;
-        top: 60px;
+        top: 53px;
         width: 300px;
         box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.3);
         animation: fadeInUp 0.5s;
         transition: 0.7;
+        z-index: 9999;
     }
 
     .dropdown .avatar {

@@ -1,6 +1,6 @@
 <template>
     <div class="search">
-        <button type="submit"><i class="fa fa-search"></i></button>
+        <button type="submit"><i class="fal fa-search"></i></button>
 		<input type="text" placeholder="Search Zenbu...">
     </div>
 </template>

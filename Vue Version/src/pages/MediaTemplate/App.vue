@@ -29,6 +29,8 @@ export default {
 </script>
 
 <style>
+  @import url('../../fonts/bootstrap-icons/bootstrap-icons.css');
+
   * {
     box-sizing: border-box;
   }
