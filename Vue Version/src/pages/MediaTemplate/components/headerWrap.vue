@@ -63,9 +63,7 @@
                     </div>
                 </div>
             </div>
-            <div class="media-score">
-                asdas
-            </div>
+            <mediaScore />
         </div>
     </div>
 </template>
@@ -73,12 +71,14 @@
 <script>
 import genreItem from './genreItem';
 import buttonAddToList from './buttonAddToList';
+import mediaScore from './mediaScore';
 
 export default {
     name: 'headerWrap',
     components: {
         genreItem,
-        buttonAddToList
+        buttonAddToList,
+        mediaScore
     },
     data() {
         return {
@@ -172,6 +172,7 @@ export default {
     .media-info {
         display: flex;
         align-items: flex-start;
+        width: 75%;
     }
 
     .media-cover-wrap {
@@ -185,7 +186,6 @@ export default {
 
     .description {
         height: auto;
-        width: 65%;
         margin-bottom: 30px;
         overflow: hidden;
     }

@@ -28,5 +28,19 @@ module.exports = {
   		filename: 'media.html',
   		chunks: ['chunk-vendors', 'chunk-common', 'media']
   	},
+  	'login': {
+  		entry: './src/pages/Login/main.js',
+  		template: 'public/index.html',
+  		title: 'Login',
+  		filename: 'login.html',
+  		chunks: ['chunk-vendors', 'chunk-common', 'login']
+  	},
+  	'registration': {
+  		entry: './src/pages/Registration/main.js',
+  		template: 'public/index.html',
+  		title: 'registration',
+  		filename: 'registration.html',
+  		chunks: ['chunk-vendors', 'chunk-common', 'registration']
+  	},
   }
 }

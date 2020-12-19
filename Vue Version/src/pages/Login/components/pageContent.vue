@@ -1,0 +1,227 @@
+<template>
+    <div class="page-content">
+        <div class="content-wrap">
+            <div class="login-window" style="border-left: 2px solid rgb(var(--color-background)); transition: 1s;">
+                <h1>Already a member?</h1>
+                <div class="username">
+                    <form>
+                        <input type="text" placeholder="Username" v-model="loginData.username">
+                    </form>
+                </div>
+                <div class="password">
+                    <form>
+                        <input type="text" placeholder="Password" v-model="loginData.password">
+                    </form>
+                </div>
+                <div class="captcha">
+                </div>
+                <div class="button-wrap">
+                    <btn-submit class="button-submit">Login</btn-submit>
+                </div>
+                <div class="forgot">
+                    <a href="">Forgot password?</a>
+                </div>
+            </div>
+            <div class="login-window">
+                <h1>Not a member?</h1>
+                <div class="email">
+                    <form>
+                        <input type="text" placeholder="16 digits of your credit card" v-model="signupData.email">
+                    </form>
+                </div>
+                <div class="username">
+                    <form>
+                        <input type="text" placeholder="Your first and last name" v-model="signupData.username">
+                    </form>
+                </div>
+                <div class="password">
+                    <form>
+                        <input type="text" placeholder="Expiry date" v-model="signupData.password">
+                    </form>
+                </div>
+                <div class="password">
+                    <form>
+                        <input type="text" placeholder="CVC Code" v-model="signupData.confirmPassword">
+                    </form>
+                    <p v-if="!passwordsMatch">Passwords must match</p>
+                </div>
+                <div class="terms">
+                    <form>
+                        <i class="fas fa-circle" v-if="!isChecked" @click="check()" style="color: rgb(var(--color-gray-dark));"></i>
+                        <i class="fas fa-check-circle" v-if="isChecked" @click="check()" style="color: rgb(145, 125, 177);"></i>
+                        <p>I agree to Zenbu's <a href="">Terms of Service</a></p>
+                    </form>
+                </div>
+                <div class="captcha">
+                </div>
+                <div class="button-wrap">
+                    <btn-submit class="button-submit">Sign Up</btn-submit>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'pageContent',
+    data() {
+        return {
+            isChecked: false,
+            passwordsMatch: false,
+            loginData: {
+                username: '',
+                password: '',
+            },
+            signupData: {
+                email: '',
+                username: '',
+                password: '',
+                confirmPassword: '',
+                terms: false
+            },
+        }
+    },
+    methods: {
+        check() {
+            this.isChecked = !this.isChecked
+        },
+        checkPass() {
+            if (this.signupData.password == this.signupData.confirmPassword) {
+                this.passwordsMatch = true
+            } else {
+                this.passwordsMatch = false
+            }
+        },
+    },
+    updated() {
+        if (this.signupData.password == this.signupData.confirmPassword) {
+                this.passwordsMatch = true
+            } else {
+                this.passwordsMatch = false
+            }
+    }
+}
+</script>
+
+<style scoped>
+    .page-content {
+        padding-top: 10%;
+        min-height: 100vh;
+    }
+
+    .content-wrap {
+        background-color: rgb(var(--color-foreground));
+        margin: auto;
+        width: 60%;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: row-reverse;
+        transition: 1s;
+    }
+
+    .login-window {
+        padding: 40px;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-window h1 {
+        font-family: "Raleway";
+        font-weight: bold;
+        margin-bottom: 60px;
+        color: rgb(var(--color-text));
+        transition: 1s;
+    }
+
+    .login-window h3 {
+        font-family: "Raleway";
+        margin-bottom: 5px;
+    }
+
+    .login-window input[type=text] {
+        background-color: rgb(var(--color-background));
+        padding: 10px 20px;
+        border-radius: 20px;
+        width: 100%;
+        font-family: "Raleway";
+        transition: 1s;
+    }
+
+    .username, .password, .email {
+        width: 65%;
+        margin-bottom: 30px;
+    }
+
+    .password p {
+        text-align: center;
+    }
+
+    .terms form {
+        display: flex;
+        align-items: center;
+        margin-top: -10px;
+        margin-bottom: 20px;
+    }
+
+    .terms form p {
+        margin-left: 5px;
+    }
+
+    .terms form i {
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 1s;
+        animation: rotateIn 0.3s;
+    }
+
+    .button-submit {
+        display: flex;
+        width: 100px;
+        justify-content: center;
+        transition: 0.15s ease-out;
+        margin-bottom: 20px;
+    }
+
+    .button-submit:hover {
+        width: 150px;
+        transition: 0.15s ease-out;
+    }
+
+    btn-submit {
+        padding: 10px;
+        background-color: rgb(145, 125, 177);
+        font-family: "Raleway";
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .login-window a {
+        font-family: "Raleway";
+        color: rgb(var(--color-link));
+        font-size: 0.9rem;
+        transition: 0.2s;
+    }
+
+    .login-window a:hover {
+        font-family: "Raleway";
+        color: rgb(145, 125, 177);
+        font-size: 0.9rem;
+        transition: 0.2s;
+    }
+
+    .sign-up {
+        margin-top: 100px;
+    }
+
+    .login-window p {
+        font-family: "Raleway";
+        color: rgb(var(--color-text));
+        font-size: 0.9rem;
+        transition: 0.2s;
+    }
+</style>
