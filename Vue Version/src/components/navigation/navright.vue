@@ -12,6 +12,19 @@
                     </div>
                 </div>
                 <hr>
+                <div class="button-wrap settings">
+                    <i class="fas fa-play-circle"></i>
+                    <p>Anime List</p>
+                </div>
+                <div class="button-wrap settings">
+                    <i class="fas fa-book-open"></i>
+                    <p>Manga List</p>
+                </div>
+                <div class="button-wrap settings">
+                    <i class="fas fa-book"></i>
+                    <p>Ranobe List</p>
+                </div>
+                <hr>
                 <div class="settings-wrap">
                     <div class="button-wrap settings">
                         <i class="fas fa-user-circle"></i>

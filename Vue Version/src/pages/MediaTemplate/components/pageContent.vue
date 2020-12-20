@@ -4,18 +4,19 @@
             <div class="banner-cover" :class="{'bright': isExpanded, 'dark': !isExpanded}"></div>
         </div>
         <headerWrap @expand-banner="expand()"/>
-        <div class="content">
-        </div>
+        <contentWrap />
     </div>
 </template>
 
 <script>
 import headerWrap from './headerWrap';
+import contentWrap from './content';
 
 export default {
     name: 'pageContent',
     components: {
-        headerWrap
+        headerWrap,
+        contentWrap
     },
     data() {
         return {
@@ -65,14 +66,4 @@ export default {
     .dark {
         background-color: rgba(18, 15, 19, 0.7);
     }
-
-    .content {
-        width: 1380px;
-        margin: 30px auto 0px auto;
-        border-radius: 20px;
-        background-color: rgb(var(--color-background-dark));
-        height: 2000px;
-        transition: 1s;
-    }
-
 </style>

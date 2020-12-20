@@ -30,6 +30,7 @@ export default {
 
 <style>
   @import url('../../fonts/bootstrap-icons/bootstrap-icons.css');
+  @import url('../../fonts/fontawesome-pro-5.13.0-web/css/all.css');
 
   * {
     box-sizing: border-box;

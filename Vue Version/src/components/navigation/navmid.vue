@@ -1,6 +1,6 @@
 <template>
     <div class="navmid">
-        <a href="/index.html" class="button-nav home"><span class="fas fa-home-lg-alt"></span></a>
+        <a href="/index.html" class="button-nav home"><span class="bi-house-fill"></span></a>
         <a href="/about.html" class="button-nav user"><span class="bi bi-person-fill"></span></a>
         <a href="/forum.html" class="button-nav forum"><span class="bi-chat-fill"></span></a>
     </div>
@@ -34,8 +34,8 @@ export default {
     }
 
     .home {
-        font-size: 1.5rem;
-        padding: 8px 40px 8px 40px;
+        font-size: 1.6rem;
+        padding: 5px 40px 10px 40px;
     }
 
     .user {
