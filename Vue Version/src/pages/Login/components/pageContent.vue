@@ -10,8 +10,12 @@
                 </div>
                 <div class="password">
                     <form>
-                        <input type="text" placeholder="Password" v-model="loginData.password">
+                        <input type="password" placeholder="Password" v-model="loginData.password" id="loginpwd">
                     </form>
+                    <div class="show-pwd" @click="showLoginPass()">
+                        <i class="fas fa-eye-slash" v-if="!loginPasswordShown"></i>
+                        <i class="fas fa-eye" v-if="loginPasswordShown"></i>
+                    </div>
                 </div>
                 <div class="captcha">
                 </div>
@@ -26,7 +30,7 @@
                 <h1>Not a member?</h1>
                 <div class="email">
                     <form>
-                        <input type="text" placeholder="16 digits of your credit card" v-model="signupData.email">
+                        <input type="email" placeholder="16 digits of your credit card" v-model="signupData.email">
                     </form>
                 </div>
                 <div class="username">
@@ -36,15 +40,23 @@
                 </div>
                 <div class="password">
                     <form>
-                        <input type="text" placeholder="Expiry date" v-model="signupData.password">
+                        <input type="password" placeholder="Expiry date" v-model="signupData.password" id="signuppwd">
                     </form>
+                    <div class="show-pwd" @click="showSignUpPass()">
+                        <i class="fas fa-eye-slash" v-if="!signUpPasswordShown"></i>
+                        <i class="fas fa-eye" v-if="signUpPasswordShown"></i>
+                    </div>
                 </div>
                 <div class="password">
                     <form>
-                        <input type="text" placeholder="CVC Code" v-model="signupData.confirmPassword">
+                        <input type="password" placeholder="CVC Code" v-model="signupData.confirmPassword" id="signuppwd-confirm">
                     </form>
-                    <p v-if="!passwordsMatch">Passwords must match</p>
+                    <div class="show-pwd" @click="showSignUpPass()">
+                        <i class="fas fa-eye-slash" v-if="!signUpPasswordShown"></i>
+                        <i class="fas fa-eye" v-if="signUpPasswordShown"></i>
+                    </div>
                 </div>
+                <p class="pwd-match" v-if="!passwordsMatch">Passwords must match</p>
                 <!-- <div class="terms">
                     <form>
                         <i class="fas fa-circle" v-if="!isChecked" @click="check()" style="color: rgb(var(--color-gray-dark));"></i>
@@ -69,17 +81,20 @@ export default {
     data() {
         return {
             isChecked: false,
-            passwordsMatch: false,
+            passwordsMatch: true,
+            loginPasswordShown: false,
+            signUpPasswordShown: false,
+
             loginData: {
                 username: '',
                 password: '',
             },
+            
             signupData: {
                 email: '',
                 username: '',
                 password: '',
                 confirmPassword: '',
-                terms: false
             },
         }
     },
@@ -87,12 +102,34 @@ export default {
         check() {
             this.isChecked = !this.isChecked
         },
-        checkPass() {
-            if (this.signupData.password == this.signupData.confirmPassword) {
-                this.passwordsMatch = true
+        showLoginPass() {
+            this.loginPasswordShown = !this.loginPasswordShown
+
+            var x = document.getElementById("loginpwd");
+
+            if (x.type === "password") {
+                x.type = "text";
             } else {
-                this.passwordsMatch = false
+                x.type = "password";
             }
+        },
+        showSignUpPass() {
+            this.signUpPasswordShown = !this.signUpPasswordShown
+
+            var x = document.getElementById("signuppwd");
+            var y = document.getElementById("signuppwd-confirm");
+
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+
+            if (y.type === "password") {
+                y.type = "text";
+            } else {
+                y.type = "password";
+            }     
         },
     },
     updated() {
@@ -142,22 +179,39 @@ export default {
         margin-bottom: 5px;
     }
 
-    .login-window input[type=text] {
-        background-color: rgb(var(--color-background));
-        padding: 10px 20px;
-        border-radius: 20px;
+    .login-window input[type=text],
+    .login-window input[type=email],
+    .login-window input[type=password] {
         width: 100%;
         font-family: "Raleway";
         transition: 1s;
+        border: none;
+        font-size: 1rem;
+        background: none;
     }
 
     .username, .password, .email {
         width: 65%;
         margin-bottom: 30px;
+        background-color: rgb(var(--color-background));
+        padding: 10px 20px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .password p {
         text-align: center;
+    }
+
+    .show-pwd i {
+        color: rgb(var(--color-text));
+        cursor: pointer;
+    }
+
+    .pwd-match {
+        margin: -15px 0px 40px 0px
     }
 
     .terms form {
