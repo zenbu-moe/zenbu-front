@@ -1,18 +1,18 @@
 <template>
     <div class="page-content">
         <div class="banner-wrap">
-            <div class="banner"></div>
+            <div v-if="editOn" class="banner"></div>
         </div>
         <div class="overview-wrap">
-            <headerWrap />
-            <overview />
+            <headerWrap @toggle-edit="toggleEdit()" :edit="editOn"/>
+            <overview :edit="editOn"/>
         </div>
     </div>
 </template>
 
 <script>
-import headerWrap from './page-content/overview/headerWrap';
-import overview from './page-content/overview/overview'
+import headerWrap from './page-content/headerWrap';
+import overview from './page-content/overview'
 
 export default {
    name: 'pageContent', 
@@ -22,12 +22,14 @@ export default {
    },
    data() {
         return {
-            
+            editOn: false,
         }
     },
 
     methods: {
-
+        toggleEdit() {
+            this.editOn = !this.editOn
+        }
     },
 }
 </script>
@@ -49,15 +51,14 @@ export default {
     }
 
     .banner {
-        background-color: rgba(0,0,0,0);
+        background-color: rgba(var(--color-background), 0.5);
         height: 100%;
     }
 
     .overview-wrap {
-        width: 1400px;
         margin: auto;
         border-radius: 20px;
-        margin-top: -280px;
+        margin-top: -50px;
         transition: 1s;
         height: auto;
         padding-bottom: 50px;
