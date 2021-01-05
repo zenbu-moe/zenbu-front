@@ -60,7 +60,7 @@ export default {
             expandedActivity: null // records if any activity had repliesExpand called from within it before DOM update
         }
     },
-    methods: {  // below are some shenanigans that set some values to some parameters that you should care about its all frontend anyways
+    methods: {  // below are some shenanigans that set some values to some parameters that you shouldn't care about its all frontend anyways
         setWrap(id) {
             this.previousState = this.wrapState;
             this.wrapState = id;
@@ -75,7 +75,7 @@ export default {
 <style scoped>
     .wrap {
         display: grid;
-        grid-gap: 10px;
+        grid-gap: 20px;
     }
 
     .animate {

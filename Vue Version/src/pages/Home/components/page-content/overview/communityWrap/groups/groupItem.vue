@@ -49,7 +49,7 @@ export default {
         max-width: 80px;
         max-height: 80px;
         margin-right: 10px;
-        border-radius: 20px;
+        border-radius: 15px;
         overflow: hidden;
         position: relative;
         transition: 0.3s;

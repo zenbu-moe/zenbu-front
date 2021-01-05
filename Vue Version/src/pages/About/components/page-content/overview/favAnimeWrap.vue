@@ -2,11 +2,9 @@
     <div class="wrap" :class="{'chosen': edit}">
         <div class="title" :class="{'disabled': edit}">
             <h2>Favorite Anime</h2>
-            <a class="button-more browse more" @click="expand()" v-if="!isExpanded"><p>MORE</p><i class="fas fa-angle-down"></i></a>
-            <a class="button-more browse less" @click="expand()" v-if="isExpanded"><p>LESS</p><i class="fas fa-angle-up"></i></a>
         </div>
         <div class="content-box relations" :class="{'disabled': edit}">
-            <div v-for="item in x" :key="item.name">
+            <div v-for="item in 15" :key="item.name">
                 <relationsItem />
             </div>
         </div>
@@ -45,7 +43,7 @@ export default {
     .relations {
         display: grid;
         grid-template-columns: auto auto auto auto auto;
-        justify-content: space-between;;
+        justify-content: space-between;
     }
 
     .title {
@@ -57,8 +55,7 @@ export default {
 
     .wrap {
         /* background-color: rgb(var(--color-foreground)); */
-        border-radius: 20px;
-        padding: 10px;
+        border-radius: 15px;
     }
 
     h2 {

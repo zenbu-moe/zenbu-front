@@ -73,7 +73,7 @@ export default {
 
 <style scoped>
     .user-entry {
-        border-radius: 20px;
+        border-radius: 15px;
         margin-bottom: 20px;
         padding: 10px;
         animation: zoomIn 0.3s;
@@ -81,7 +81,8 @@ export default {
     }
 
     .minimized {
-        background-color: rgb(var(--color-background-dark));
+        background-color: rgb(var(--color-foreground));
+        box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
     }
 
     .maximized {
@@ -90,8 +91,8 @@ export default {
     }
 
     .entry-body {
-        border-top-right-radius: 20px;
-        border-top-left-radius: 20px;
+        border-top-right-radius: 15px;
+        border-top-left-radius: 15px;
         padding: 10px;
     }
 
@@ -109,8 +110,8 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom-right-radius: 20px;
-        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
         padding: 10px 10px 5px 10px;
     }
 

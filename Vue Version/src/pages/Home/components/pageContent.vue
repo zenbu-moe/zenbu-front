@@ -5,17 +5,19 @@
                 <button @click="setActive(tab.id)" :class="{'is-active': currentTab == tab.id}">{{tab.title}}</button>
             </div>
         </div>
-        <div class="overview" :style="height">
-            <!-- uhhhh this is horrible but this is all i'll ever have, and writing it in js is a pain -->
-            <!-- this is also funny bc up there in 'nav' buttons arent hardcoded, so i guess i originally
-            thought of modular functionality, but this project doesnt require it so cbf -->
-            <transition-group :name="(currentTab < previousTab) ? 'slideback' : 'slide'">
-                <feedWrap v-if="currentTab == 1" key="feed"/>
-                <animeWrap v-if="currentTab == 2" key="anime"/>
-                <mangaWrap v-if="currentTab == 3" key="manga"/>
-                <ranobeWrap v-if="currentTab == 4" key="ranobe"/>
-                <communityWrap v-if="currentTab == 5" key="community"/>
-            </transition-group>
+        <div class="wrap">
+            <div class="overview" :style="height">
+                <!-- uhhhh this is horrible but this is all i'll ever have, and writing it in js is a pain -->
+                <!-- this is also funny bc up there in 'nav' buttons arent hardcoded, so i guess i originally
+                thought of modular functionality, but this project doesnt require it so cbf -->
+                <transition-group :name="(currentTab < previousTab) ? 'slideback' : 'slide'">
+                    <feedWrap v-if="currentTab == 1" key="feed"/>
+                    <animeWrap v-if="currentTab == 2" key="anime"/>
+                    <mangaWrap v-if="currentTab == 3" key="manga"/>
+                    <ranobeWrap v-if="currentTab == 4" key="ranobe"/>
+                    <communityWrap v-if="currentTab == 5" key="community"/>
+                </transition-group>
+            </div>
         </div>
     </div>
 </template>
@@ -78,23 +80,30 @@ export default {
 
 <style scoped>
     .page-content {
-        max-width: 1280px;
         margin: auto; 
         height: auto;
-        background-color: rgb(var(--color-background-dark));
-        border-radius: 10px;
+        background-color: rgb(var(--color-background));
         transition: 1s;
         overflow: hidden;
+        max-width: 1280px;
+    }
+
+    .wrap {
+        max-width: 1280px;
+        margin: auto;
     }
 
     .nav {
         padding: 0px 0px;
-        border-radius: 10px;
-        background-color: rgba(var(--color-navigation));
         display: flex;
         align-items: center;
         justify-content: center;
+        background-color: rgb(var(--color-navigation));
+        max-width: 1280px;
+        border-radius: 10px;
+        margin: auto;
         transition: 1s;
+        margin-bottom: 20px;
     }
 
     button {
@@ -105,7 +114,7 @@ export default {
         font-family: "Raleway", sans-serif;
         text-decoration: none;
         transition: 0.3s;
-        padding: 13px 0px 13px 0px;
+        padding: 15px 0px 15px 0px;
         background-color: transparent;
         border-left: none;
         border-right: none;
@@ -124,9 +133,13 @@ export default {
     }
 
     .overview {
-        padding: 12px;
+        padding: 10px;
         width: 1280px;
+        margin: auto;
         display: grid;
+        background-color: rgb(var(--color-background-dark));
+        border-radius: 10px;
+        transition: 1s;
         grid-template-columns: 1fr;
     }
 

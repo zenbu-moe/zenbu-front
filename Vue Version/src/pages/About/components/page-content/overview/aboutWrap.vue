@@ -1,8 +1,7 @@
 <template>
     <div class="about-wrap">
         <div class="markdown">
-        </div>
-        <div class="blank">
+            <img src="https://i.imgur.com/2nvAlGa.gif">
         </div>
     </div>
 </template>
@@ -16,17 +15,24 @@ export default {
 <style scoped>
     .about-wrap {
         display: flex;
-        height: 550px;
+        height: 100%;
         width: 100%;
-        border-radius: 20px;
-        padding: 10px;
-        margin-bottom: 10px;
+        border-radius: 15px;
+        background-color: rgb(var(--color-background));
+        overflow: hidden;
+    }
+
+    .about-wrap:hover {
+        overflow: overlay;
     }
 
     .markdown {
-        background-color: rgb(var(--color-background));
         border-radius: 20px;
-        height: 100%;
+        height: auto;
+        width: 100%;
+    }
+
+    .markdown * {
         width: 100%;
     }
 

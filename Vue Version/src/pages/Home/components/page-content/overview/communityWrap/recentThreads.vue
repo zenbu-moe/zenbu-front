@@ -40,10 +40,10 @@ export default {
     }
 
     .info-box .content-wrap {
-        padding: 10px;
+        /* padding: 10px;
         background-color: rgb(var(--color-foreground));
-        border-radius: 20px;
-        box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+        border-radius: 15px;
+        box-shadow: 0px 1px 2px rgba(0,0,0,0.2); */
         transition: 1s;
         display: flex;
         flex-direction: column;

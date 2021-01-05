@@ -69,7 +69,7 @@ export default {
 <style scoped>
     .feed-entry {
         background-color: rgb(var(--color-foreground));
-        border-radius: 20px;
+        border-radius: 15px;
         margin: 20px 0px;
         padding: 10px;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
@@ -78,8 +78,8 @@ export default {
     }
 
     .entry-body {
-        border-top-right-radius: 20px;
-        border-top-left-radius: 20px;
+        border-top-right-radius: 15px;
+        border-top-left-radius: 15px;
         padding: 10px;
     }
 
@@ -97,8 +97,8 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom-right-radius: 20px;
-        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
         padding: 10px 10px 5px 10px;
     }
 

@@ -2,8 +2,6 @@
     <div class="stats-wrap">
         <div class="stats">
         </div>
-        <!-- <div class="blank">
-        </div> -->
     </div>
 </template>
 
@@ -20,20 +18,13 @@ export default {
 
     .stats-wrap {
         width: 100%;
-        padding: 10px;
-    }
-
-    .blank {
-        border: 2px dashed rgb(133, 133, 133);
         height: 100%;
-        width: 100%;
-        border-radius: 20px;
     }
 
     .stats {
-        border-radius: 20px;
+        border-radius: 15px;
         background-color: rgb(var(--color-foreground));
-        height: 250px;
+        height: 99%;
         width: 100%;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
     }

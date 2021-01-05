@@ -86,7 +86,7 @@ export default {
 
     .textbox {
         background-color: rgb(var(--color-foreground));
-        border-radius: 20px;
+        border-radius: 15px;
         padding: 5px 10px;
         margin-bottom: 30px;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);

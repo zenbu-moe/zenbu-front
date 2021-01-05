@@ -76,7 +76,7 @@ export default {
     .info-box .content-wrap {
         padding: 20px;
         background-color: rgb(var(--color-foreground));
-        border-radius: 20px;
+        border-radius: 15px;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
         transition: 1s;
     }

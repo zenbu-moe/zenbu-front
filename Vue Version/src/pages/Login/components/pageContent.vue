@@ -151,7 +151,7 @@ export default {
     .content-wrap {
         background-color: rgb(var(--color-foreground));
         margin: auto;
-        width: 60%;
+        width: 1100px;
         border-radius: 20px;
         display: flex;
         flex-direction: row-reverse;
@@ -182,7 +182,7 @@ export default {
     .login-window input[type=text],
     .login-window input[type=email],
     .login-window input[type=password] {
-        width: 100%;
+        width: 150%;
         font-family: "Raleway";
         transition: 1s;
         border: none;

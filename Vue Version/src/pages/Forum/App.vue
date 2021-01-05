@@ -32,9 +32,17 @@ export default {
 </script>
 
 <style>
+@import url('../../../node_modules/gridstack/dist/gridstack.min.css');
+
   * {
     box-sizing: border-box;
   }
+
+  .grid-stack-item-content {
+        color: #2c3e50;
+        text-align: center;
+        background-color: #18bc9c;
+    }
 
   h3 {
     font-family: "Raleway";

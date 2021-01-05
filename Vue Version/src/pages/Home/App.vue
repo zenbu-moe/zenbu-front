@@ -3,6 +3,7 @@
     <navigation @change-theme="changeTheme()" :isDark="isDarkTheme"/>
     <showcase />
     <pageContent />
+    <footerWrap :isDark="isDarkTheme"/>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import navigation from '../../components/navigation';
 import showcase from './components/showcase';
 import pageContent from './components/pageContent';
+import footerWrap from '../../components/footer';
 
 export default {
   name: 'app',
@@ -17,6 +19,7 @@ export default {
     navigation,
     showcase,
     pageContent,
+    footerWrap
   },
   data() {
     return {

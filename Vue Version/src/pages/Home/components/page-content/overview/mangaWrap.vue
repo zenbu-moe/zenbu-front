@@ -71,7 +71,7 @@ export default {
 <style scoped>
     .wrap {
         display: grid;
-        grid-gap: 10px;
+        grid-gap: 20px;
     }
 
     .animate {

@@ -9,7 +9,9 @@
             </div>
             <div class="avatar-wrap">
                 <div class="avatar">
-                    <!-- <i class="fad fa-heart-circle"></i> -->
+                    <div class="edit-button" v-if="edit">
+                        <i class="fas fa-pen"></i>
+                    </div>
                 </div>
                 <div class="name">
                     <h1>Sigma</h1><!-- <i class="fad fa-heart-circle"></i> -->
@@ -47,6 +49,7 @@ export default {
         display: flex;
         align-items: flex-end;
         justify-content: center;
+        transition: 1s;
     }
 
     .avatar-wrap {
@@ -60,7 +63,7 @@ export default {
         font-family: "Raleway";
         font-weight: bold;
         margin-top: 0px;
-        margin-bottom: 0px;
+        margin-bottom: 1px;
         margin-right: 5px;
         font-size: 1.5rem;
         color: rgb(var(--color-text));
@@ -73,14 +76,13 @@ export default {
         border-radius: 50%;
         background-color: rgb(var(--color-background));
         border: 5px solid rgb(var(--color-foreground));
-        margin-bottom: 5px;
+        margin-bottom: 25px;
         transition: 1s;
     }
 
     .avatar i {
-        color: rgb(219, 65, 111);
-        font-size: 3rem;
-        margin: 0px 0px 30px 110px;
+        color: rgb(66, 66, 66);
+        font-size: 1.5rem;
     }
 
     .name {
@@ -186,4 +188,22 @@ export default {
         margin-right: 10px;
     }
 
+    .edit-button {
+        background-color: rgba(var(--color-foreground), 0.5);
+        transition: 0.5s;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0px 0px 20px 110px;
+        animation: zoomIn 0.3s;
+    }
+
+    .edit-button:hover {
+        background-color: rgba(var(--color-foreground), 1);
+        transition: 0.2s;
+    }
 </style>

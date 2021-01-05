@@ -2,10 +2,6 @@
     <div class="item">
         <a href="" class="cover">
         </a>
-        <div class="title">
-            <h4>Item Title</h4>
-            <p>Item Source</p>
-        </div>
     </div>
 </template>
 
@@ -25,22 +21,26 @@ export default {
     .title h4 {
         font-family: "Raleway";
         margin: 0px 0px 5px 0px;
-        color: rgb(var(--color-text))
+        color: rgb(var(--color-text));
+        width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .title p {
         font-family: "Raleway";
         margin: 0px 0px 10px 0px;
         color: rgb(var(--color-text));
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .cover {
         background-color: rgb(var(--color-background));
         transition: 1s;
         animation: zoomIn 0.3s;
-        width: 100px;
-        height: 140px;
+        width: 110px;
+        height: 148px;
         margin-bottom: 10px;
         border-radius: 10px;
         background-size: cover;

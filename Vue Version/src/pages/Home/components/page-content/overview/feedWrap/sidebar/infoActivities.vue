@@ -164,7 +164,7 @@ export default {
     .info-box .recent-activity-friend {
         padding: 10px;
         background-color: rgb(var(--color-foreground));
-        border-radius: 20px;
+        border-radius: 12px;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
         transition: 1s;
     }

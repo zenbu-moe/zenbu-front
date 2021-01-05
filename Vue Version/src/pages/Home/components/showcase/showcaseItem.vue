@@ -2,18 +2,24 @@
     <div class="showcase-item">
         <!-- this shit is as raw as a living animal... need to fix it and not forget %TODO% -->
 
-        <div class="showcase-cover">
+        <div class="showcase-cover" :style="{backgroundImage: 'url(' + background + ')'}">
         </div>
         <div class="showcase-details">
-            <span class="title">Anime Title</span>
-            <span class="studio">Studio Name</span>
+            <span class="title">{{ item.title }}</span>
+            <span class="studio">{{ item.studio }}</span>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'showcaseItem'
+    name: 'showcaseItem',
+    props: ["item"],
+    data() {
+        return {
+            background: this.item.cover
+        }
+    }
 }
 </script>
 
@@ -37,6 +43,7 @@ export default {
         transition: 0.3s;
         margin-bottom: 5px;
         background-color: rgb(var(--color-foreground));
+        background-size: cover;
         transition: 1s;
     }
 

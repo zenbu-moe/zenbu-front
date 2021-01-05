@@ -23,7 +23,7 @@ export default {
         display: inline-flex;
         justify-content: flex-start;
         width: 30%;
-        margin-bottom: 3px;
+        margin-bottom: 1.5px;
     }
     
     .logo {

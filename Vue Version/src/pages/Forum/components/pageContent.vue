@@ -1,168 +1,96 @@
 <template>
-    <div class="page-content">
-         <div class="nav">
-             <div v-for="tab in tabs" :key="tab.id">
-                <button @click="setActive(tab.id)" :class="{'is-active': currentTab == tab.id}">{{tab.title}}</button>
-            </div>
+    <h1>Advanced Demo</h1>
+  <div class="row">
+    <div class="col-md-2 d-none d-md-block">
+      <div id="trash" style="padding: 5px; margin-bottom: 15px;" class="text-center">
+        <div>
+          <ion-icon name="trash" style="font-size: 300%"></ion-icon>
         </div>
-        <div class="overview" :style="height">
-            <!-- uhhhh this is horrible but this is all i'll ever have, and writing it in js is a pain -->
-            <!-- this is also funny bc up there in 'nav' buttons arent hardcoded, so i guess i originally
-            thought of modular functionality, but this project doesnt require it so cbf -->
-            <transition-group :name="(currentTab < previousTab) ? 'slideback' : 'slide'">
-                <feedWrap v-if="currentTab == 1" key="feed"/>
-                <animeWrap v-if="currentTab == 2" key="anime"/>
-                <mangaWrap v-if="currentTab == 3" key="manga"/>
-                <ranobeWrap v-if="currentTab == 4" key="ranobe"/>
-                <communityWrap v-if="currentTab == 5" key="community"/>
-            </transition-group>
+        <div>
+          <span>Drop here to remove!</span>
         </div>
+      </div>
+      <div class="newWidget grid-stack-item">
+        <div class="grid-stack-item-content" style="padding: 5px;">
+          <div>
+            <ion-icon name="add-circle" style="font-size: 300%"></ion-icon>
+          </div>
+          <div>
+            <span>Drag me in the dashboard!</span>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="col">
+      <div class="grid-stack"></div>
+      <div class="grid-stack"></div>
+    </div>
+  </div>
 </template>
 
 <script>
-import feedWrap from './page-content/overview/feedWrap';
-import animeWrap from './page-content/overview/animeWrap';
-import mangaWrap from './page-content/overview/mangaWrap';
-import ranobeWrap from './page-content/overview/ranobeWrap';
-import communityWrap from './page-content/overview/communityWrap';
+import { GridStack } from 'gridstack';
+import 'gridstack/dist/gridstack.css';
+import 'gridstack/dist/h5/gridstack-dd-native';
+import 'gridstack/dist/gridstack-extra.css';
 
 export default {
    name: 'pageContent', 
    components: {
-       feedWrap,
-       animeWrap,
-       mangaWrap,
-       ranobeWrap,
-       communityWrap
+ 
    },
    data() {
         return {
-            tabs: [
-                {
-                    id: 1,
-                    title: 'Feed'
-                },
-                {
-                    id: 2,
-                    title: 'Anime',
-                },
-                 {
-                    id: 3,
-                    title: 'Manga',
-                },
-                 {
-                    id: 4,
-                    title: 'Ranobe',
-                },
-                 {
-                    id: 5,
-                    title: 'Community',
-                }
-                
-            ],
-
-            currentTab: 1,
-            previousTab: null
+            
         }
     },
 
     methods: {
-        setActive(selectedTab) {
-            this.previousTab = this.currentTab;
-            this.currentTab = selectedTab;
-        }
+
     },
+    mounted() {
+         let grids = GridStack.initAll({
+      alwaysShowResizeHandle: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      ),
+      resizable: {
+        handles: 'e, se, s, sw, w'
+      },
+      acceptWidgets: true,
+      removable: false, // drag-out delete class
+      removeTimeout: 100,
+    });
+
+    let items = [
+      {x: 0, y: 0, w: 4, h: 2, content: '1'},
+      {x: 4, y: 0, w: 4, h: 4, noMove: true, noResize: true, locked: true, content: 'I can\'t be moved or dragged!<br><ion-icon name="ios-lock" style="font-size:300%"></ion-icon>'},
+      {x: 8, y: 0, w: 2, h: 2, minW: 2, noResize: true, content: '<p class="card-text text-center" style="margin-bottom: 0">Drag me!<p class="card-text text-center"style="margin-bottom: 0"><ion-icon name="hand" style="font-size: 300%"></ion-icon><p class="card-text text-center" style="margin-bottom: 0">...but don\'t resize me!'},
+      {x: 10, y: 0, w: 2, h: 2, content: '4'},
+      {x: 0, y: 2, w: 2, h: 2, content: '5'},
+      {x: 2, y: 2, w: 2, h: 4, content: '6'},
+      {x: 8, y: 2, w: 4, h: 2, content: '7'},
+      {x: 0, y: 4, w: 2, h: 2, content: '8'},
+      {x: 4, y: 4, w: 4, h: 2, content: '9'},
+      {x: 8, y: 4, w: 2, h: 2, content: '10'},
+      {x: 10, y: 4, w: 2, h: 2, content: '11'},
+    ];
+
+    grids.forEach(function (grid) {
+      grid.load(items);
+    });
+    
+    /* grid.on('added removed change', function(e, items) {
+      let str = '';
+      items.forEach(function(item) { str += ' (x,y)=' + item.x + ',' + item.y; });
+      console.log(e.type + ' ' + items.length + ' items:' + str );
+    }); */
+    }
 }
 </script>
 
 <style scoped>
-    .page-content {
-        max-width: 1280px;
-        margin: auto; 
-        height: auto;
-        background-color: rgb(var(--color-background-dark));
-        border-radius: 10px;
-        transition: 1s;
-        overflow: hidden;
-    }
-
-    .nav {
-        padding: 0px 0px;
-        border-radius: 10px;
-        background-color: rgba(var(--color-navigation));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: 1s;
-    }
-
-    button {
-        color: white;
-        margin: auto 50px;
-        font-size: 1.2rem;
-        font-weight: 400;
-        font-family: "Raleway", sans-serif;
-        text-decoration: none;
-        transition: 0.3s;
-        padding: 13px 0px 13px 0px;
-        background-color: transparent;
-        border-left: none;
-        border-right: none;
-        border-top: 2px solid rgba(0,0,0,0.00);
-        border-bottom: 2px solid rgba(var(--color-navigation));
-        cursor: pointer;
-    }
-
-    .is-active {
-        border-bottom: 2px solid white;
-    }
-
-    button:hover {
-        border-bottom: 2px solid white;
-        transition: 0.1s;
-    }
-
-    .overview {
-        padding: 12px;
-        width: 1280px;
+    .col {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: auto auto;
     }
-
-    .overview div {
-        grid-row-start: 1;
-        grid-column-start: 1;
-    }
-
-    .visible {
-        visibility: visible;
-    }
-
-    .slide-leave-active,
-    .slide-enter-active {
-        transition: 1s;
-    }
-
-    .slide-enter-from {
-        transform: translate(100%, 0);
-    }
-
-    .slide-leave-to {
-        transform: translate(-100%, 0);
-    }
-
-    .slideback-leave-active,
-    .slideback-enter-active {
-        transition: 1s;
-    }
-
-    .slideback-enter-from {
-        transform: translate(-100%, 0);
-    }
-
-    .slideback-leave-to {
-        transform: translate(100%, 0);
-    }
-
 </style>

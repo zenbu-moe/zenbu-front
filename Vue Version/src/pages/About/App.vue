@@ -1,28 +1,34 @@
 <template>
   <div class="container" id="app" :class="{'site-light-mode': !isDarkTheme, 'site-dark-mode': isDarkTheme}">
     <navigation @change-theme="changeTheme()" :isDark="isDarkTheme"/>
-    <pageContent />
+    <pageContent @mousemove="setHeight()" @click="setHeight()" ref="content"/>
+    <footerWrap :isDark="isDarkTheme"/>
   </div>
 </template>
 
 <script>
 import navigation from '../../components/navigation';
 import pageContent from './components/pageContent';
+import footerWrap from '../../components/footer';
 
 export default {
   name: 'app',
   components: {
     navigation,
     pageContent,
+    footerWrap
   },
   data() {
     return {
-      isDarkTheme: false
+      isDarkTheme: false,
     }
   },
   methods: {
     changeTheme() {
       this.isDarkTheme = !this.isDarkTheme
+    },
+    setHeight() {
+      this.$refs.content.$refs.oww.$refs.ow.$refs.fw.setHeight()
     }
   }
 }
@@ -31,6 +37,7 @@ export default {
 <style>
   @import url('../../fonts/bootstrap-icons/bootstrap-icons.css');
   @import url('../../fonts/fontawesome-pro-5.13.0-web/css/all.css');
+  @import url('../../../node_modules/gridstack/dist/gridstack.min.css');
   
   * {
     box-sizing: border-box;
@@ -45,6 +52,11 @@ export default {
     text-decoration: none;
     color: rgba(var(--color-link));
   }
+
+  .grid-stack > .grid-stack-item > .grid-stack-item-content {
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
 
   .site-light-mode {
     --color-background: 228,231,236;
@@ -161,6 +173,10 @@ export default {
 
   body::-webkit-scrollbar       {background-color: transparent; width: 6px;}
   body::-webkit-scrollbar-track {background-color: transparent;}
-  body::-webkit-scrollbar-thumb {background-color: rgba(50,44,55,0.50);; border-radius:15px; width: 4px}
+  body::-webkit-scrollbar-thumb {background-color: rgba(50,44,55,0.50); border-radius:15px; width: 4px}
+
+  *::-webkit-scrollbar       {background-color: transparent; width: 6px;}
+  *::-webkit-scrollbar-track {background-color: transparent;}
+  *::-webkit-scrollbar-thumb {background-color: rgba(var(--color-text), 0.3); border-radius:15px; width: 4px}
 
 </style>
