@@ -2,7 +2,7 @@
     <div class="reply-button" id="reply">
         <!-- this doesnt deserve its own component but i was too lazy to copypaste the code all the time -->
         
-        <reply-button class="button"><i class="fas fa-reply"></i></reply-button>
+        <reply-button class="button"><i class="far fa-reply"></i></reply-button>
     </div>	
 </template>
 
@@ -27,8 +27,8 @@ export default {
     }
 
     reply-button:hover {
-        background-color: rgba(167, 156, 236, 0.1);
-        color: rgb(112, 107, 206);
+        background-color: rgba(144, 115, 145, 0.1);
+        color: rgb(185, 169, 211);
         transition: 0.1s;
     }
 </style>

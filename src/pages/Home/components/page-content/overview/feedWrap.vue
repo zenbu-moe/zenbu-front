@@ -7,7 +7,7 @@
 
         <div class="wrap column" :class="{'animate': (wrapState != previousState)}" v-if="wrapState == 0">
             <feed :state="wrapState"/>
-            <div class="content-box" >
+            <div class="content-box">
                 <infoActivities @set-wrap="setWrap" :state="wrapState"/>
                 <infoActivitiesFriend @set-wrap="setWrap" @expand="expandActivity" :state="wrapState"/>
             </div>

@@ -1,8 +1,10 @@
 <template>
     <div class="navbar">
-        <navleft />
-        <navmid />
-        <navright @change-theme="$emit('change-theme')" :isDark="isDark" @open-popup="$emit('open-popup', id)" />
+        <div class="wrap">
+            <navleft />
+            <navmid />
+            <navright @change-theme="$emit('change-theme')" :isDark="isDark" @open-popup="$emit('open-popup', id)" />
+        </div>
     </div>
 </template>
 
@@ -42,5 +44,11 @@ export default {
         z-index: 999;
         box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
         transition: 1s;
+    }
+
+    .wrap {
+        width: 1200px;
+        display: flex;
+        justify-content: space-between;
     }
 </style>

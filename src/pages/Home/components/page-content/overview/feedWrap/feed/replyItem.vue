@@ -70,7 +70,7 @@ export default {
     .reply-body {
         background-color: rgb(var(--color-background-dark));
         border-radius: 20px;
-        padding: 15px;
+        padding: 10px;
         margin-bottom: 10px;
         transition: 1s;
     }

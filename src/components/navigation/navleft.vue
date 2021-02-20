@@ -22,7 +22,7 @@ export default {
     .navleft {
         display: inline-flex;
         justify-content: flex-start;
-        width: 30%;
+        width: 33%;
         margin-bottom: 1.5px;
     }
     
@@ -30,7 +30,7 @@ export default {
         margin-right: 5px;
         display: inline-flex;
         align-items: center;
-        margin-left: 20px;
+        margin-left: 5px;
         padding: 3px;
     }
 

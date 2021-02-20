@@ -1,8 +1,36 @@
 <template>
     <div class="page-content">
-         <div class="nav">
-             <div v-for="tab in tabs" :key="tab.id">
-                <button @click="setActive(tab.id)" :class="{'is-active': currentTab == tab.id}">{{tab.title}}</button>
+        <div class="sidebar">
+            <div class="nav-wrap" @mouseover="sidebarHover = true" @mouseleave="sidebarHover = false">
+                <div class="nav">
+                    <button @click="setActive(1)" :class="{'is-active': currentTab == 1}">
+                        <i v-if="currentTab != 1" class="fal fa-house"></i>
+                        <i v-if="currentTab == 1" class="fas fa-house"></i>                          
+                    </button>
+                    <button @click="setActive(2)" :class="{'is-active': currentTab == 2}">
+                        <i v-if="currentTab != 2" class="fal fa-play-circle"></i>
+                        <i v-if="currentTab == 2" class="fas fa-play-circle"></i>                          
+                    </button>
+                    <button @click="setActive(3)" :class="{'is-active': currentTab == 3}">
+                        <i v-if="currentTab != 3" class="fal fa-book-open"></i>
+                        <i v-if="currentTab == 3" class="fas fa-book-open"></i>                         
+                    </button>
+                    <button @click="setActive(4)" :class="{'is-active': currentTab == 4}">
+                        <i v-if="currentTab != 4" class="fal fa-book"></i>  
+                        <i v-if="currentTab == 4" class="fas fa-book"></i>                       
+                    </button>
+                    <button @click="setActive(5)" :class="{'is-active': currentTab == 5}">
+                        <i v-if="currentTab != 5" class="fal fa-users"></i>
+                        <i v-if="currentTab == 5" class="fas fa-users"></i>
+                    </button>
+                </div>
+                <div class="tooltips" v-if="sidebarHover">
+                    <p @click="setActive(1)" :class="{'is-active': currentTab == 1}">Feed</p>
+                    <p @click="setActive(2)" :class="{'is-active': currentTab == 2}">Anime</p>
+                    <p @click="setActive(3)" :class="{'is-active': currentTab == 3}">Manga</p>
+                    <p @click="setActive(4)" :class="{'is-active': currentTab == 4}">Light Novels</p>
+                    <p @click="setActive(5)" :class="{'is-active': currentTab == 5}">Community</p>
+                </div>
             </div>
         </div>
         <div class="wrap">
@@ -40,32 +68,9 @@ export default {
    },
    data() {
         return {
-            tabs: [
-                {
-                    id: 1,
-                    title: 'Feed'
-                },
-                {
-                    id: 2,
-                    title: 'Anime',
-                },
-                 {
-                    id: 3,
-                    title: 'Manga',
-                },
-                 {
-                    id: 4,
-                    title: 'Ranobe',
-                },
-                 {
-                    id: 5,
-                    title: 'Community',
-                }
-                
-            ],
-
             currentTab: 1,
-            previousTab: null
+            previousTab: null,
+            sidebarHover: false,
         }
     },
 
@@ -85,59 +90,116 @@ export default {
         background-color: rgb(var(--color-background));
         transition: 1s;
         overflow: hidden;
-        max-width: 1280px;
+        max-width: 100%;
     }
 
     .wrap {
-        max-width: 1280px;
+        max-width: 1200px;
         margin: auto;
     }
 
-    .nav {
+    h4 {
+        font-family: 'Raleway';
+        font-size: 1.1rem;
+        padding: 15px;
+        margin: 0;
+    }
+
+    .sidebar {
+        position: absolute;
+        top: -147px;
+        height: 100%;
+        z-index: 2;
+        background-color: rgb(var(--color-background-dark), 1);
+        width: 50px;
+        transition: 0.5s;
+    }
+
+    .sidebar:hover {
+        background-color: rgb(var(--color-foreground), 1);
+        transition: 0.2s;
+    }
+
+    .nav-wrap {
         padding: 0px 0px;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgb(var(--color-navigation));
-        max-width: 1280px;
-        border-radius: 10px;
+        top: 100px;
         margin: auto;
         transition: 1s;
         margin-bottom: 20px;
+        border-radius: 10px;
+        /* box-shadow: 0px 1px 2px rgba(0,0,0,0.2); */
+        position: fixed;
+    }
+
+    .nav {
+        /* border-top: 1px solid rgba(var(--color-text), 0.1); */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin: auto;
     }
 
     button {
-        color: white;
-        margin: auto 50px;
+        color: rgba(var(--color-text), 0.5);
         font-size: 1.2rem;
-        font-weight: 400;
-        font-family: "Raleway", sans-serif;
-        text-decoration: none;
+        font-weight: bold;
+        font-family: "Raleway";
         transition: 0.3s;
-        padding: 15px 0px 15px 0px;
         background-color: transparent;
-        border-left: none;
-        border-right: none;
-        border-top: 2px solid rgba(0,0,0,0.00);
-        border-bottom: 2px solid rgba(var(--color-navigation));
+        border: none;
+        padding: 15px;
+        text-align: start;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin: 2px 0;
+    }
+
+    button p {
+        margin: 0 0 0 30px;
+        padding: 0;
     }
 
     .is-active {
-        border-bottom: 2px solid white;
+        color: rgba(var(--color-text), 0.8);
+        /* border-bottom: 2px solid rgba(var(--color-text), 0.5); */
     }
 
     button:hover {
-        border-bottom: 2px solid white;
+        /* border-bottom: 2px solid rgba(var(--color-text), 0.5); */
         transition: 0.1s;
     }
 
+    .tooltips {
+        color: rgba(var(--color-text), 0.5);
+        font-size: 1.2rem;
+        font-weight: bold;
+        font-family: "Raleway";
+        transition: 0.3s;
+        white-space: nowrap;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 15px;
+        margin: 2px 0;
+        animation: fadeIn 0.2s;
+        cursor: pointer;
+    }
+
+    .tooltips p {
+        margin: 0px 0;
+    }
+
     .overview {
-        padding: 10px;
-        width: 1280px;
+        /* padding: 10px; */
+        width: auto;
         margin: auto;
         display: grid;
-        background-color: rgb(var(--color-background-dark));
         border-radius: 10px;
         transition: 1s;
         grid-template-columns: 1fr;
@@ -158,11 +220,11 @@ export default {
     }
 
     .slide-enter-from {
-        transform: translate(100%, 0);
+        transform: translate(150%, 0);
     }
 
     .slide-leave-to {
-        transform: translate(-100%, 0);
+        transform: translate(-150%, 0);
     }
 
     .slideback-leave-active,
@@ -171,11 +233,11 @@ export default {
     }
 
     .slideback-enter-from {
-        transform: translate(-100%, 0);
+        transform: translate(-150%, 0);
     }
 
     .slideback-leave-to {
-        transform: translate(100%, 0);
+        transform: translate(150%, 0);
     }
 
 </style>

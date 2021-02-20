@@ -28,6 +28,12 @@ export default {
         border: none;
         color: rgba(255,255,255,0.43);
         cursor: pointer;
+        transition: 0.5s;
+    }
+
+    button:hover {
+        color: rgba(255,255,255,1);
+        transition: 0.1s;
     }
 
     input[type=text] {

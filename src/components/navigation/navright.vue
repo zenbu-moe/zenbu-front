@@ -2,7 +2,16 @@
     <div class="navright">
         <!-- <button-user v-if="!isDark" @click="$emit('change-theme')" class="dark"><i class="bi-brightness-high-fill"></i></button-user>
         <button-user v-if="isDark" @click="$emit('change-theme')" class="dark"><i class="bi-moon"></i></button-user> -->
-        <button-user @click="profileDropdownVisible = true" @mouseleave="profileDropdownVisible = false">
+        <button-profile>
+            <p>Browse</p>
+        </button-profile>
+        <button-profile>
+            <p>Forum</p>
+        </button-profile>
+        <button-profile class="user" @click="profileDropdownVisible = true" @mouseleave="profileDropdownVisible = false">
+            <div class="avatar">
+            </div>
+            <p>Sigma</p>
             <div class="dropdown" v-if="profileDropdownVisible" >
                 <div class="button-wrap">
                     <a class="avatar"></a>
@@ -53,11 +62,13 @@
             </div>
             <div class="overlay" v-if="profileDropdownVisible">
             </div>
+        </button-profile>
+        <button-user>
+            <i class="fas fa-bell"></i>
         </button-user>
         <button-user>
-            <i class="fal fa-bell"></i>
+            <i class="fas fa-inbox"></i>
         </button-user>
-        <button-user><i class="fal fa-inbox"></i></button-user>
     </div>
 </template>
 
@@ -94,13 +105,21 @@ export default {
     }
 
     .navright {
-        width: 30%;
+        width: 33%;
         display: inline-flex;
         min-width: 160px;
-        justify-content: flex-start;
-        flex-direction: row-reverse;
+        justify-content: flex-end;
+        /* flex-direction: row-reverse; */
         position: relative;
         z-index: 1000;
+    }
+
+    .avatar {
+        background-color: rgb(var(--color-gray-dark), 0.1);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
     }
 
     button-user {
@@ -108,8 +127,8 @@ export default {
         text-align: center;
         font-size: 1.3rem;
         color: white;
-        background: rgba(255,255,255,0.1);
-        margin-right: 15px;
+        background: rgba(255,255,255,0);
+        margin-left: 15px;
         border-radius: 50%;
         width: 40px;
         height: 40px;
@@ -118,7 +137,29 @@ export default {
         transition: background 0.3s ease 0s;
     }
 
-    button-user:hover {
+    button-profile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.95rem;
+        color: white;
+        background: rgba(255,255,255,0);
+        margin-left: 15px;
+        border-radius: 50px;
+        width: auto;
+        padding: 0px 10px 0px 6px;
+        cursor: pointer;
+        transition: background 0.3s ease 0s;
+        font-family: 'Raleway';
+        height: auto;
+    }
+
+    button-profile p {
+        margin: 0;
+    }
+
+    button-user:hover, .user:hover {
         background: rgba(255,255,255,0.2);
         transition: background 0.1s ease 0s;
     }
@@ -145,7 +186,7 @@ export default {
         top: 53px;
         width: 300px;
         box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.3);
-        animation: fadeInUp 0.5s;
+        animation: fadeIn 0.5s;
         transition: 0.7;
         z-index: 9999;
     }
