@@ -24,7 +24,9 @@
             <div class="text-markdown">
                 <div class="flag-shadow" v-if="postFlagged">
                     <div class="reveal-button" @click="postFlagged = false">
-                        <p>Reveal content</p>
+                        <p v-if="entry.spoiler && !entry.nsfw">Click to reveal spoiler</p>
+                        <p v-if="!entry.spoiler && entry.nsfw">Click to reveal NSFW content</p>
+                        <p v-if="entry.spoiler && entry.nsfw">Click to reveal</p>
                     </div>
                 </div>
                 <!-- {{ entry.content }} -->
