@@ -27,7 +27,7 @@ export default {
     .entry-reply {
         padding: 15px;
         animation: zoomIn 0.3s;
-        border-top: 1px solid rgb(var(--color-foreground-dark));
+        border-top: 1px solid rgba(var(--color-text), 0.1);
         transition: 1s;
     }
 

@@ -1,33 +1,21 @@
 <template>
   <div class="container" id="app" :class="{'site-light-mode': !isDarkTheme, 'site-dark-mode': isDarkTheme}">
-    <navigation @change-theme="changeTheme()" :isDark="isDarkTheme"/>
     <pageContent />
     <footerWrap :isDark="isDarkTheme"/>
   </div>
 </template>
 
 <script>
-import navigation from '../../components/navigation';
 import pageContent from './components/pageContent';
 import footerWrap from '../../components/footer';
 
 export default {
   name: 'app',
+  props: ["isDarkTheme"],
   components: {
-    navigation,
     pageContent,
     footerWrap
   },
-  data() {
-    return {
-      isDarkTheme: false
-    }
-  },
-  methods: {
-    changeTheme() {
-      this.isDarkTheme = !this.isDarkTheme
-    }
-  }
 }
 </script>
 

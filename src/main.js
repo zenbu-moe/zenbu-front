@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router'
 
 const clickOutside = {
     beforeMount: (el, binding) => {
@@ -19,4 +20,5 @@ const clickOutside = {
 
 createApp(App)
     .directive("click-outside", clickOutside)
+    .use(router)
     .mount('#app')

@@ -6,7 +6,7 @@
         <div class="grid-stack-item-content" style="z-index: 10" >
             <aboutWrap :edit="edit" v-if="widget.id == 0" />
             <statsWrap :edit="edit" v-if="widget.id == 1"/>
-            <favAnimeWrap :edit="edit" v-if="widget.id == 2"/>
+            <favAnimeWrap :edit="edit" :widget="widgetProps" v-if="widget.id == 2"/>
             <favMangaWrap :edit="edit" v-if="widget.id == 3"/>
             <favRanobeWrap :edit="edit" v-if="widget.id == 4"/>
         </div>
@@ -45,13 +45,17 @@ export default {
     },
     data() {
         return {
-
+            widgetProps: {
+                id: this.widget.id,
+                width: null,
+                height: null
+            }
         }
     },
     methods: {
         logme: function(event) { // a regular event object is passed by $event in template
             console.log(event.target.parentElement) // parent element
-    }
+        },
     }
 }
 </script>

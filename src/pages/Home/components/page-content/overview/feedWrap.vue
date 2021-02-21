@@ -75,7 +75,7 @@ export default {
 <style scoped>
     .wrap {
         display: grid;
-        grid-gap: 20px;
+        grid-gap: 40px;
     }
 
     .animate {
@@ -83,11 +83,11 @@ export default {
     }
 
     .row {
-        grid-template-rows: auto 450px;
+        grid-template-rows: auto 430px;
     }
 
     .column {
-        grid-template-columns: auto 450px;
+        grid-template-columns: auto 430px;
     }
 
     .activities {
@@ -95,6 +95,6 @@ export default {
     }
 
     .content-box {
-        padding: 10px;
+        padding: 0px;
     }
 </style>

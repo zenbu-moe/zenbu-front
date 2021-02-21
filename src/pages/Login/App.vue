@@ -1,30 +1,18 @@
 <template>
   <div class="container" id="app" :class="{'site-light-mode': !isDarkTheme, 'site-dark-mode': isDarkTheme}" @click="clickHandler">
-    <navigation @change-theme="changeTheme()" :isDark="isDarkTheme" @open-popup="openPopup(id)" />
     <pageContent />
   </div>
 </template>
 
 <script>
-import navigation from '../../components/navigation';
 import pageContent from './components/pageContent';
 
 export default {
   name: 'app',
+  props: ["isDarkTheme"],
   components: {
-    navigation,
     pageContent,
   },
-  data() {
-    return {
-      isDarkTheme: false,
-    }
-  },
-  methods: {
-    changeTheme() {
-      this.isDarkTheme = !this.isDarkTheme
-    },
-  }
 }
 </script>
 

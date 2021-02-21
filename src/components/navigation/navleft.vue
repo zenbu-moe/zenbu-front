@@ -1,8 +1,8 @@
 <template>
     <div class="navleft">
-        <div class="logo">
+        <router-link to="/" class="logo">
             <a href=""><img src="../../assets/logo_light.png" alt="Zenbu"></a>
-        </div>
+        </router-link>
         <search />
     </div>
 </template>

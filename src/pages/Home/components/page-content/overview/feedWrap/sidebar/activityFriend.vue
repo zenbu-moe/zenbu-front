@@ -24,7 +24,7 @@
                 </span>
             </div>
         </div>
-        <div v-if="state != 0 && isRepliesVisible">
+        <div v-if="state != 0 && isRepliesVisible" class="replies">
             <div class="activity-replies">
                 <div v-for="reply in activity.replies" :key="reply.id">
                     <replyItem :reply="reply"/>
@@ -86,8 +86,8 @@ export default {
     }
 
     .activity-replies {
-        border-top: 2px solid rgb(var(--color-foreground-dark));
-        padding: 15px 10px 0px 10px;
+        border-top: 1px solid rgba(var(--color-text), 0.1);
+        padding-top: 15px;
         animation: zoomIn 0.3s;
     }
 
@@ -183,14 +183,23 @@ export default {
         display: inline-flex;
     }
 
+    .replies {
+        padding: 10px;
+    }
+
     .textbox {
-        background-color:rgb(var(--color-gray));
+        background-color: rgb(var(--color-background-dark));
         border-radius: 20px;
         padding: 3px 5px;
+        transition: 1s;
     }
 
     .textbox form {
         padding: 5px;
+    }
+
+    input[type = text]{
+        color: rgb(var(--color-text-markdown))
     }
 
 </style>

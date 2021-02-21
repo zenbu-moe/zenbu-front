@@ -1,30 +1,34 @@
 <template>
   <div class="container" id="app" :class="{'site-light-mode': !isDarkTheme, 'site-dark-mode': isDarkTheme}">
-    <showcase />
-    <pageContent />
-    <footerWrap :isDark="isDarkTheme"/>
+    <navigation @change-theme="changeTheme()" :isDark="isDarkTheme"/>
+    <router-view :isDarkTheme="isDarkTheme"/>
   </div>
 </template>
 
 <script>
-import showcase from './components/showcase';
-import pageContent from './components/pageContent';
-import footerWrap from '../../components/footer';
+import navigation from './components/navigation';
 
 export default {
   name: 'app',
-  props: ["isDarkTheme"],
   components: {
-    showcase,
-    pageContent,
-    footerWrap
+    navigation,
   },
+  data() {
+    return {
+      isDarkTheme: true
+    }
+  },
+  methods: {
+    changeTheme() {
+      this.isDarkTheme = !this.isDarkTheme
+    }
+  }
 }
 </script>
 
 <style>
-  @import url('../../fonts/bootstrap-icons/bootstrap-icons.css');
-  @import url('../../fonts/fontawesome-pro-5.13.0-web/css/all.css');
+  @import url('./fonts/bootstrap-icons/bootstrap-icons.css');
+  @import url('./fonts/fontawesome-pro-5.13.0-web/css/all.css');
   
   * {
     box-sizing: border-box;

@@ -53,7 +53,7 @@ export default {
     }
 
     .info-box .content-wrap {
-        padding: 20px;
+        padding: 15px;
         background-color: rgb(var(--color-foreground));
         border-radius: 15px;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
@@ -61,11 +61,11 @@ export default {
         display: grid;
         grid-row-gap: 15px;
         grid-column-gap: 15px;
-        grid-template-columns: auto auto auto auto;
+        grid-template-columns: auto auto auto;
     }
 
     .info-box .content-wrap-expanded {
-        padding: 20px;
+        padding: 15px;
         background-color: rgb(var(--color-foreground));
         border-radius: 20px;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);

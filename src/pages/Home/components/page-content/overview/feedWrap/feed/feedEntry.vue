@@ -295,10 +295,10 @@ export default {
 
     .flag-shadow {
         position: absolute;
-        top: -10px;
+        top: -5px;
         left: -15px;
         right: -15px;
         bottom: -10px;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(50px);
     }
 </style>

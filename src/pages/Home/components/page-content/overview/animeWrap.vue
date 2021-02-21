@@ -67,7 +67,7 @@ export default {
 <style scoped>
     .wrap {
         display: grid;
-        grid-gap: 20px;
+        grid-gap: 40px;
     }
 
     .animate {
@@ -79,7 +79,7 @@ export default {
     }
 
     .content-box {
-        padding: 10px;
+        padding: 0px;
     }
 
 </style>

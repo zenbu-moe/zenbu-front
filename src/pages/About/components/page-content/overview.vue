@@ -133,6 +133,12 @@ export default {
                 this.lockGrid()
             }
         },
+        computeProperties() {
+            this.grid.on('change', function(event, element) {
+                const node = element.gridstackNode;
+                console.log(node.id)
+            });
+        },
         setHeight(element) {
             var feedHeight = Math.ceil(element.clientHeight/25)
             console.log(element.clientHeight)

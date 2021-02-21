@@ -13,13 +13,13 @@
             </div>
             <p>Sigma</p>
             <div class="dropdown" v-if="profileDropdownVisible" >
-                <div class="button-wrap">
+                <router-link to="about" class="button-wrap">
                     <a class="avatar"></a>
                     <div class="details">
                         <h2>Sigma</h2>
                         <p>Go to your profile</p>
                     </div>
-                </div>
+                </router-link>
                 <hr>
                 <div class="button-wrap settings">
                     <i class="fas fa-play-circle"></i>
