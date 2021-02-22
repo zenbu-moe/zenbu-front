@@ -1,7 +1,7 @@
 <template>
     <div class="navbar">
         <div class="wrap">
-            <navleft />
+            <navleft @open-search="$emit('open-search')" @on-type="onType" />
             <navmid />
             <navright @change-theme="$emit('change-theme')" :isDark="isDark" @open-popup="$emit('open-popup', id)" />
         </div>
@@ -25,6 +25,12 @@ export default {
         return {
             isOverlayVisible: true
         }
+    },
+    methods: {
+        onType(str) {
+           console.log(str)
+           this.$emit('on-type', str)
+       }
     }
 }
 </script>

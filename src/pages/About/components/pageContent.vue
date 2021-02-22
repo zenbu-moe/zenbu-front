@@ -2,7 +2,7 @@
     <div class="page-content">
         <div class="banner-wrap">
             <div v-if="editOn" class="banner"></div>
-            <btn v-if="editOn" class="upload"><i class="fas fa-pen"></i>Edit banner</btn>
+            <btn v-if="editOn" class="upload"><i class="fal fa-pen"></i>Edit banner</btn>
         </div>
         <div class="overview-wrap">
             <headerWrap @toggle-edit="toggleEdit()" :edit="editOn"/>
@@ -79,6 +79,7 @@ export default {
         top: 70px;
         left: 10px;
         background-color: rgba(var(--color-foreground), 0.2);
+        color: rgb(var(--color-text));
         font-family: "Raleway";
         padding: 10px;
         transition: 0.5s;

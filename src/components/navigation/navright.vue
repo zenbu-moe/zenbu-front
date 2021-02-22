@@ -3,7 +3,7 @@
         <!-- <button-user v-if="!isDark" @click="$emit('change-theme')" class="dark"><i class="bi-brightness-high-fill"></i></button-user>
         <button-user v-if="isDark" @click="$emit('change-theme')" class="dark"><i class="bi-moon"></i></button-user> -->
         <button-profile>
-            <p>Browse</p>
+            <router-link to="/browse"><p>Browse</p></router-link>
         </button-profile>
         <button-profile>
             <p>Forum</p>
@@ -95,6 +95,10 @@ export default {
 </script>
 
 <style scoped>
+    a {
+        color: white;
+    }
+
     .overlay {
         position: absolute;
         width: 80px;

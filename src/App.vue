@@ -1,6 +1,14 @@
 <template>
   <div class="container" id="app" :class="{'site-light-mode': !isDarkTheme, 'site-dark-mode': isDarkTheme}">
-    <navigation @change-theme="changeTheme()" :isDark="isDarkTheme"/>
+    <navigation v-if="currentRoute != 'Login'" @change-theme="changeTheme()" :isDark="isDarkTheme" @open-search="openSearch()" @on-type="onType"/>
+    <div class="search-popup" v-if="isSearchToggled" @click.self="isSearchToggled = false, formValue = ''" @keydown.esc="isSearchToggled = false, formValue = ''">
+      <div class="search-bar">
+        <form>
+          <input type="text" ref="search" v-model="formValue" style="color: rgb(var(--color-text-markdown))" placeholder="Start typing to search...">
+        </form>
+        <i class="fal fa-search"></i>
+      </div>
+    </div>
     <router-view :isDarkTheme="isDarkTheme"/>
   </div>
 </template>
@@ -15,13 +23,29 @@ export default {
   },
   data() {
     return {
-      isDarkTheme: true
+      isDarkTheme: true,
+      isSearchToggled: false,
+      formValue: ''
     }
   },
   methods: {
     changeTheme() {
       this.isDarkTheme = !this.isDarkTheme
+    },
+    onType(str) {
+      this.isSearchToggled = true;
+      this.formValue = str
+      this.$nextTick(() =>  this.$refs.search.focus());
+    },
+    openSearch() {
+      this.isSearchToggled = true;
+      this.$nextTick(() =>  this.$refs.search.focus());
     }
+  },
+  computed: {
+      currentRoute() {
+          return this.$route.name;
+      }
   }
 }
 </script>
@@ -160,5 +184,37 @@ export default {
   body::-webkit-scrollbar       {background-color: transparent; width: 6px;}
   body::-webkit-scrollbar-track {background-color: transparent;}
   body::-webkit-scrollbar-thumb {background-color: rgba(50,44,55,0.50);; border-radius:15px; width: 4px}
+
+  .search-popup {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(var(--color-background), 0.8);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s;
+  }
+
+  .search-bar {
+    background-color: rgba(var(--color-foreground), 1);
+    padding: 15px;
+    color: rgba(var(--color-text));
+    width: 1000px;
+    margin: 150px auto 0px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(var(--color-background), 1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  input[type=text] {
+    width: 100%;
+  }
 
 </style>

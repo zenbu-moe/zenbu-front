@@ -13,6 +13,9 @@
                     <div class="selection-item" @click="feedPosition = 0">
                         <i class="fas fa-arrow-to-left"></i><p>Feed position: left</p>
                     </div>
+                    <div class="selection-item">
+                        <i class="fas fa-arrows-h"></i><p>Wide feed</p>
+                    </div>
                     <div class="selection-item" v-if="feedShown" @click="feedShown = false">
                         <i class="fas fa-power-off"></i><p>Hide feed</p>
                     </div>
@@ -46,10 +49,10 @@
         </div>
         <div class="wrap" v-if="edit && feedShown">
             <div class="left" v-if="feedPosition == 0">
-                <feedWrap />
+                <feedWrap @set-height="setHeight" ref="fw"/>
             </div>
             <div class="right" v-if="feedPosition == 1">
-                <feedWrap />
+                <feedWrap @set-height="setHeight" ref="fw"/>
             </div>
         </div>
     </div>
@@ -141,7 +144,7 @@ export default {
         },
         setHeight(element) {
             var feedHeight = Math.ceil(element.clientHeight/25)
-            console.log(element.clientHeight)
+            /* console.log(element.clientHeight) */
             var widget = element.parentElement.parentElement
             this.grid.update(widget, { h: feedHeight })
         },
@@ -272,7 +275,7 @@ export default {
     .wrap {
         display: grid;
         grid-template-columns: 50% 50%;
-        padding: 10px;
+        padding: 20px;
     }
 
     .hidden {
@@ -299,7 +302,7 @@ export default {
         align-items: center;
         background-color: rgb(var(--color-foreground));
         color: rgb(var(--color-text));
-        border-radius: 20px;
+        border-radius: 15px;
         height: 50px;
         margin: 20px 20px 20px 0px;
         padding: 10px 20px;
@@ -341,7 +344,7 @@ export default {
     .selection {
         display: flex;
         flex-direction: column;
-        padding: 20px;
+        padding: 15px;
         position: absolute;
         z-index: 999;
         margin: 0px 0px 0px -100px;
@@ -354,7 +357,7 @@ export default {
     }
 
     .selection-item {
-        border-radius: 20px;
+        border-radius: 10px;
         background-color: rgba(var(--color-foreground), 1);
         height: 40px;
         width: 100%;

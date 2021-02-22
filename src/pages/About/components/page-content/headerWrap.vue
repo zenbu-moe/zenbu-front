@@ -10,7 +10,7 @@
             <div class="avatar-wrap">
                 <div class="avatar">
                     <div class="edit-button" v-if="edit">
-                        <i class="fas fa-pen"></i>
+                        <i class="fal fa-pen"></i>
                     </div>
                 </div>
                 <div class="name">
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="actions">
-                <button class="btn-sup"><i class="fad fa-heart-circle"></i><p>Supporter</p></button>
+                <button class="btn-sup"><i class="fad fa-heart-circle"></i><p>SIMP</p></button>
                 <!-- <button class="btn"><i class="fas fa-user-plus"></i><p>Follow</p></button>
                 <button class="btn"><i class="fas fa-envelope"></i></button> -->
                 <!-- <button class="btn"><i class="fas fa-user-clock"></i><p>Follow back</p></button>

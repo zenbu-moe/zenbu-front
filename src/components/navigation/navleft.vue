@@ -3,7 +3,7 @@
         <router-link to="/" class="logo">
             <a href=""><img src="../../assets/logo_light.png" alt="Zenbu"></a>
         </router-link>
-        <search />
+        <search @open-search="$emit('open-search')" @on-type="onType" />
     </div>
 </template>
 
@@ -14,7 +14,13 @@ export default {
     name: 'navleft',
     components: {
         search
-   } 
+   },
+   methods: {
+       onType(str) {
+           console.log(str)
+           this.$emit('on-type', str)
+       }
+   },
 }
 </script>
 

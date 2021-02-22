@@ -1,7 +1,7 @@
 <template>
     <div class="search">
-        <button type="submit"><i class="fal fa-search"></i></button>
-		<input type="text" placeholder="Search Zenbu...">
+        <div type="submit" class="button" @click="$emit('open-search')"><i class="fal fa-search"></i></div>
+		<input type="text" v-model="formValue" placeholder="Search Zenbu...">
     </div>
 </template>
 
@@ -10,6 +10,22 @@ export default {
     name: 'search',
     components: {
 
+    },
+    data() {
+        return {
+            formValue: ''
+        }
+    },
+    methods: {
+        onType() {
+            if (this.formValue != '') {
+                this.$emit('on-type', this.formValue)
+            }
+            this.$nextTick(() => (this.formValue = ''))
+        }
+    },
+    updated() {
+        this.onType()
     }
 }
 </script>
@@ -19,19 +35,21 @@ export default {
         background: rgba(255,255,255,0.05);
         padding: 5px 10px 2px 10px;
         border-radius: 30px;
-        display: inline-flex;
+        display: flex;
+        align-items: center;
     }
 
-    .search button {
+    .search .button {
         background: rgba(0,0,0,0.0);
         font-size: 20px;
         border: none;
         color: rgba(255,255,255,0.43);
         cursor: pointer;
         transition: 0.5s;
+        margin-right: 5px;
     }
 
-    button:hover {
+    .button:hover {
         color: rgba(255,255,255,1);
         transition: 0.1s;
     }

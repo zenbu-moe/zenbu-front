@@ -38,7 +38,7 @@
                 <div style="width: 100%; position: relative">
                     <div class="button" @click="toggleFlagsPopup(true)" :class="{'toggle-on': flagsPopupOn}">
                         <i v-if="!newEntry.nsfw && !newEntry.spoiler" class="far fa-flag"></i>
-                        <p v-if="!newEntry.nsfw && !newEntry.spoiler">Flag this post</p>
+                        <p v-if="!newEntry.nsfw && !newEntry.spoiler">Add a label</p>
                         <div class="flags-on">
                             <div class="nsfw-small" v-if="newEntry.nsfw">NSFW</div>
                             <div class="spoiler-small" v-if="newEntry.spoiler">Spoiler</div>

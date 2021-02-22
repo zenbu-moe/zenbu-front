@@ -1,6 +1,6 @@
 <template>
     <div class="grid-stack-item" v-bind="gridStackAttributes">
-        <btn v-if="edit" @click="logme($event); $emit('remove-widget', $event, widget.id)" style="z-index: 15" >
+        <btn v-if="edit" @click="$emit('remove-widget', $event, widget.id)" style="z-index: 15" >
             <i class="fas fa-trash-alt"></i>
         </btn>
         <div class="grid-stack-item-content" style="z-index: 10" >
@@ -53,9 +53,9 @@ export default {
         }
     },
     methods: {
-        logme: function(event) { // a regular event object is passed by $event in template
+        /* logme: function(event) { // a regular event object is passed by $event in template
             console.log(event.target.parentElement) // parent element
-        },
+        }, */
     }
 }
 </script>
