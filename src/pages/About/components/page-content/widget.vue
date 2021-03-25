@@ -1,14 +1,14 @@
 <template>
-    <div class="grid-stack-item" v-bind="gridStackAttributes">
+    <div class="grid-stack-item sub" v-bind="gridStackAttributes" ref="item">
         <btn v-if="edit" @click="$emit('remove-widget', $event, widget.id)" style="z-index: 15" >
             <i class="fas fa-trash-alt"></i>
         </btn>
-        <div class="grid-stack-item-content" style="z-index: 10" >
-            <aboutWrap :edit="edit" v-if="widget.id == 0" />
-            <statsWrap :edit="edit" v-if="widget.id == 1"/>
-            <favAnimeWrap :edit="edit" :widget="widgetProps" v-if="widget.id == 2"/>
-            <favMangaWrap :edit="edit" v-if="widget.id == 3"/>
-            <favRanobeWrap :edit="edit" v-if="widget.id == 4"/>
+        <div class="grid-stack-item-content" style="z-index: 10">
+            <aboutWrap :wgtdata="wgtdata" :edit="edit" v-if="widget.id == 0"/>
+            <statsWrap :wgtdata="wgtdata" :edit="edit" v-if="widget.id == 1" />
+            <favAnimeWrap :wgtdata="wgtdata" :edit="edit" :widget="widgetProps" v-if="widget.id == 2" ref="anime" :grid="grid"/>
+            <favMangaWrap :wgtdata="wgtdata" :edit="edit" v-if="widget.id == 3" ref="manga"/>
+            <favRanobeWrap :wgtdata="wgtdata" :edit="edit" v-if="widget.id == 4" ref="ranobe"/>
         </div>
     </div>
 </template>
@@ -29,7 +29,7 @@ export default {
         favRanobeWrap,
         aboutWrap,
     },
-    props: ["widget", "edit"],
+    props: ["widget", "edit", "wgtdata", "grid"],
     computed: {
         gridStackAttributes() {
             return {
@@ -37,9 +37,11 @@ export default {
                 "gs-id": this.widget.id,
                 "gs-x": 0,
                 "gs-y": 0,
-                "gs-w": 1,
-                "gs-h": 5,
-                "gs-min-h": 5,
+                "gs-w": 2,
+                "gs-min-w": 2,
+                "gs-h": this.widget.h,
+                "gs-min-h": this.widget.minH,
+                "gs-max-h": this.widget.maxH,
             }
         }
     },
@@ -49,13 +51,11 @@ export default {
                 id: this.widget.id,
                 width: null,
                 height: null
-            }
+            },
         }
     },
     methods: {
-        /* logme: function(event) { // a regular event object is passed by $event in template
-            console.log(event.target.parentElement) // parent element
-        }, */
+
     }
 }
 </script>
@@ -87,4 +87,7 @@ export default {
         transition: 0.2s;
     }
 
+    .grid-stack .grid-stack-item > .grid-stack-item-content {
+        inset: 15px;
+    }
 </style>

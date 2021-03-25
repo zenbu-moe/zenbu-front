@@ -1,6 +1,6 @@
 <template>
   <div class="container" id="app" :class="{'site-light-mode': !isDarkTheme, 'site-dark-mode': isDarkTheme}">
-    <pageContent />
+    <pageContent :tab="browseTab"/>
     <footerWrap :isDark="isDarkTheme"/>
   </div>
 </template>
@@ -11,7 +11,7 @@ import footerWrap from '../../components/footer';
 
 export default {
   name: 'app',
-  props: ["isDarkTheme"],
+  props: ["isDarkTheme", "browseTab"],
   components: {
     pageContent,
     footerWrap

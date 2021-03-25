@@ -17,7 +17,7 @@
                         }"
                     :style="[activityState == 1 ? displayProgress : 'width: 100%']"
                 >
-                    <span class="count">{{ activity.episodesWatched }}</span>
+                    <p class="count">{{ activity.episodesWatched }}</p>
                 </div>
             </div>
             <!--
@@ -82,6 +82,7 @@ export default {
     .activity-entry {
         padding: 12px;
         display: flex;
+        align-items: center;
     }
 
     .activity-entry .cover {
@@ -103,12 +104,12 @@ export default {
 
     .activity-entry .details h3 {
         margin: 0px;
-        font-size: 17px;
+        font-size: 16px;
     }
 
     .activity-entry .details p {
         margin-top: 7px;
-        font-size: 14px;
+        font-size: 0.85rem;
     }
 
     .activity-entry .details .progress {
@@ -116,6 +117,10 @@ export default {
         width: 100%;
         border-radius: 10px;
         transition: 1s;
+    }
+
+    .progress-state {
+        align-items: center;
     }
 
     #anime_id {  
@@ -140,9 +145,10 @@ export default {
     }
 
     .count {
-        font-size: 15px;
+        font-size: 0.8rem;
         color: white;
-        font-weight: bold;
+        font-weight: 700;
+        margin: 0;
     }
 
     .debugging-buttons {

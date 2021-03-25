@@ -9,7 +9,7 @@
         <i class="fal fa-search"></i>
       </div>
     </div>
-    <router-view :isDarkTheme="isDarkTheme"/>
+    <router-view @set-tab="setBrowseTab" :isDarkTheme="isDarkTheme" :browseTab="currentBrowseTab"/>
   </div>
 </template>
 
@@ -23,9 +23,10 @@ export default {
   },
   data() {
     return {
-      isDarkTheme: true,
+      isDarkTheme: false,
       isSearchToggled: false,
-      formValue: ''
+      formValue: '',
+      currentBrowseTab: 0,
     }
   },
   methods: {
@@ -40,6 +41,9 @@ export default {
     openSearch() {
       this.isSearchToggled = true;
       this.$nextTick(() =>  this.$refs.search.focus());
+    },
+    setBrowseTab(int) {
+      this.currentBrowseTab = int;
     }
   },
   computed: {
@@ -81,7 +85,11 @@ export default {
     --color-link: 49,53,90;
     --color-button: 129, 129, 129;
     --color-text-markdown: 0,0,0;
-    --color-activity-progress-background: 198,198,198
+    --color-activity-progress-background: 198,198,198;
+    --color-dropped: 173, 163, 181;
+    --color-completed: 148, 121, 171;
+    --color-watching: 192, 169, 212;
+    --color-planning: 185, 184, 186;
   }
 
   .site-dark-mode {

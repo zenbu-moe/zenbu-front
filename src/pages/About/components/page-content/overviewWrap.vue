@@ -1,17 +1,17 @@
 <template>
     <div class="overview-grid" >
-        <overview :edit="edit" ref="ow"/>
+        <overviewTest :edit="edit" ref="ow"/>
     </div>
 </template>
 
 <script>
-import overview from './overview'
+import overviewTest from './overview-test'
 
 export default {
     name: 'overviewWrap',
     props: ["edit"],
     components: {
-        overview
+        overviewTest
     },
     data() {
 
@@ -26,12 +26,12 @@ export default {
     .overview-grid {
         display: flex;
         flex-direction: column;
-        background-color: rgb(var(--color-background-dark));
-        border-radius: 20px;
-        max-width: 1400px;
+        /* background-color: rgb(var(--color-background-dark));
+        border-radius: 20px; */
+        max-width: 1300px;
         height: auto;
-        margin: 20px auto;
-        padding: 10px 0px;
+        margin: 20px auto 0px auto;
+        padding: 10px 0px 0px 0px;
         transition: 1s;
     }
 </style>

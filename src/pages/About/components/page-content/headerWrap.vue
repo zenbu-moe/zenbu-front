@@ -99,7 +99,7 @@ export default {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
-        width: 1400px;
+        width: 1290px;
         margin: 0 auto 10px auto;
         transition: 1s;
         padding: 0px 10px;

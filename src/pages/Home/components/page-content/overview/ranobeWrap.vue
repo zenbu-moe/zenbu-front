@@ -5,8 +5,8 @@
 
         <div class="wrap column" v-if="wrapState == 0" :class="{'animate': (wrapState != previousState)}">
             <div class="content-box">
-                <latestUpdates :ranobe="releasingRanobe"/>
-                <topRanobe :ranobe="topRanobe"/>
+                <latestUpdates :ranobe="releasingRanobe" @set-tab="$emit('set-tab', 0)"/>
+                <topRanobe :ranobe="topRanobe" @set-tab="$emit('set-tab', 4)"/>
             </div>
             <div class="content-box">
                 <currentlyReading :ranobe="readingRanobe" @expand="setWrap" :state="wrapState"/>
@@ -61,7 +61,7 @@ export default {
 <style scoped>
     .wrap {
         display: grid;
-        grid-gap: 20px;
+        grid-gap: 40px;
     }
 
     .animate {
@@ -69,11 +69,7 @@ export default {
     }
 
     .column {
-        grid-template-columns: auto 440px;
-    }
-
-    .content-box {
-        padding: 10px;
+        grid-template-columns: auto 410px;
     }
 
 </style>

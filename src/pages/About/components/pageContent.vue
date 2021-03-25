@@ -6,7 +6,7 @@
         </div>
         <div class="overview-wrap">
             <headerWrap @toggle-edit="toggleEdit()" :edit="editOn"/>
-            <overviewWrap :edit="editOn" ref="oww"/>
+            <overviewWrap :edit="edit" ref="oww"/>
         </div>
     </div>
 </template>
@@ -21,15 +21,10 @@ export default {
        headerWrap,
        overviewWrap
    },
-   data() {
-        return {
-            editOn: false,
-        }
-    },
-
+   props: ["edit"],
     methods: {
         toggleEdit() {
-            this.editOn = !this.editOn
+            this.$emit('toggle-edit')
         }
     },
 }
@@ -62,7 +57,7 @@ export default {
         margin-top: -50px;
         transition: 1s;
         height: auto;
-        padding-bottom: 50px;
+        padding-bottom: 10px;
     }
 
     .upload {

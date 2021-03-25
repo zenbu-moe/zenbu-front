@@ -94,7 +94,7 @@ export default {
     }
 
     .page-showcase {
-        width: 1200px;
+        width: 1130px;
         padding: 20px 0px 30px 0px;
         margin: auto;
         transition: 1s;
@@ -132,7 +132,7 @@ export default {
     .expand {
         position: relative;
         font-size: 1.2rem;
-        left: 1180px;
+        left: 1110px;
         top: 180px;
         z-index: 5;
         background: rgba(var(--color-foreground));

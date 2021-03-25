@@ -40,10 +40,10 @@
                 thought of modular functionality, but this project doesnt require it so cbf -->
                 <transition-group :name="(currentTab < previousTab) ? 'slideback' : 'slide'">
                     <feedWrap v-if="currentTab == 1" key="feed"/>
-                    <animeWrap v-if="currentTab == 2" key="anime"/>
-                    <mangaWrap v-if="currentTab == 3" key="manga"/>
-                    <ranobeWrap v-if="currentTab == 4" key="ranobe"/>
-                    <communityWrap v-if="currentTab == 5" key="community"/>
+                    <animeWrap v-if="currentTab == 2" key="anime" @set-tab="setBrowseTab"/>
+                    <mangaWrap v-if="currentTab == 3" key="manga" @set-tab="setBrowseTab"/>
+                    <ranobeWrap v-if="currentTab == 4" key="ranobe" @set-tab="setBrowseTab"/>
+                    <communityWrap v-if="currentTab == 5" key="community" @set-tab="setBrowseTab"/>
                 </transition-group>
             </div>
         </div>
@@ -78,6 +78,9 @@ export default {
         setActive(selectedTab) {
             this.previousTab = this.currentTab;
             this.currentTab = selectedTab;
+        },
+        setBrowseTab(int) {
+            this.$emit('set-tab', int)
         }
     },
 }
@@ -94,7 +97,7 @@ export default {
     }
 
     .wrap {
-        max-width: 1200px;
+        max-width: 1130px;
         margin: auto;
     }
 

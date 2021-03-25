@@ -30,7 +30,6 @@
             <div class="item" @click="chooseToggle()" @mouseleave="chooseMode = false">
                 <i class="fas fa-plus"></i><p>Add module...</p>
                 <div class="selection" v-if="edit && chooseMode">
-                <h3>Choose a module</h3>
                 <div v-for="item in selection" :key="item.id">
                     <div class="selection-item" @click="addWidget(item.id)" v-if="item.available == true">
                         <i :class="item.class"></i><p>{{ item.title }}</p>
@@ -39,20 +38,24 @@
             </div>
         </div>
         </div>
-        <div class="grid-stack grid-stack-2" gs-static="true">
+        <div class="grid-stack grid-stack-9" gs-static="true">
             <widget v-for="widget in cells" :widget="widget" :edit="edit" :key="widget.id" @remove-widget="deleteWidget" ref="wgt"/>
-            <div class="grid-stack-item"  style="z-index: 0" v-bind:gs-h="feedHeight" gs-x="1" gs-y="1" gs-w="1" ref="fd" gs-no-move="true" gs-no-resize="true" :class="{'hidden': edit}">
+            <div class="grid-stack-item"  style="z-index: 0" v-bind:gs-h="feedHeight" v-bind:gs-x="feedPosition" gs-y="1" v-bind:gs-w="feedWidth" ref="fd" gs-no-move="true" gs-no-resize="true" :class="{'hidden': edit}">
                 <div class="grid-stack-item-content" style="overflow: hidden">
                     <feedWrap @set-height="setHeight" ref="fw" v-if="!edit && feedShown"/>
                 </div>
             </div>
         </div>
-        <div class="wrap" v-if="edit && feedShown">
-            <div class="left" v-if="feedPosition == 0">
-                <feedWrap @set-height="setHeight" ref="fw"/>
-            </div>
-            <div class="right" v-if="feedPosition == 1">
-                <feedWrap @set-height="setHeight" ref="fw"/>
+        <div class="grid-stack grid-stack-9" gs-static="false">
+            <div class="grid-stack-item"  style="z-index: 0" v-bind:gs-h="blankHeight" gs-max-h="13" gs-min-h="13" gs-min-w="3" gs-x="9999" gs-y="1" v-bind:gs-w="feedWidth" ref="fdH" gs-no-move="false" gs-no-resize="false" :class="{'hidden': !edit}">
+                <div class="grid-stack-item-content" style="overflow: hidden">
+                    <div class="fake-feed">
+                        <div class="fake-cover">
+                            <p>Feed</p>
+                        </div>
+                    </div>
+                    <!-- <feedWrap @set-height="setHeight" ref="fw" v-if="edit && feedShown"/> -->
+                </div>
             </div>
         </div>
     </div>
@@ -89,28 +92,36 @@ export default {
               h: Math.round(1 + 3 * Math.random()),
             };
             node.id = node.content = String(this.count++);
-            this.grid.addWidget(node);
+            this.grid[0].addWidget(node);
         },
         lockGrid: function() {
-            this.grid.setStatic(true)
+            this.grid[0].setStatic(true)
+            this.grid[1].setStatic(true)
         },
         unlockGrid: function() {
-            this.grid.setStatic(false)
+            this.grid[0].setStatic(false)
+            this.grid[1].setStatic(false)
         },
         addWidget(id) {
             const widget = {
-                id: id
+                id: id,
+                maxH: 100
             };
+
+            if (id == 2 || id == 3 || id == 4) {
+                widget.maxH = 9;
+            }
+
             this.selection[id].available = false;
             this.cells.push(widget);
             this.$nextTick(() => {
-                this.grid.makeWidget(`#${widget.id}`);
+                this.grid[0].makeWidget(`#${widget.id}`);
             });
         },
         deleteWidget(element, id) {
             
             console.log(element.target.parentElement)
-            this.grid.removeWidget(element.target.parentElement)
+            this.grid[0].removeWidget(element.target.parentElement)
 
             for (var i = 0; i < this.cells.length; i++) {
                 if (this.cells[i].id == id) {
@@ -144,32 +155,58 @@ export default {
         },
         setHeight(element) {
             var feedHeight = Math.ceil(element.clientHeight/25)
-            /* console.log(element.clientHeight) */
-            var widget = element.parentElement.parentElement
-            this.grid.update(widget, { h: feedHeight })
+            var widget = this.$refs.fd
+            var widgetH = this.$refs.fdH
+
+            if (this.edit) {
+                this.grid[1].update(widgetH, { h: 12 })
+                this.grid[0].update(widget, { h: 0 })
+            } else {
+                this.grid[0].update(widget, { h: feedHeight })
+                this.grid[1].update(widgetH, { h: 0 })
+            }          
         },
         manageFeed() {
             var widget = this.$refs.fd;
+            var widgetH = this.$refs.fdH
 
             if (this.edit) {
-                this.grid.float(true)
-                this.grid.update(widget, { w: 1, x: 9999, y: 0, h: 0})
-            } else {
-                this.grid.float(false)
+                this.grid[0].update(widget, { w: 5, x: 9999, y: 0, h: 0})
+
                 if (!this.feedShown) {
-                    this.grid.update(widget, { w: 1, x: 9999, y: 0, h: 0})
+                    this.grid[1].update(widgetH, { w: 5, x: 9999, y: 0, h: 0})
                 } else {
-                    this.grid.update(widget, { w: 1, x: this.feedPosition, y: 9999})
+                    this.grid[1].update(widgetH, { w: this.feedWidth, x: this.feedPosition, y: 9999, h: this.blankHeight})
+                }
+
+            } else {
+                this.grid[1].update(widgetH, { w: 5, x: 9999, y: 0, h: 0})
+
+                if (!this.feedShown) {
+                    this.grid[0].update(widget, { w: 5, x: 9999, y: 0, h: 0})
+                } else {
+                    this.grid[0].update(widget, { w: this.feedWidth, x: this.feedPosition, y: 9999})
                 }
             }
+        },
+        swapFeed() {
+            /* var widget = this.$refs.fd */
+            /* var widgetH = this.$refs.fdH
+
+            if (this.edit) {
+                let pos = parseInt(this.$refs.fd.getAttribute('gs-x'))
+                this.grid[1].update(widgetH, { w: 1, x: pos, y: 9999})
+            } */
         }
     },
     data() {
         return {
             chooseMode: false,
             feedChooseMode: false,
-            feedPosition: 1,
+            feedPosition: 4,
             feedHeight: 1,
+            feedWidth: 5,
+            blankHeight: 13,
             feedShown: true,
             cells: [
 
@@ -229,28 +266,27 @@ export default {
     },
     mounted: function() {
         let options = { 
-                acceptWidgets: true,
-                dragIn: '.newWidget',
-                dragInOptions: { revert: 'invalid', scroll: false, appendTo: 'body', helper: 'clone' },
+                acceptWidgets: false,
                 float: false, 
-                column: 2,
+                column: 9,
                 cellHeight: '25px',
                 removable: false,
                 removeTimeout: 100,
                 minRow: 1,
                 marginLeft: 20,
                 marginRight: 20,
+                animate: false,
             }
+        this.grid = GridStack.initAll(options);
 
-        /* let items = [
-                {x: 0, y: 0, w: 1, h: 1},
-                {x: 3, y: 1, h: 1},
-                {x: 4, y: 1},
-                {x: 2, y: 3, w: 1},
-                {x: 2, y: 5}
-            ]; */
-
-        this.grid = GridStack.init(options);
+        this.grid[1].on('dragstop', (event, el) => {
+            let x = parseInt(el.getAttribute('gs-x'));
+            this.feedPosition = x
+        });
+        this.grid[1].on('resizestop', (event, el) => {
+            let w = parseInt(el.getAttribute('gs-w'));
+            this.feedWidth = w
+        });
     },
     updated() {
         this.setGridStatic();
@@ -396,6 +432,42 @@ export default {
         z-index: 500;
         background-color: red;
         cursor: pointer;
-    }    
+    }
+
+    .fake-feed {
+        border-radius: 15px;
+        background-color: rgba(var(--color-foreground), 1);
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 300px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .fake-cover p {
+        color: rgb(var(--color-text));
+        font-family: "Raleway";
+        font-size: 2rem;
+        margin: 0;
+    }
+
+    .fake-cover {
+        border-radius: 15px;
+        background-color: rgba(var(--color-background), 0.8);
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 300px;
+        cursor: pointer;
+        position: absolute;
+        z-index: 5;
+        backdrop-filter: blur(5px);
+    }
 
 </style>

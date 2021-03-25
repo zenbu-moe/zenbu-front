@@ -14,7 +14,7 @@
             </div>
             <div v-if="state != 2">
                 <div class="recent-activity-friend">
-                    <div v-for="activity in activitiesFriends.slice(0, 3)" :key="activity.id">
+                    <div v-for="activity in activitiesFriends.slice(0, 4)" :key="activity.id">
                         <activityFriend :activity="activity" :state="state" @set-wrap="setWrap(2)" @expand="$emit('expand', activity.id)"/>
                     </div>
                 </div>

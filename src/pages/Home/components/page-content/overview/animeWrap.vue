@@ -5,9 +5,9 @@
 
         <div class="wrap column" v-if="wrapState == 0" :class="{'animate': (wrapState != previousState)}">
             <div class="content-box">
-                <latestUpdates :anime="airingAnime"/>
-                <topAnime :anime="topAnime"/>
-                <seasonalAnime :anime="seasonalAnime"/>
+                <latestUpdates :anime="airingAnime" @set-tab="$emit('set-tab', 1)"/>
+                <topAnime :anime="topAnime" @set-tab="$emit('set-tab', 2)"/>
+                <seasonalAnime :anime="seasonalAnime" @set-tab="$emit('set-tab', 1)"/>
             </div>
             <div class="content-box">
                 <currentlyWatching :anime="watchingAnime" @expand="setWrap" :state="wrapState" />
@@ -75,11 +75,6 @@ export default {
     }
 
     .column {
-        grid-template-columns: auto 440px;
+        grid-template-columns: auto 410px;
     }
-
-    .content-box {
-        padding: 0px;
-    }
-
 </style>

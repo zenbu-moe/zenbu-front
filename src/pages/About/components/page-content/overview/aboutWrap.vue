@@ -8,7 +8,8 @@
 
 <script>
 export default {
-    name: 'aboutWrap'
+    name: 'aboutWrap',
+    props: ["wgtdata", "edit"]
 }
 </script>
 
@@ -18,7 +19,7 @@ export default {
         height: 100%;
         width: 100%;
         border-radius: 15px;
-        background-color: rgb(var(--color-background));
+        background-color: rgb(var(--color-background-dark));
         overflow: hidden;
     }
 

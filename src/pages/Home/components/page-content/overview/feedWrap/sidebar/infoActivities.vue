@@ -6,7 +6,7 @@
         </div>
         <div v-if="state != 1">
             <div class="recent-activity">
-                <div v-for="activity in activities.slice(0, 3)" :key="activity.id">
+                <div v-for="activity in activities.slice(0, 4)" :key="activity.id">
                     <activityEntry :activity="activity"/>
                 </div>
             </div>

@@ -183,6 +183,7 @@ export default {
         padding: 10px 15px;
         margin: 0px 0px 20px 0px;
         border-radius: 7px;
+        width: 100%;
     }
 
     .wrap {

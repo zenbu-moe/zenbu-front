@@ -17,7 +17,6 @@ export default {
 
 <style scoped>
     .anime-item {
-        height: 230px;
         display: flex;
         flex-direction: column;
         align-content: center;
@@ -27,9 +26,9 @@ export default {
     }
 
     .item-cover {
-        width: 135px;
-        min-height: 190px;
-        max-height: 190px;
+        width: 115px;
+        min-height: 160px;
+        max-height: 160px;
         border-radius: 10px;
         overflow: hidden;
         position: relative;
@@ -50,7 +49,7 @@ export default {
     }
 
     .item-details {
-        width: 135px;
+        width: 115px;
         display: flex;
         flex-direction: column;
     }

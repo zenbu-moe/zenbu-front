@@ -20,7 +20,7 @@
             <a class="wip bottom" href="https://github.com/zenbu-moe">
                 <i class="fab fa-github"></i><p>Visit our GitHub</p>
             </a>
-            <img class="site-pictures" src="../assets/layout.png">
+            <img class="site-pictures" src="../assets/zenbu-dark.png">
         </div>
         <div class="showcase" id="showcase">
             <div class="showcase-item" data-aos="fade-left">
@@ -34,7 +34,7 @@
                 </div>
                 <div>
                     <video loop muted autoplay class="image">
-                        <source src="../assets/layout.mp4">
+                        <source src="../assets/layout-dark.mp4">
                     </video>
                 </div>
             </div>
@@ -42,7 +42,7 @@
             <div class="showcase-item" data-aos="fade-right">
                 <div>
                     <video loop muted autoplay class="image">
-                        <source src="../assets/about.mp4">
+                        <source src="../assets/profile-dark.mp4">
                     </video>
                 </div>
                  <div class="info">
@@ -94,7 +94,7 @@ export default {
     }
 
     .site-pictures {
-        background-image: url("../assets/layout.png");
+        background-image: url("../assets/zenbu-light.png");
         background-size: cover;
         border-radius: 15px;
         background-position-x: 50%;

@@ -251,10 +251,13 @@ export default {
     .dark-mode-wrap {
         display: flex;
         justify-content: space-between;
+        max-height: 39px;
+        align-items: center;
     }
 
     .dark-mode {
         display: flex;
+        align-items: center;
     }
 
     .switch i {

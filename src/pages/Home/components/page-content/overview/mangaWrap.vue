@@ -5,10 +5,10 @@
 
         <div class="wrap column" v-if="wrapState == 0" :class="{'animate': (wrapState != previousState)}">
             <div class="content-box">
-                <latestUpdates :manga="releasingManga"/>
-                <topManga :manga="topManga"/>
-                <topManhwa :manga="topManhwa"/>
-                <topManhua :manga="topManhua"/>
+                <latestUpdates :manga="releasingManga" @set-tab="$emit('set-tab', 0)"/>
+                <topManga :manga="topManga" @set-tab="$emit('set-tab', 3)"/>
+                <topManhwa :manga="topManhwa" @set-tab="$emit('set-tab', 0)"/>
+                <topManhua :manga="topManhua" @set-tab="$emit('set-tab', 0)"/>
             </div>
             <div class="content-box">
                 <currentlyReading :manga="readingManga" @expand="setWrap" :state="wrapState"/>
@@ -71,7 +71,7 @@ export default {
 <style scoped>
     .wrap {
         display: grid;
-        grid-gap: 20px;
+        grid-gap: 40px;
     }
 
     .animate {
@@ -79,11 +79,6 @@ export default {
     }
 
     .column {
-        grid-template-columns: auto 440px;
+        grid-template-columns: auto 410px;
     }
-
-    .content-box {
-        padding: 10px;
-    }
-
 </style>

@@ -104,7 +104,7 @@ export default {
         background-color: rgb(var(--color-foreground));
         border-radius: 15px;
         margin: 20px 0px;
-        padding: 5px;
+        padding: 7px 7px 0px 7px;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
         animation: zoomIn 0.3s;
         transition: 1s;
@@ -164,8 +164,8 @@ export default {
 
     .date {
         font-family: "Raleway";
-        font-size: 0.9rem;
-        margin: 0px;
+        font-size: 0.85rem;
+        margin: 2px 0px 0px 0px;
         color: rgba(var(--color-gray-darker));
     }
 
@@ -282,7 +282,7 @@ export default {
     .reveal-button p {
         margin: 0;
         font-family: "Raleway";
-        font-size: 1.2rem;
+        font-size: 1rem;
         color: white;
     }
 

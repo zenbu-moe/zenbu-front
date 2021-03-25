@@ -83,11 +83,11 @@ export default {
     }
 
     .row {
-        grid-template-rows: auto 430px;
+        grid-template-rows: auto 410px;
     }
 
     .column {
-        grid-template-columns: auto 430px;
+        grid-template-columns: auto 410px;
     }
 
     .activities {

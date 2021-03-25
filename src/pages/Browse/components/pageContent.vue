@@ -9,22 +9,30 @@
             <h2 @click="currentTab = 5" :class="{'active': (currentTab == 5)}">Community</h2>
         </div>
         <searchHeader v-if="currentTab == 0"/>
+        <communitySearch v-if="currentTab == 5" />
     </div>
 </template>
 
 <script>
 import searchHeader from './searchHeader'
+import communitySearch from './communitySearch'
 
 export default {
     name: 'pageContent',
+    props: ["tab"],
     components: {
-        searchHeader
+        searchHeader,
+        communitySearch
     },
     data() {
         return {
             currentTab: 0,
         }
     },
+    beforeMount() {
+        this.currentTab = this.tab
+        window.scrollTo(0,0)
+    }
 }
 </script>
 

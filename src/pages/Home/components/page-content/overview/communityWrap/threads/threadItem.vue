@@ -32,6 +32,7 @@ export default {
     h3 {
         margin: 0px 0px 10px 0px;
         color: rgb(var(--color-link));
+        font-size: 1.05rem;
     }
 
     a {
@@ -50,11 +51,6 @@ export default {
         background-color: rgb(var(--color-foreground));
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
         cursor: pointer;
-    }
-
-     .thread-item:hover {
-        background-color: rgba(var(--color-gray), 0.01);
-        transition: 0.1s;
     }
 
     .avatar {

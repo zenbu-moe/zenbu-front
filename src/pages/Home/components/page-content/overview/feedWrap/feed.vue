@@ -276,7 +276,7 @@ export default {
         cursor: pointer;
         border-radius: 5px;
         background: rgb(var(--color-background), 0);
-        margin: 0px 10px;
+        margin: 0px 5px;
     }
 
     btn:hover {
@@ -320,7 +320,7 @@ export default {
 
     .bottom p, .post-button p {
         margin: 0px 5px;
-        font-size: 1rem;
+        font-size: 16px;
     }
 
     .button {

@@ -2,27 +2,28 @@
     <div class="info-box">
         <div class="section-header">
             <h3><a >Top Manga</a></h3>
+            <!-- kinda ugly button change implementation -->
             <a class="button-more browse more" @click="expand()" v-if="!isExpanded"><p>MORE</p><i class="fas fa-angle-down"></i></a>
             <a class="button-more browse less" @click="expand()" v-if="isExpanded"><p>LESS</p><i class="fas fa-angle-up"></i></a>
         </div>
         <div class="content-wrap">
             <div v-for="item in x" :key="item.id">
-                <mangaItem />
+                <animeItem />
             </div>
         </div>
         <div class="browse-more" v-if="isExpanded">
-            <a class="button-more browse open-browse"><p>BROWSE MORE</P><i class="fas fa-angle-right"></i></a>
+            <router-link @mousedown="$emit('set-tab', 3)" to="/browse" class="button-more browse open-browse"><p>BROWSE MORE</P><i class="fas fa-angle-right"></i></router-link>
         </div>
     </div>
 </template>
 
 <script>
-import mangaItem from './mangaItem';
+import animeItem from './animeItem';
 
 export default {
-    name: 'topmanga',
+    name: 'topAnime',
     components: {
-        mangaItem
+        animeItem
     },
     data() {
         return {
@@ -48,7 +49,7 @@ export default {
         cursor: pointer;
     }
 
-    a {
+    a, router-link {
         text-decoration: none;
         color: rgb(var(--color-text));
         animation: fadeInUp 0.3s;
@@ -60,10 +61,10 @@ export default {
 
     .section-header {
         justify-content: space-between;
-    }    
+    }
 
     .info-box .content-wrap {
-        padding: 20px;
+        padding: 15px;
         background-color: rgb(var(--color-foreground));
         border-radius: 15px;
         box-shadow: 0px 1px 2px rgba(0,0,0,0.2);

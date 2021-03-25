@@ -53,7 +53,7 @@ export default {
     }
 
     .wrap {
-        width: 1200px;
+        width: 1130px;
         display: flex;
         justify-content: space-between;
     }

@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="app" :class="{'site-light-mode': !isDarkTheme, 'site-dark-mode': isDarkTheme}">
     <showcase />
-    <pageContent />
+    <pageContent @set-tab="setBrowseTab"/>
     <footerWrap :isDark="isDarkTheme"/>
   </div>
 </template>
@@ -19,6 +19,11 @@ export default {
     pageContent,
     footerWrap
   },
+  methods: {
+    setBrowseTab(int) {
+      this.$emit('set-tab', int)
+    }
+  }
 }
 </script>
 

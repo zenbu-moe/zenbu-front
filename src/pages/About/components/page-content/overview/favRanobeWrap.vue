@@ -1,40 +1,69 @@
 <template>
-    <div class="wrap" :class="{'chosen': edit}">
-        <div class="title" :class="{'disabled': edit}">
+    <div class="wrap" :class="{'chosen': edit}" ref="wrap">
+        <div class="title" :class="{'disabled': edit}" @click="test">
             <h2>Favorite Light Novels</h2>
         </div>
-        <div class="content-box relations" :class="{'disabled': edit}">
+        <div v-if="wgtdata[4].w < 3" class="content-box relations" :class="{
+            'one': wgtdata[4].rows == 1,
+            'two': wgtdata[4].rows == 2,
+            'three': wgtdata[4].rows == 3,
+            'four': wgtdata[4].rows == 4,
+            'five': wgtdata[4].rows == 5
+            }">
+            <div v-for="item in wgtdata[4].rows" :key="item.name">
+                <relationsItem :width="itemWidth"/>
+            </div>
+        </div>
+        <div v-if="wgtdata[4].w >= 3" class="content-box relations" :class="{
+            'one': wgtdata[4].rows == 1,
+            'two': wgtdata[4].rows == 2,
+            'three': wgtdata[4].rows == 3,
+            'four': wgtdata[4].rows == 4,
+            'five': wgtdata[4].rows == 5
+            }">
             <div v-for="item in x" :key="item.name">
-                <relationsItem />
+                <relationsItem :width="itemWidth"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import relationsItem from './favRanobeWrap/relationsItem'
+import relationsItem from './relationsItem'
 
 export default {
     name: 'favRanobeWrap',
-    props: ["edit"],
+    props: ["edit", "wgtdata"],
     components: {
         relationsItem
     },
     data() {
         return {
             isExpanded: false,
-            x: 5
+            x: 1,
+            expanded: false,
+            itemWidth: null,
         }
     },
     methods: {
         expand() {
-            this.isExpanded = !this.isExpanded;
-            if (this.x == 5) {
-                this.x = 12
+            this.$nextTick(() => { 
+                console.log('debug id=0', this.wgtdata[4]) 
+                this.x = this.wgtdata[4].w
+            })
+        },
+        test() {
+            console.log(this.$refs.wrap.offsetWidth)
+            this.x = Math.round(this.wgtdata[4].w * 1.15) * this.wgtdata[4].rows
+            if (this.x != 1) {
+                this.itemWidth = ((this.$refs.wrap.offsetWidth - 30 - Math.round(this.wgtdata[4].w * 1.15) * 15) / Math.round(this.wgtdata[4].w * 1.15)) * 4/3
             } else {
-                this.x = 5
+                this.itemWidth = 90
             }
-        }
+        },
+    },
+    mounted() {
+        this.itemWidth = 120
     }
 }
 </script>
@@ -42,21 +71,42 @@ export default {
 <style scoped>
     .relations {
         display: grid;
-        grid-template-columns: auto auto auto auto auto;
-        justify-content: space-between;;
+        grid-auto-flow: column;
+        grid-column-gap: 15px;
+    }
+
+    .one {
+        grid-template-rows: auto;
+    }
+
+    .two {
+        grid-template-rows: auto auto;
+    }
+
+    .three {
+        grid-template-rows: auto auto auto;
+    }
+
+    .four {
+        grid-template-rows: auto auto auto auto;
+    }
+
+    .five {
+        grid-template-rows: auto auto auto auto auto;
     }
 
     .title {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 10px;
+        height: 25px;
+        margin-bottom: 5px;
     }
 
     .wrap {
-        /* background-color: rgb(var(--color-foreground)); */
+        background-color: rgb(var(--color-foreground));
         border-radius: 15px;
-        padding: 10px;
+        padding: 15px 15px 5px 15px;
     }
 
     h2 {

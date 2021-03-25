@@ -258,7 +258,8 @@ export default {
 
 <style scoped>
     h3 {
-        color: rgb(var(--color-text))
+        color: rgb(var(--color-text));
+        margin: 0 0 10px 0;
     }
 
     .feed {

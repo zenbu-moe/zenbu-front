@@ -1,6 +1,6 @@
 <template>
   <div class="container" id="app" :class="{'site-light-mode': !isDarkTheme, 'site-dark-mode': isDarkTheme}">
-    <pageContent @mousemove="setHeight()" @click="setHeight()" ref="content"/>
+    <pageContent ref="content" @mousemove="setHeight()" @click="setHeight()" @toggle-edit="toggleEdit()" :edit="editOn"/>
     <footerWrap :isDark="isDarkTheme"/>
   </div>
 </template>
@@ -16,9 +16,19 @@ export default {
     pageContent,
     footerWrap
   },
+  data() {
+    return {
+      editOn: false
+    }
+  },
   methods: {
     setHeight() {
-      this.$refs.content.$refs.oww.$refs.ow.$refs.fw.setHeight()
+      if (!this.editOn) {
+        this.$refs.content.$refs.oww.$refs.ow.$refs.fw.setHeight()
+      } 
+    },
+    toggleEdit() {
+      this.editOn = !this.editOn
     }
   }
 }

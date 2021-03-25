@@ -61,7 +61,8 @@ export default {
         display: grid;
         grid-row-gap: 15px;
         grid-column-gap: 15px;
-        grid-template-columns: auto auto auto;
+        grid-template-columns: auto auto auto auto;
+        justify-content: space-between;
     }
 
     .info-box .content-wrap-expanded {

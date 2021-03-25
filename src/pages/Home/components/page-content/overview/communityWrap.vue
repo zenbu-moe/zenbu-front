@@ -3,11 +3,11 @@
         <!-- Based on the value of 'wrapState', different layout is chosen (0 is default) -->
         <div class="wrap column" v-if="wrapState == 0" :class="{'animate': (wrapState != previousState)}"> 
             <div class="content-box">
-                <topGroups :group="topGroups" :state="wrapState" @set-wrap="setState"/>
+                <topGroups :group="topGroups" :state="wrapState" @set-wrap="setState" @set-tab="$emit('set-tab', 5)"/>
                 <recentGroups @set-wrap="setState" :expanded="expandedGroupActivity" @expand="expandGroupActivity" :state="wrapState"/>
             </div>
             <div class="content-box">
-                <recentUserUpdates @expand="expandUserActivity" @set-wrap="setState" :state="wrapState"/>
+                <!-- <recentUserUpdates @expand="expandUserActivity" @set-wrap="setState" :state="wrapState"/> -->
                 <recentThreads />
             </div>
         </div>
@@ -77,7 +77,7 @@ export default {
 <style scoped>
     .wrap {
         display: grid;
-        grid-gap: 20px;
+        grid-gap: 40px;
     }
 
     .animate {
@@ -96,7 +96,4 @@ export default {
         grid-template-rows: auto auto;
     }
 
-    .content-box {
-        padding: 10px;
-    }
 </style>

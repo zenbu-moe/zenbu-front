@@ -5,10 +5,15 @@
             </div>
             <div class="item-details">
                 <span class="title">Group Title</span>
-                <span class="description">Group description</span>
+                <span class="description">
+                    Lorem ipsum
+                </span>
             </div>
         </div>
         <div class="misc">
+            <div class="actions">
+                <p>Join</p>
+            </div>
             <div class="followers">
                 <span><i class="fas fa-users"></i></span>
                 <span class="count">10</span>
@@ -19,41 +24,42 @@
 
 <script>
 export default {
-    name: 'groupItem'
+    name: 'groupItem',
 }
 </script>
 
 <style scoped>
     .group-item {
-        width: 350px;
+        min-width: 350px;
+        width: 100%;
         display: flex;
         flex-direction: row;
         align-content: center;
         justify-content: space-between;
         cursor: pointer;
         animation: zoomIn 0.3s;
+        padding: 15px 0px;
     }
 
     .description {
         display: flex;
         flex-direction: row;
         align-content: center;
-        justify-content: center;
+        justify-content: flex-start;
         cursor: pointer;
         animation: zoomIn 0.3s;       
     }
 
     .item-cover {
-        min-width: 80px;
-        min-height: 80px;
-        max-width: 80px;
-        max-height: 80px;
+        min-width: 90px;
+        min-height: 90px;
+        max-width: 90px;
+        max-height: 90px;
         margin-right: 10px;
-        border-radius: 15px;
+        border-radius: 10px;
         overflow: hidden;
         position: relative;
         transition: 0.3s;
-        margin-bottom: 5px;
         background-color: rgb(var(--color-gray));
         transition: 1s;
     }
@@ -80,6 +86,7 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
         color: rgb(var(--color-text));
+        margin-bottom: 5px;
     }
 
     .misc {
@@ -92,8 +99,8 @@ export default {
         display: flex;
         align-items: center;
         background: rgb(var(--color-background-dark));
-        padding: 3px;
-        border-radius: 10px;
+        padding: 5px;
+        border-radius: 15px;
         color: rgb(var(--color-text));
         transition: 1s;
     }
@@ -107,5 +114,22 @@ export default {
         font-size: 13px;
         font-weight: 300;
         color: rgb(var(--color-text));
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        background: rgba(112,192,100,0.50);
+        border-radius: 15px;
+        color: rgb(var(--color-text));
+        transition: 1s;
+        margin-right: 5px;
+        padding: 5px 25px;
+    }
+
+    .actions p {
+        margin: 0;
+        color: white;
+        font-family: "Raleway";
     }
 </style>
