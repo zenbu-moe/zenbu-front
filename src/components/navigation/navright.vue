@@ -22,41 +22,41 @@
                 </router-link>
                 <hr>
                 <div class="button-wrap settings">
-                    <i class="fas fa-play-circle"></i>
+                    <svg-icon icon="solid/play-circle"></svg-icon>
                     <p>Anime List</p>
                 </div>
                 <div class="button-wrap settings">
-                    <i class="fas fa-book-open"></i>
+                    <svg-icon icon="solid/book-open"></svg-icon>
                     <p>Manga List</p>
                 </div>
                 <div class="button-wrap settings">
-                    <i class="fas fa-book"></i>
+                    <svg-icon icon="solid/book"></svg-icon>
                     <p>Ranobe List</p>
                 </div>
                 <hr>
                 <div class="settings-wrap">
                     <div class="button-wrap settings">
-                        <i class="fas fa-user-circle"></i>
+                        <svg-icon icon="solid/user-circle"></svg-icon>
                         <p>Preferences</p>
                     </div>
                     <div class="button-wrap settings">
-                        <i class="fas fa-cog"></i>
+                        <svg-icon icon="solid/cog"></svg-icon>
                         <p>Account settings</p>
                     </div>
                     <div class="button-wrap settings dark-mode-wrap" @click="$emit('change-theme')" >
                         <div class="dark-mode">
-                            <i class="fas fa-moon"></i>
+                            <svg-icon icon="solid/moon"></svg-icon>
                             <p>Dark mode</p>
                         </div>
                         <div class="switch">
-                            <i v-if="!isDark" class="far fa-toggle-off"></i>
-                            <i v-if="isDark" class="far fa-toggle-on"></i>
+                            <svg-icon v-if="!isDark" icon="regular/toggle-off"></svg-icon>
+                            <svg-icon v-if="isDark" icon="regular/toggle-on"></svg-icon>
                         </div>
                     </div>
                 </div>
                 <hr>
                 <div class="button-wrap settings">
-                    <i class="fas fa-sign-out"></i>
+                    <svg-icon icon="solid/sign-out"></svg-icon>
                     <p>Log out</p>
                 </div>
             </div>
@@ -64,10 +64,10 @@
             </div>
         </button-profile>
         <button-user>
-            <i class="fas fa-bell"></i>
+            <svg-icon icon="solid/bell"></svg-icon>
         </button-user>
         <button-user>
-            <i class="fas fa-inbox"></i>
+            <svg-icon icon="solid/inbox"></svg-icon>
         </button-user>
     </div>
 </template>
@@ -109,7 +109,7 @@ export default {
     }
 
     .navright {
-        width: 33%;
+        width: 40%;
         display: inline-flex;
         min-width: 160px;
         justify-content: flex-end;
@@ -238,7 +238,7 @@ export default {
         margin-left: 10px;
     }
 
-    .settings i {
+    .settings svg {
         color: rgb(var(--color-text));
         margin-right: 10px;
         margin-left: 5px;
@@ -260,7 +260,7 @@ export default {
         align-items: center;
     }
 
-    .switch i {
+    .switch svg {
         font-size: 1.5rem;
     }
 

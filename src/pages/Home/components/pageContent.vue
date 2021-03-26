@@ -2,7 +2,7 @@
     <div class="page-content">
         <div class="sidebar">
             <div class="nav-wrap" @mouseover="sidebarHover = true" @mouseleave="sidebarHover = false">
-                <div class="nav">
+                <!-- <div class="nav">
                     <button @click="setActive(1)" :class="{'is-active': currentTab == 1}">
                         <i v-if="currentTab != 1" class="fal fa-house"></i>
                         <i v-if="currentTab == 1" class="fas fa-house"></i>                          
@@ -22,6 +22,28 @@
                     <button @click="setActive(5)" :class="{'is-active': currentTab == 5}">
                         <i v-if="currentTab != 5" class="fal fa-users"></i>
                         <i v-if="currentTab == 5" class="fas fa-users"></i>
+                    </button>
+                </div> -->
+                <div class="nav">
+                    <button @click="setActive(1)" :class="{'is-active': currentTab == 1}">
+                        <svg-icon icon="light/house" v-if="currentTab != 1"></svg-icon>
+                        <svg-icon icon="solid/house" v-if="currentTab == 1"></svg-icon>                          
+                    </button>
+                    <button @click="setActive(2)" :class="{'is-active': currentTab == 2}">
+                        <svg-icon icon="light/play-circle" v-if="currentTab != 2"></svg-icon>
+                        <svg-icon icon="solid/play-circle" v-if="currentTab == 2"></svg-icon>                         
+                    </button>
+                    <button @click="setActive(3)" :class="{'is-active': currentTab == 3}">
+                        <svg-icon icon="light/book-open" v-if="currentTab != 3"></svg-icon>
+                        <svg-icon icon="solid/book-open" v-if="currentTab == 3"></svg-icon>                        
+                    </button>
+                    <button @click="setActive(4)" :class="{'is-active': currentTab == 4}">
+                        <svg-icon icon="light/book" v-if="currentTab != 4"></svg-icon>
+                        <svg-icon icon="solid/book" v-if="currentTab == 4"></svg-icon>                        
+                    </button>
+                    <button @click="setActive(5)" :class="{'is-active': currentTab == 5}">
+                        <svg-icon icon="light/users" v-if="currentTab != 5"></svg-icon>
+                        <svg-icon icon="solid/users" v-if="currentTab == 5"></svg-icon>  
                     </button>
                 </div>
                 <div class="tooltips" v-if="sidebarHover">
@@ -64,7 +86,7 @@ export default {
        animeWrap,
        mangaWrap,
        ranobeWrap,
-       communityWrap
+       communityWrap,
    },
    data() {
         return {
@@ -189,7 +211,7 @@ export default {
         justify-content: space-between;
         align-items: flex-start;
         padding: 15px;
-        margin: 2px 0;
+        margin: 1px 0;
         animation: fadeIn 0.2s;
         cursor: pointer;
     }

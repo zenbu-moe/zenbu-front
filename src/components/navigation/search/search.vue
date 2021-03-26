@@ -1,6 +1,6 @@
 <template>
     <div class="search">
-        <div type="submit" class="button" @click="$emit('open-search')"><i class="fal fa-search"></i></div>
+        <div type="submit" class="button" @click="$emit('open-search')"><svg-icon icon="light/search"></svg-icon></div>
 		<input type="text" v-model="formValue" placeholder="Search Zenbu...">
     </div>
 </template>
@@ -33,7 +33,7 @@ export default {
 <style scoped>
     .search {
         background: rgba(255,255,255,0.05);
-        padding: 5px 10px 2px 10px;
+        padding: 0px 10px;
         border-radius: 30px;
         display: flex;
         align-items: center;
@@ -56,6 +56,7 @@ export default {
 
     input[type=text] {
         color: white;
+        padding-top: 7px;
     }
 
 </style>

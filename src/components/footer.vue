@@ -7,7 +7,8 @@
             </div>
             <div class="actions">
                 <a class="button" href="https://discord.gg/mVpKe4y">
-                    <i class="fab fa-discord"></i><p>Discord</p>
+                    <i class="fab fa-discord"></i>
+                    <p>Discord</p>
                 </a>
                 <!-- <a class="button">
                     <i class="fab fa-twitter"></i><p>Twitter</p>

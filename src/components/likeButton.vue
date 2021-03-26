@@ -2,8 +2,8 @@
     <div class="like-button" id="like">
         <!-- this is big brain - button just changes to a different button when you click it :PogU: -->
 
-        <button-like class="button" v-if="!isActive" @click="setLiked()"><i class="far fa-heart"></i></button-like>
-        <button-like-active class="button" v-if="isActive" style="color: rgba(231,92,139,1.00)" @click="setLiked()"><i class="fas fa-heart"></i></button-like-active>
+        <button-like class="button" v-if="!isActive" @click="setLiked()"><svg-icon icon="regular/heart"></svg-icon></button-like>
+        <button-like-active class="button" v-if="isActive" style="color: rgba(231,92,139,1.00)" @click="setLiked()"><svg-icon icon="solid/heart"></svg-icon></button-like-active>
         <span class="count" :class="{'is-clicked': currentState, 'is-not-clicked': !currentState }" v-if="count > 0">{{ this.count }}</span>
     </div>	
 </template>
@@ -45,7 +45,7 @@ export default {
         height: 35px;
         text-align: center;
         border-radius: 50%;
-        padding: 9px;
+        padding: 7px;
         transition: 0.3s ease-out;
         cursor: pointer;
         animation: fadeIn 0.3s;

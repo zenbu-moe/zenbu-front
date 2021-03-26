@@ -1,12 +1,13 @@
 <template>
   <div class="container" id="app" :class="{'site-light-mode': !isDarkTheme, 'site-dark-mode': isDarkTheme}">
+    <svg-sprite />
     <navigation v-if="currentRoute != 'Login'" @change-theme="changeTheme()" :isDark="isDarkTheme" @open-search="openSearch()" @on-type="onType"/>
     <div class="search-popup" v-if="isSearchToggled" @click.self="isSearchToggled = false, formValue = ''" @keydown.esc="isSearchToggled = false, formValue = ''">
       <div class="search-bar">
         <form>
           <input type="text" ref="search" v-model="formValue" style="color: rgb(var(--color-text-markdown))" placeholder="Start typing to search...">
         </form>
-        <i class="fal fa-search"></i>
+        <svg-icon icon="light/search"></svg-icon>
       </div>
     </div>
     <router-view @set-tab="setBrowseTab" :isDarkTheme="isDarkTheme" :browseTab="currentBrowseTab"/>
@@ -15,11 +16,13 @@
 
 <script>
 import navigation from './components/navigation';
+import svgSprite from './components/svgSprite';
 
 export default {
   name: 'app',
   components: {
     navigation,
+    svgSprite
   },
   data() {
     return {
@@ -54,10 +57,7 @@ export default {
 }
 </script>
 
-<style>
-  @import url('./fonts/bootstrap-icons/bootstrap-icons.css');
-  @import url('./fonts/fontawesome-pro-5.13.0-web/css/all.css');
-  
+<style>  
   * {
     box-sizing: border-box;
   }

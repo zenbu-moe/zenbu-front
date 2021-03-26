@@ -2,7 +2,7 @@
     <div class="more-button" id="more">
         <!-- i really thought id make it modular originally didnt i...... -->
 
-        <more-button class="button"><i class="fas fa-ellipsis-h"></i></more-button>
+        <more-button class="button"><svg-icon icon="solid/ellipsis-h"></svg-icon></more-button>
     </div>	
 </template>
 
@@ -21,7 +21,7 @@ export default {
         height: 35px;
         text-align: center;
         border-radius: 50%;
-        padding: 9px;
+        padding: 7px;
         transition: 0.3s ease-out;
         cursor: pointer;
     }

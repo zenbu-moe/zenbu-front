@@ -2,7 +2,7 @@
     <div class="reply-button" id="reply">
         <!-- this doesnt deserve its own component but i was too lazy to copypaste the code all the time -->
         
-        <reply-button class="button"><i class="far fa-reply"></i></reply-button>
+        <reply-button class="button"><svg-icon icon="regular/reply"></svg-icon></reply-button>
     </div>	
 </template>
 
@@ -21,7 +21,7 @@ export default {
         height: 35px;
         text-align: center;
         border-radius: 50%;
-        padding: 9px;
+        padding: 7px;
         transition: 0.3s ease-out;
         cursor: pointer;
     }

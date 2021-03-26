@@ -36,8 +36,6 @@ export default {
 </script>
 
 <style scoped>
-    @import url('../fonts/bootstrap-icons/bootstrap-icons.css');
-
     .navbar {
         display: flex;
         justify-content: center;

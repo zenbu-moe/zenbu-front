@@ -1,7 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import VueResizeObserver from "vue-resize-observer";
+import VueResizeObserver from "vue-resize-observer"
+import svgIcon from './components/svgIcon.vue'
 
 const clickOutside = {
     beforeMount: (el, binding) => {
@@ -21,6 +22,7 @@ const clickOutside = {
 
 createApp(App)
     .directive("click-outside", clickOutside)
+    .component('svg-icon', svgIcon)
     .use(router)
     .use(VueResizeObserver)
     .mount('#app')
