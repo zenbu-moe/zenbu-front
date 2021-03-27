@@ -121,11 +121,6 @@ export default {
     .entry-actions div {
         margin-right: 5px;
     }
-
-    span {
-        font-family: "Raleway";
-    }
-
     .name-block {
         display: flex;
         flex-direction: column;
@@ -133,13 +128,11 @@ export default {
     }
 
     .name {
-        font-family: "Raleway";
         font-weight: bold;
         color: rgba(var(--color-link));
     }
 
     .date {
-        font-family: "Raleway";
         margin-top: 0px;
         color: rgba(var(--color-gray-darker));
     }
@@ -157,8 +150,7 @@ export default {
 
     .text-markdown {
         color: rgba(var(--color-text-markdown));
-        font-weight: 300;
-    }
+        font-weight: 300    }
 
     .comments {
         cursor: pointer;

@@ -21,9 +21,10 @@ export default {
         height: 35px;
         text-align: center;
         border-radius: 50%;
-        padding: 7px;
+        padding: 5px;
         transition: 0.3s ease-out;
         cursor: pointer;
+        font-size: 1rem;
     }
 
     reply-button:hover {

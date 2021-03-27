@@ -71,13 +71,11 @@ export default {
     }
 
     .score p {
-        font-family: "Raleway";
         margin: 20px 0 5px 0;
         font-weight: bold;
     }
 
     .score h1 {
-        font-family: "Raleway";
         font-size: 3.5em;
         margin: 0;
     }

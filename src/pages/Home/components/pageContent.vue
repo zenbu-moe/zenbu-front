@@ -47,11 +47,11 @@
                     </button>
                 </div>
                 <div class="tooltips" v-if="sidebarHover">
-                    <p @click="setActive(1)" :class="{'is-active': currentTab == 1}">Feed</p>
-                    <p @click="setActive(2)" :class="{'is-active': currentTab == 2}">Anime</p>
-                    <p @click="setActive(3)" :class="{'is-active': currentTab == 3}">Manga</p>
-                    <p @click="setActive(4)" :class="{'is-active': currentTab == 4}">Light Novels</p>
-                    <p @click="setActive(5)" :class="{'is-active': currentTab == 5}">Community</p>
+                    <pt @click="setActive(1)" :class="{'is-active': currentTab == 1}">Feed</pt>
+                    <pt @click="setActive(2)" :class="{'is-active': currentTab == 2}">Anime</pt>
+                    <pt @click="setActive(3)" :class="{'is-active': currentTab == 3}">Manga</pt>
+                    <pt @click="setActive(4)" :class="{'is-active': currentTab == 4}">Light Novels</pt>
+                    <pt @click="setActive(5)" :class="{'is-active': currentTab == 5}">Community</pt>
                 </div>
             </div>
         </div>
@@ -124,7 +124,6 @@ export default {
     }
 
     h4 {
-        font-family: 'Raleway';
         font-size: 1.1rem;
         padding: 15px;
         margin: 0;
@@ -171,7 +170,6 @@ export default {
         color: rgba(var(--color-text), 0.5);
         font-size: 1.2rem;
         font-weight: bold;
-        font-family: "Raleway";
         transition: 0.3s;
         background-color: transparent;
         border: none;
@@ -202,7 +200,6 @@ export default {
         color: rgba(var(--color-text), 0.5);
         font-size: 1.2rem;
         font-weight: bold;
-        font-family: "Raleway";
         transition: 0.3s;
         white-space: nowrap;
         background-color: transparent;
@@ -210,8 +207,8 @@ export default {
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
-        padding: 15px;
-        margin: 1px 0;
+        padding: 14px;
+        margin: 0px 0;
         animation: fadeIn 0.2s;
         cursor: pointer;
     }

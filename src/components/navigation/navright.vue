@@ -136,7 +136,7 @@ export default {
         border-radius: 50%;
         width: 40px;
         height: 40px;
-        padding-top: 7px;
+        padding-top: 3px;
         cursor: pointer;
         transition: background 0.3s ease 0s;
     }
@@ -155,7 +155,6 @@ export default {
         padding: 0px 10px 0px 6px;
         cursor: pointer;
         transition: background 0.3s ease 0s;
-        font-family: 'Raleway';
         height: auto;
     }
 
@@ -204,7 +203,6 @@ export default {
 
     .dropdown h2, .dropdown p{
         color: rgb(var(--color-text));
-        font-family: "Raleway";
         margin-top: 0px;
     }
 
@@ -251,7 +249,7 @@ export default {
     .dark-mode-wrap {
         display: flex;
         justify-content: space-between;
-        max-height: 39px;
+        max-height: 42px;
         align-items: center;
     }
 

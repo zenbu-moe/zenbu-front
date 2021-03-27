@@ -33,7 +33,6 @@ export default {
 
 <style scoped>
     h1 {
-        font-family: "Raleway";
         font-size: 1.6rem;
         color: rgb(var(--color-text));
     }

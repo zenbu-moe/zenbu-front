@@ -5,7 +5,7 @@
                 <i class="fal fa-arrow-right"></i>
             </div>
             <div class="section-header">
-                <h3><a href="">Popular this season</a></h3>
+                <h3>Popular this season</h3>
                 <a class="button-more"><i class="fas fa-angle-right"></i></a> <!-- button should lead somewhere %TODO% -->
             </div>
             <div class="showcase">

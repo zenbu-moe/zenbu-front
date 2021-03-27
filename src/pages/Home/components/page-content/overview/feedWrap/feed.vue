@@ -156,9 +156,6 @@ export default {
 </script>
 
 <style scoped>
-    h3 {
-        color: rgb(var(--color-text))
-    }
 
     .textbox {
         background-color: rgb(var(--color-foreground));
@@ -314,7 +311,6 @@ export default {
         display: flex;
         align-items: center;
         padding-top: 10px;
-        font-family: 'Raleway';
         justify-content: space-between;
     }
 
@@ -357,7 +353,6 @@ export default {
         padding: 10px;
         width: 100%;
         cursor: pointer;
-        font-family: 'Raleway';
     }
 
 </style>

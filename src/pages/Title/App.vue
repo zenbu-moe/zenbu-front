@@ -40,7 +40,6 @@ export default {
   }
 
   h3 {
-    font-family: "Raleway";
     color: black;
   }
 
@@ -83,7 +82,6 @@ export default {
 
   body, #app {
     margin: 0;
-    font-family: "Roboto";
     background-color: rgba(var(--color-background));
     overflow: overlay;
     font-size: 1rem;
@@ -155,7 +153,6 @@ export default {
   }
 
   .browse p {
-    font-family: "Raleway";
     font-weight: bold;
     margin: 0px 5px;
     font-size: 12px;

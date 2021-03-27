@@ -49,7 +49,6 @@ export default {
     }
 
     .button-add p {
-        font-family: "Raleway";
         color: white;
         margin: 0;
     }

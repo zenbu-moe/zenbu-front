@@ -147,7 +147,6 @@ export default {
     .count {
         margin-right: 2px;
         color: rgb(var(--color-button));
-        font-family: "Raleway";
     }
 
     .name-block {
@@ -157,13 +156,10 @@ export default {
     }
 
     .name {
-        font-family: "Raleway";
-        font-weight: bold;
         color: rgba(var(--color-link));
     }
 
     .date {
-        font-family: "Raleway";
         font-size: 0.85rem;
         margin: 2px 0px 0px 0px;
         color: rgba(var(--color-gray-darker));
@@ -182,7 +178,6 @@ export default {
 
     .text-markdown {
         color: rgba(var(--color-text-markdown));
-        font-weight: 300;
         line-height: normal;
         position: relative;
     }
@@ -237,7 +232,7 @@ export default {
     .reference {
         display: flex;
         align-items: center;
-        padding: 7px;
+        padding: 5px;
         border-radius: 30px;
         background-color: rgba(var(--color-background));
         margin: 0 5px;
@@ -252,7 +247,6 @@ export default {
 
     .flags p {
         margin: 0;
-        font-family: "Raleway";
         font-size: 0.8rem;
         color: white;
     }
@@ -281,14 +275,12 @@ export default {
 
     .reveal-button p {
         margin: 0;
-        font-family: "Raleway";
         font-size: 1rem;
         color: white;
     }
 
     .reference p {
         margin: 0;
-        font-family: "Raleway";
         font-size: 0.8rem;
         color: rgba(var(--color-text));
     }

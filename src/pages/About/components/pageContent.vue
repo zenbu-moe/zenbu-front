@@ -75,7 +75,6 @@ export default {
         left: 10px;
         background-color: rgba(var(--color-foreground), 0.2);
         color: rgb(var(--color-text));
-        font-family: "Raleway";
         padding: 10px;
         transition: 0.5s;
         animation: zoomIn 0.3s;

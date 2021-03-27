@@ -72,7 +72,6 @@ export default {
 <style scoped>
     h2 {
         font-size: 1.8rem;
-        font-family: "Raleway";
         color: rgb(var(--color-text));
         margin: 0px;
     }

@@ -90,7 +90,6 @@ export default {
 <style scoped>
     .page-content {
         padding-top: 50px;
-        font-family: "Raleway";
     }
 
     .site-pictures {

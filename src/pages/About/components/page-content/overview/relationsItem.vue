@@ -23,7 +23,6 @@ export default {
     }
 
     .title h4 {
-        font-family: "Raleway";
         margin: 0px 0px 5px 0px;
         color: rgb(var(--color-text));
         width: 100px;
@@ -33,7 +32,6 @@ export default {
     }
 
     .title p {
-        font-family: "Raleway";
         margin: 0px 0px 10px 0px;
         color: rgb(var(--color-text));
         font-size: 12px;

@@ -107,7 +107,6 @@ export default {
 
     .dropdown h2, .dropdown p{
         color: rgb(var(--color-text));
-        font-family: "Raleway";
         margin-top: 0px;
     }
 

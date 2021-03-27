@@ -186,7 +186,6 @@ export default {
     }
 
     .selection p {
-        font-family: "Raleway";
         font-size: 1.2rem;
         margin-left: 5px;
     }

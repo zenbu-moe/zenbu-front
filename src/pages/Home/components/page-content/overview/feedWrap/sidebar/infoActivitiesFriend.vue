@@ -1,7 +1,7 @@
 <template>
     <div class="info-box">
         <div class="section-header">
-            <h3 @click="setWrap(2)"><a>Recent friend activity</a></h3>
+            <h3 @click="setWrap(2)">Recent friend activity</h3>
             <a @click="setWrap(2)" class="button-more"><i class="fas fa-angle-right"></i></a>
         </div>
         <div>

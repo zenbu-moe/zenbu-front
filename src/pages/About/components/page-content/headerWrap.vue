@@ -60,7 +60,6 @@ export default {
     }
 
     .avatar-wrap h1 {
-        font-family: "Raleway";
         font-weight: bold;
         margin-top: 0px;
         margin-bottom: 1px;
@@ -111,7 +110,6 @@ export default {
     }
 
     .nav .links a {
-        font-family: "Raleway";
         font-size: 1.2rem;
         color: rgb(var(--color-text));
         transition: 1s;
@@ -171,7 +169,6 @@ export default {
     }
 
     button {
-        font-family: "Raleway";
         font-size: 1.1rem;
         color: rgb(var(--color-text));
         transition: 1s;

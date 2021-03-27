@@ -64,7 +64,6 @@ export default {
 
     .alt {
         font-size: 1rem;
-        font-family: "Raleway";
         font-weight: 500;
         padding: 10px 20px;
     }

@@ -57,7 +57,6 @@ export default {
     }
 
     .showcase-details .title {
-        font-family: "Raleway";
         font-weight: 600;
         white-space: nowrap;
         overflow: hidden;

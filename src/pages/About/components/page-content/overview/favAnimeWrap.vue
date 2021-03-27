@@ -111,7 +111,6 @@ export default {
 
     h2 {
         font-size: 1.2rem;
-        font-family: "Raleway";
         color: rgb(var(--color-text));
         margin: 0px;
     }

@@ -79,9 +79,7 @@ export default {
 
     .text-markdown {
         color: rgba(var(--color-text-markdown));;
-        font-weight: 300;
         margin-left: 33px;
-        font-size: 1rem;
     }
 
     .like-button {
@@ -98,13 +96,11 @@ export default {
     }
 
     .name {
-        font-family: "Raleway";
         font-weight: bold;
         color: rgba(var(--color-link));
     }
 
     .date {
-        font-family: "Raleway";
         margin-left: 5px;
         color: rgba(var(--color-gray-darker));
     }

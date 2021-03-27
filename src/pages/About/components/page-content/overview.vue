@@ -348,7 +348,6 @@ export default {
     }
 
     .toolbar p {
-        font-family: "Raleway";
         margin-left: 10px;
     }
 
@@ -412,7 +411,6 @@ export default {
     }
 
     .selection p {
-        font-family: "Raleway";
         font-size: 1.2rem;
         margin-left: 5px;
     }
@@ -450,7 +448,6 @@ export default {
     
     .fake-cover p {
         color: rgb(var(--color-text));
-        font-family: "Raleway";
         font-size: 2rem;
         margin: 0;
     }

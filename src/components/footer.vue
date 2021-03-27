@@ -37,7 +37,6 @@ export default {
         max-height: 200px;
         background-color: rgb(var(--color-background-dark));
         padding-top: 20px;
-        font-family: "Raleway";
         margin-top: 50px;
         transition: 1s;
     }

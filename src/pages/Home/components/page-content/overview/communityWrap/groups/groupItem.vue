@@ -80,7 +80,6 @@ export default {
     }
 
     .item-details .title {
-        font-family: "Raleway";
         font-weight: 600;
         white-space: nowrap;
         overflow: hidden;
@@ -106,7 +105,6 @@ export default {
     }
 
     .count {
-        font-family: "Raleway";
         margin-left: 3px;
     }
 
@@ -130,6 +128,5 @@ export default {
     .actions p {
         margin: 0;
         color: white;
-        font-family: "Raleway";
     }
 </style>

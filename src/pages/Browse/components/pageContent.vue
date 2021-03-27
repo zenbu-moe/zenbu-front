@@ -49,7 +49,6 @@ export default {
     }
 
     h2 {
-        font-family: "Raleway";
         font-size: 1.2rem;
         color: rgba(var(--color-text), 0.5);
         margin-right: 30px;

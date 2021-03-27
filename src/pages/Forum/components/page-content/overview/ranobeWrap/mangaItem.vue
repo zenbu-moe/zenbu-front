@@ -56,7 +56,6 @@ export default {
     }
 
     .item-details .title {
-        font-family: "Raleway";
         font-weight: 600;
         white-space: nowrap;
         overflow: hidden;

@@ -97,13 +97,11 @@ export default {
 
 <style scoped>
     h1 {
-        font-family: "Raleway";
         font-size: 1.6rem;
         color: rgb(var(--color-text));
     }
 
     h4 {
-        font-family: "Raleway";
         font-size: 1rem;
         color: rgb(var(--color-text));
         margin: 0;
@@ -207,9 +205,7 @@ export default {
 
     .details-entry p {
         color: rgb(var(--color-text));
-        margin: 5px 0px 5px 0px;
-        font-family: "Raleway";
-        
+        margin: 5px 0px 5px 0px;        
     }
 
     .media-genres {
@@ -261,7 +257,6 @@ export default {
 
     .button-fav p {
         margin-left: 12px;
-        font-family: "Raleway";
         color: white;
     }
 </style>

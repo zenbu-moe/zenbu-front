@@ -39,7 +39,6 @@ export default {
 <style scoped>
     .item {
         margin: 5px 0px;
-        font-family: "Raleway";
         border-radius: 10px;
         cursor: pointer;
         padding: 5px 10px;

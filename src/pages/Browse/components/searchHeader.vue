@@ -226,7 +226,6 @@ export default {
 
     .filter-item p {
         margin: 0;
-        font-family: "Raleway";
         font-weight: bold;
     }
 
@@ -243,7 +242,6 @@ export default {
 
     .item {
         margin: 5px 0px;
-        font-family: "Raleway";
         border-radius: 10px;
         cursor: pointer;
         padding: 5px 10px;

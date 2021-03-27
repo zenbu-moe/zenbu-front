@@ -29,6 +29,5 @@ export default {
     p {
         color: rgb(var(--color-text));
         margin: 0;
-        font-family: "Raleway";
     }
 </style>

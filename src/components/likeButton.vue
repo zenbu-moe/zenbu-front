@@ -45,10 +45,11 @@ export default {
         height: 35px;
         text-align: center;
         border-radius: 50%;
-        padding: 7px;
+        padding: 6px;
         transition: 0.3s ease-out;
         cursor: pointer;
         animation: fadeIn 0.3s;
+        font-size: 1rem;
     }
 
     .like-button:hover button-like {
@@ -64,10 +65,11 @@ export default {
         height: 35px;
         text-align: center;
         border-radius: 50%;
-        padding: 9px;
+        padding: 6px;
         transition: 0.3s ease-out;
         cursor: pointer;
         animation: bounceIn 0.7s;
+        font-size: 1rem;
     }
 
     .like-button:hover button-like-active {
@@ -77,7 +79,6 @@ export default {
     }
     
     .like-button .count {
-        font-family: "Raleway";
         font-weight: 100;
         cursor: pointer;
     }

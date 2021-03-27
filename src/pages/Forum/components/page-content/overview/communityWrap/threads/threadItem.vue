@@ -85,7 +85,6 @@ export default {
     }
 
     .count {
-        font-family: "Raleway";
         font-size: 0.9rem;
         color: rgb(var(--color-text));
     }

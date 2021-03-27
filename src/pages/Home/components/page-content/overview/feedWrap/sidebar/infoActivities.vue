@@ -1,7 +1,7 @@
 <template>
     <div class="info-box">
         <div class="section-header">
-            <h3 @click="setWrap(1)"><a >Recent activity</a></h3>
+            <h3 @click="setWrap(1)">Recent activity</h3>
             <a @click="setWrap(1)" class="button-more"><i class="fas fa-angle-right"></i></a>
         </div>
         <div v-if="state != 1">

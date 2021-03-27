@@ -167,7 +167,6 @@ export default {
     }
 
     .login-window h1 {
-        font-family: "Raleway";
         font-weight: bold;
         margin-bottom: 60px;
         color: rgb(var(--color-text));
@@ -175,7 +174,6 @@ export default {
     }
 
     .login-window h3 {
-        font-family: "Raleway";
         margin-bottom: 5px;
     }
 
@@ -183,7 +181,6 @@ export default {
     .login-window input[type=email],
     .login-window input[type=password] {
         width: 150%;
-        font-family: "Raleway";
         transition: 1s;
         border: none;
         font-size: 1rem;
@@ -248,7 +245,6 @@ export default {
     btn-submit {
         padding: 10px;
         background-color: rgb(145, 125, 177);
-        font-family: "Raleway";
         font-weight: bold;
         color: white;
         cursor: pointer;
@@ -256,14 +252,12 @@ export default {
     }
 
     .login-window a {
-        font-family: "Raleway";
         color: rgb(var(--color-link));
         font-size: 0.9rem;
         transition: 0.2s;
     }
 
     .login-window a:hover {
-        font-family: "Raleway";
         color: rgb(145, 125, 177);
         font-size: 0.9rem;
         transition: 0.2s;
@@ -274,7 +268,6 @@ export default {
     }
 
     .login-window p {
-        font-family: "Raleway";
         color: rgb(var(--color-text));
         font-size: 0.9rem;
         transition: 0.2s;

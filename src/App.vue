@@ -62,9 +62,14 @@ export default {
     box-sizing: border-box;
   }
 
-  h3 {
-    font-family: "Raleway";
-    color: black;
+  h1, h2, h3, h4, pt, .name, .title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    color: rgba(var(--color-text), 0.7)
   }
 
   a {
@@ -110,9 +115,10 @@ export default {
 
   body, #app {
     margin: 0;
-    font-family: "Roboto";
     background-color: rgba(var(--color-background));
     overflow: overlay;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-weight: 400;
     font-size: 1rem;
     animation: fadeIn 0.5s;
   }
@@ -182,7 +188,7 @@ export default {
   }
 
   .browse p {
-    font-family: "Raleway";
+    font-family: "Lexend";
     font-weight: bold;
     margin: 0px 5px;
     font-size: 12px;

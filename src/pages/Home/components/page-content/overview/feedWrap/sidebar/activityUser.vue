@@ -173,13 +173,11 @@ export default {
     }
 
     .name {
-        font-family: "Raleway";
         font-weight: bold;
         color: rgb(var(--color-link));
     }
 
     .date {
-        font-family: "Raleway";
         margin-top: 0px;
         color: rgba(var(--color-gray-darker));
     }

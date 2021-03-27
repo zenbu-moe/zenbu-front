@@ -70,7 +70,6 @@ export default {
 
     .stat-entry p {
         margin: 0px 10px 0px 0px;
-        font-family: "Raleway";
     }
 
     .progress {
@@ -99,7 +98,6 @@ export default {
 
     .total p {
         color: black;
-        font-family: "Raleway";
         margin: 0;
     }
 

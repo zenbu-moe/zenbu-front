@@ -56,7 +56,7 @@ export default {
 
     input[type=text] {
         color: white;
-        padding-top: 7px;
+        padding-top: 5px;
     }
 
 </style>

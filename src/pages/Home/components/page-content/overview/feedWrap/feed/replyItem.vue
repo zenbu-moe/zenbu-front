@@ -83,11 +83,6 @@ export default {
     .reply-body .header .profile {
         display: flex;
         align-items: center;
-        margin-bottom: 5px;
-    }
-
-    span {
-        font-family: "Raleway";
     }
 
     .reply-body .name-block {
@@ -97,20 +92,17 @@ export default {
 
     .reply-to-body .name-block {
         display: flex;
+        align-items: center;
         margin-left: 8px;
-        margin-top: 3px;
         font-size: 14px;	
     }
 
     .name {
-        font-family: "Raleway";
-        font-weight: bold;
         color: rgba(var(--color-link));
     }
 
     .date {
-        font-family: "Raleway";
-        margin-left: 5px;
+        margin: 5px;
         color: rgba(var(--color-gray-darker));
         font-size: 0.8rem;
     }
@@ -133,9 +125,7 @@ export default {
 
     .text-markdown {
         color: rgba(var(--color-text-markdown));;
-        font-weight: 300;
         margin-left: 43px;
-        font-size: 1rem;
     }
 
     .like-button {
@@ -150,7 +140,6 @@ export default {
     .count {
         margin-right: 2px;
         color: rgb(var(--color-button));
-        font-family: "Raleway";
     }
 
     p {
