@@ -5,13 +5,13 @@
             <h1>{{ mediaScore }}</h1>
             <div class="visual-score">
                 <div v-for="star in fullStar" :key="star">
-                    <i class="fas fa-star"></i>
+                    <svg-icon icon="solid/star"></svg-icon>
                 </div>
                 <div v-for="star in halfStar" :key="star">
-                    <i class="fas fa-star-half-alt"></i>
+                    <svg-icon icon="solid/star-half-alt"></svg-icon>
                 </div>
                 <div v-for="star in emptyStar" :key="star">
-                    <i class="far fa-star"></i>
+                    <svg-icon icon="regular/star"></svg-icon>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@ export default {
     data() {
         return {
             score: null,
-            mediaScore: 4.6,
+            mediaScore: 8.2,
             fullStars: null,
             fullStar: null,
             halfStar: null,
@@ -92,4 +92,7 @@ export default {
         padding: 20px;
     }
 
+    h1 {
+        font-family: "Lexend";
+    }
 </style>

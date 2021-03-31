@@ -1,8 +1,8 @@
 <template>
     <div class="header-wrap" :class="{'expanded': isExpanded, 'minimized': !isExpanded}">
         <div class="button-wrap">
-            <btn-expand @click="expand()" class="button" v-if="!isExpanded"><i class="fas fa-angle-down"></i></btn-expand>
-            <btn-expand @click="expand()" class="button" v-if="isExpanded"><i class="fas fa-angle-up"></i></btn-expand>
+            <btn-expand @click="expand()" class="button" v-if="!isExpanded"><svg-icon icon="solid/angle-down"></svg-icon></btn-expand>
+            <btn-expand @click="expand()" class="button" v-if="isExpanded"><svg-icon icon="solid/angle-up"></svg-icon></btn-expand>
         </div>
         <div class="header">
             <div class="media-info">
@@ -11,7 +11,10 @@
                     </div>
                     <div class="media-misc">
                         <buttonAddToList />
-                        <btn-fav class="button-fav"><i class="far fa-heart"></i><p>Add to favorites</p></btn-fav>
+                        <btn-fav class="button-fav">
+                            <svg-icon icon="regular/heart"></svg-icon>
+                            <p>Add to favorites</p>
+                        </btn-fav>
                     </div>
                 </div>
                 <div class="media-description-wrap">
@@ -151,7 +154,8 @@ export default {
     }
 
     .header {
-        background-color: rgb(var(--color-background-dark));
+        background-color: rgb(var(--color-foreground));
+        box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
         height: auto;
         width: 1380px;
         margin: 0px auto 0px auto;
@@ -228,7 +232,6 @@ export default {
     }
 
     btn-fav {
-        display: inline-block;
         color: rgba(var(--color-button));
         background-color: rgba(var(--color-background));
         width: 35px;
@@ -245,7 +248,7 @@ export default {
         background-color: rgba(231,92,139,0.6);
         color: rgb(255, 73, 134);
         transition: 0.6s;
-        width: 345%;
+        width: 342%;
     }
 
     .button-fav {
@@ -258,5 +261,10 @@ export default {
     .button-fav p {
         margin-left: 12px;
         color: white;
+    }
+
+    .button-fav svg.icon {
+        font-size: 1rem;
+        min-width: 1em;
     }
 </style>

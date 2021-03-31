@@ -1,8 +1,8 @@
 <template>
     <div class="button-add">
         <div @mouseover="setHover(true)" @mouseleave="setHover(false)">
-            <btn-add v-if="!isHovering" class="button plus"><i class="fas fa-plus"></i></btn-add>
-            <btn-add v-if="isHovering" class="button caret"><i class="fas fa-angle-down"></i></btn-add>
+            <btn-add v-if="!isHovering" class="button plus"><svg-icon icon="solid/plus"></svg-icon></btn-add>
+            <btn-add v-if="isHovering" class="button caret"><svg-icon icon="solid/angle-down"></svg-icon></btn-add>
         </div>
         <p>Start watching</p>
     </div>
@@ -51,6 +51,7 @@ export default {
     .button-add p {
         color: white;
         margin: 0;
+        padding-bottom: 2px;
     }
 
     .button-add:hover {
@@ -74,12 +75,12 @@ export default {
     }
 
     .plus {
-        padding: 8px 9px 9px 10px;
+        padding: 5px 9px;
     }
 
     .caret {
         font-size: 25px;
-        padding: 4px 9px 9px 9px;
+        padding: 0px 5px;
     }
 
     btn-add:hover {

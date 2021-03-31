@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div class="content" :class="{'expanded': isScrollOnTop, 'minimized': !isScrollOnTop}">
         <div>
             <div class="wrap">
                 <div class="title">
@@ -53,8 +53,15 @@ export default {
     data() {
         return {
             isExpanded: false,
-            x: 5
+            x: 5,
+            isScrollOnTop: null,
         }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+    },
+    unmounted() {
+        window.removeEventListener('scroll', this.handleScroll);
     },
     methods: {
         expand() {
@@ -64,7 +71,20 @@ export default {
             } else {
                 this.x = 5
             }
+        },
+        checkScroll() {
+            if (window.scrollY < 100) {
+                this.isScrollOnTop = true
+            } else {
+                this.isScrollOnTop = false
+            }
+        },
+        handleScroll() {
+            this.checkScroll()
         }
+    },
+    mounted() {
+        this.checkScroll()
     }
 }
 </script>
@@ -77,17 +97,26 @@ export default {
     }
 
     .content {
+        position: relative;
         width: 1380px;
-        margin: 30px auto 0px auto;
         border-radius: 20px;
-        background-color: rgb(var(--color-background-dark));
+        background-color: rgb(var(--color-foreground));
+        box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
         height: auto;
-        transition: 1s;
+        transition: 0.3s;
         display: grid;
         grid-template-columns: 50% 50%;
         grid-column-gap: 20px;
         grid-row-gap: 20px;
         padding: 20px;
+    }
+
+    .expanded {
+        margin: 90px auto 0px auto;
+    }
+
+    .minimized {
+        margin: 30px auto 0px auto;
     }
 
     .wrap {

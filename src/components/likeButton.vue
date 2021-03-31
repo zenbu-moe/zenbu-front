@@ -45,7 +45,7 @@ export default {
         height: 35px;
         text-align: center;
         border-radius: 50%;
-        padding: 6px;
+        padding: 5px;
         transition: 0.3s ease-out;
         cursor: pointer;
         animation: fadeIn 0.3s;
@@ -65,7 +65,7 @@ export default {
         height: 35px;
         text-align: center;
         border-radius: 50%;
-        padding: 6px;
+        padding: 5px;
         transition: 0.3s ease-out;
         cursor: pointer;
         animation: bounceIn 0.7s;

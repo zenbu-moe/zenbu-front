@@ -47,6 +47,7 @@ export default {
         cursor: pointer;
         transition: 0.5s;
         margin-right: 5px;
+        padding-bottom: 3px;
     }
 
     .button:hover {
