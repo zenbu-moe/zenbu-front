@@ -52,7 +52,6 @@ export default {
         font-size: 1.2rem;
         color: rgba(var(--color-text), 0.5);
         margin-right: 30px;
-        letter-spacing: 1px;
         cursor: pointer;
     }
 

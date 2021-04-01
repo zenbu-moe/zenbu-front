@@ -110,18 +110,19 @@ export default {
     }
 
     .nav .links a {
-        font-size: 1.2rem;
-        color: rgb(var(--color-text));
+        font-size: 1.1rem;
+        color: rgba(var(--color-text), 0.75);
         transition: 1s;
         margin: 0px 30px 0px 0px;
         cursor: pointer;
-        padding: 16px 0px;
-        border-bottom: 3px solid rgba(106, 93, 136, 0);
+        padding: 16px 10px;
+        border-bottom: 2px solid rgba(106, 93, 136, 0);
         transition: 0.3s;
+        font-weight: 500;
     }
 
     .links a:hover {
-        border-bottom: 3px solid rgb(106, 93, 136);
+        border-bottom: 2px solid rgba(var(--color-text), 0.75);
         transition: 0.1s;
     }
 

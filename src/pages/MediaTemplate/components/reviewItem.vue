@@ -1,12 +1,24 @@
 <template>
     <div class="preview-wrap">
-        <div class="user-wrap">
-            <div class="avatar">
-            </div>
-        </div>
         <div class="body">
-            <div class="name">
-                <p>An1meDweeb</p>
+            <div class="user-wrap">
+                <div class="avatar">
+                </div>
+                <div class="name">
+                    <div class="nameblock">
+                        <p>An1meDweeb</p>
+                    </div>
+                    <p class="date">April 1, 2021</p>
+                </div>
+            </div>
+            <div class="opinion">
+                <div class="icon">
+                    <svg-icon icon="solid/thumbs-up"></svg-icon>
+                </div>
+                <div class="block">
+                    <h2>Recommended</h2>
+                    <p>Finished this entry on Mar 25, 2021</p>
+                </div>
             </div>
             <div class="description">
                 <p>
@@ -17,20 +29,17 @@
             <div class="misc">
                 <div class="left">
                     <div class="info">
-                        <p>Recommended</p>
-                    </div>
-                    <div class="info">
                         <p>Helpful</p>
                     </div>
                 </div>
                 <div class="stats">
                     <div class="counter">
-                        <svg-icon icon="solid/eye"></svg-icon>
-                        <p>1732</p>
+                        <svg-icon icon="solid/thumbs-up"></svg-icon>
+                        <p>127</p>
                     </div>
                     <div class="counter">
-                        <svg-icon icon="solid/thumbs-up"></svg-icon>
-                        <p>153</p>
+                        <svg-icon icon="solid/eye"></svg-icon>
+                        <p>1732</p>
                     </div>
                 </div>
             </div>
@@ -55,24 +64,60 @@ export default {
 
     .user-wrap {
         display: flex;
-        flex-direction: column;
-        margin-right: 10px;
+        margin-bottom: 10px;
+        align-items: flex-start;
     }
 
     .avatar {
-        width: 60px;
+        width: 40px;
         background-color: rgb(var(--color-background));
-        height: 60px;
+        height: 40px;
         border-radius: 50%;
+        margin-right: 5px;
     }
 
     .description {
-        max-height: 100px;
+        max-height: 200px;
         overflow: hidden;
+        border-bottom: 1px solid rgb(var(--color-text), 0.1);
+        transition: 0.3s;
+        padding-bottom: 10px;
     }
 
     .description p {
         font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+
+    .date {
+        font-family: "Lexend";
+        font-weight: 300;
+        font-size: 0.8rem;
+        color: rgb(var(--color-text))
+    }
+
+    .opinion {
+        background-color: rgb(var(--color-background), 0.5);
+        padding: 10px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        width: 30%;
+        margin-bottom: 10px;
+    }
+
+    .opinion svg.icon {
+        font-size: 2rem;
+        margin: 0 10px;
+    }
+
+    .opinion h2 {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    .opinion p {
+        font-size: 0.8rem;
     }
 
     p {
@@ -85,7 +130,7 @@ export default {
     }
 
     .misc {
-        margin-top: 10px;
+        margin-top: 15px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -109,7 +154,7 @@ export default {
 
     .info {
         background-color: rgb(var(--color-background));
-        padding: 5px 10px;
+        padding: 3px 10px;
         border-radius: 20px;
         display: flex;
         justify-content: center;

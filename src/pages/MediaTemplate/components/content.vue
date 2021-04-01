@@ -54,15 +54,15 @@ export default {
         return {
             isExpanded: false,
             x: 5,
-            isScrollOnTop: null,
+            isScrollOnTop: false,
         }
     },
-    created() {
+    /* created() {
         window.addEventListener('scroll', this.handleScroll);
     },
     unmounted() {
         window.removeEventListener('scroll', this.handleScroll);
-    },
+    }, */
     methods: {
         expand() {
             this.isExpanded = !this.isExpanded;
@@ -84,7 +84,7 @@ export default {
         }
     },
     mounted() {
-        this.checkScroll()
+        /* this.checkScroll() */
     }
 }
 </script>
@@ -116,7 +116,7 @@ export default {
     }
 
     .minimized {
-        margin: 30px auto 0px auto;
+        margin: 10px auto 0px auto;
     }
 
     .wrap {
@@ -136,7 +136,8 @@ export default {
     .relations {
         display: grid;
         grid-template-columns: auto auto auto auto auto;
-        justify-content: space-between;;
+        justify-content: space-between;
+        grid-column-gap: 10px;
     }
 
     .title {

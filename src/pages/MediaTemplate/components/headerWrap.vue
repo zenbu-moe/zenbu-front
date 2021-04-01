@@ -68,6 +68,26 @@
             </div>
             <mediaScore />
         </div>
+        <!-- <div class="nav">
+            <div class="button-nav" @click="$emit('set-tab', 0)" :class="{'active': currentTab == 0}">
+                <p>Overview</p>
+            </div>
+            <div class="button-nav" @click="$emit('set-tab', 1)" :class="{'active': currentTab == 1}">
+                <p>Characters</p>
+            </div>
+            <div class="button-nav" @click="$emit('set-tab', 2)" :class="{'active': currentTab == 2}">
+                <p>Staff</p>
+            </div>
+            <div class="button-nav" @click="$emit('set-tab', 3)" :class="{'active': currentTab == 3}">
+                <p>Reviews</p>
+            </div>
+            <div class="button-nav" @click="$emit('set-tab', 4)" :class="{'active': currentTab == 4}">
+                <p>Social</p>
+            </div>
+            <div class="button-nav" @click="$emit('set-tab', 5)" :class="{'active': currentTab == 5}">
+                <p>Statistics</p>
+            </div>
+        </div> -->
     </div>
 </template>
 
@@ -83,6 +103,7 @@ export default {
         buttonAddToList,
         mediaScore
     },
+    props: ['currentTab'],
     data() {
         return {
             isExpanded: false,
@@ -116,6 +137,8 @@ export default {
 
     .header-wrap {
         transition: 1s;
+        width: 1380px;
+        margin: 0px auto 0px auto;
     }
 
     .expanded {
@@ -155,15 +178,52 @@ export default {
 
     .header {
         background-color: rgb(var(--color-foreground));
-        box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
         height: auto;
-        width: 1380px;
-        margin: 0px auto 0px auto;
-        border-radius: 20px;
-        padding: 20px;
+        width: 100%;
+        border-radius: 20px 20px 20px 20px;
+        padding: 20px 20px 20px 20px;
         display: flex;
         justify-content: space-between;
-        transition: 1s;
+        transition: 0.3s;
+    }
+
+    .nav {
+        width: 100%;
+        background-color: rgb(var(--color-foreground));
+        padding: 0px 0px 0px 240px;
+        border-radius: 0px 0px 20px 20px;
+        border-top: 1px solid rgba(var(--color-background), 1);
+        display: flex;
+        align-items: center;
+        transition: 0.3s;
+    }
+
+    .button-nav {
+        margin-right: 40px;
+        padding: 15px;
+        cursor: pointer;
+        border-bottom: 2px solid rgba(var(--color-text), 0);
+    }
+
+    .button-nav p {
+        color: rgba(var(--color-text), 0.5);
+        font-weight: 500;
+    }
+
+    .active {
+        border-bottom: 2px solid rgba(var(--color-text), 1);
+    }
+
+    .active p {
+        color: rgba(var(--color-text), 1);
+    }
+
+    .button-nav:hover {
+        border-bottom: 2px solid rgba(var(--color-text), 0.5);
+    }
+
+    .nav p {
+        margin: 0;
     }
 
     .media-actions {
@@ -214,7 +274,7 @@ export default {
 
     .media-genres {
         display: flex;
-        margin-top: 30px;
+        margin-top: 20px;
     }
 
     .media-misc {

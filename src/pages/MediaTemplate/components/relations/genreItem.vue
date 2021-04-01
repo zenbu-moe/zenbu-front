@@ -14,7 +14,7 @@ export default {
 <style scoped>
     .genre-item {
         background-color: rgb(var(--color-background));
-        padding: 5px 10px;
+        padding: 3px 10px;
         margin-right: 10px;
         border-radius: 20px;
         transition: 1s;
@@ -29,5 +29,6 @@ export default {
     p {
         color: rgb(var(--color-text));
         margin: 0;
+        font-size: 0.8rem;
     }
 </style>

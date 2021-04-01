@@ -3,8 +3,8 @@
         <a href="" class="cover">
         </a>
         <div class="title">
-            <h4>Item Title</h4>
-            <p>Item Source</p>
+            <h4>Monogatari Series: Second Season</h4>
+            <p>Adaptation</p>
         </div>
     </div>
 </template>
@@ -23,14 +23,21 @@ export default {
     }
 
     .title h4 {
-        margin: 0px 0px 5px 0px;
-        color: rgb(var(--color-text))
+        margin: 0;
+        font-size: 0.9rem;
+        color: rgb(var(--color-text));
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
     }
 
     .title p {
         margin: 0px 0px 10px 0px;
+        font-family: "Lexend";
         color: rgb(var(--color-text));
-        font-size: 14px;
+        font-size: 0.75rem;
+        font-weight: 300;
     }
 
     .cover {
@@ -39,7 +46,7 @@ export default {
         animation: zoomIn 0.3s;
         width: 100px;
         height: 140px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
         border-radius: 10px;
         background-size: cover;
         background-repeat: no-repeat;
