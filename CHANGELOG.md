@@ -2,7 +2,7 @@
 
 ### 0.1.5 - April 3, 2021
 
-April Fools' - Got'em
+April Fools' - Got'em _(aka disregard v0.1.4)_
 
 - UI updated on splash page
 
