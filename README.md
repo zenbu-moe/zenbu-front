@@ -7,9 +7,10 @@ Join our [Discord](https://discord.gg/mVpKe4y)
 
 ## Table of contents
 
-- What is it about?
-- GitHub repositories
-- Front-end changelog
+- [What is it about?](https://github.com/zenbu-moe/zenbu-front#what-is-it-about)
+- [GitHub repositories](https://github.com/zenbu-moe/zenbu-front/tree/main#other-github-repositories)
+- [Front-end changelog](https://github.com/zenbu-moe/zenbu-front/tree/main#changelog)
+- [Copyright and project team](https://github.com/zenbu-moe/zenbu-front/tree/main#copyright)
 
 ## What is it about?
 
