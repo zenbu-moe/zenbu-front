@@ -31,6 +31,7 @@ Each repository contains a `main` branch for stable version deployment, as well 
 
 ## Copyright
 
-This project is under GNU General Public License v3.0. 
-`This project` contains but is not limited to code, graphics, videos, art, etc.
+This project is served under GNU General Public License v3.0. 
+`This project` contains but is not limited to code, graphics, videos, and art
+
 Zenbu is developed and maintaned by [Sigma](https://github.com/dizzyatlovich) and [cakes](https://github.com/Kex1016).
