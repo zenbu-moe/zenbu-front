@@ -1,53 +1,37 @@
 {
-  "name": "zenbu-vue",
-  "version": "0.1.0",
+  "name": "nuxt-app",
   "private": true,
+  "type": "module",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.3",
-    "@fortawesome/fontawesome-svg-core": "^1.2.35",
-    "@fortawesome/free-solid-svg-icons": "^5.15.3",
-    "@fortawesome/vue-fontawesome": "^2.0.2",
-    "@mdi/font": "^5.9.55",
-    "aos": "^2.3.4",
-    "core-js": "^3.6.5",
-    "gridstack": "^3.1.2",
-    "svg-inline-loader": "^0.8.2",
-    "vue": "^3.0.0",
-    "vue-grid-layout": "^2.3.11",
-    "vue-resize-observer": "^1.0.37",
-    "vue-router": "^4.0.4"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0-0"
+    "@element-plus/nuxt": "^1.0.7",
+    "@iconify/json": "^2.2.154",
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/google-fonts": "^3.1.0",
+    "@unocss/nuxt": "^0.58.0",
+    "element-plus": "^2.4.3",
+    "nuxt": "^3.8.2",
+    "nuxt-bootstrap-icons": "^1.0.3",
+    "nuxt-headlessui": "^1.1.4",
+    "sass": "^1.69.5",
+    "vue": "^3.3.10",
+    "vue-router": "^4.2.5"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  "dependencies": {
+    "@headlessui/vue": "^0.0.0-insiders.c2096b0",
+    "@iconify-json/svg-spinners": "^1.1.2",
+    "@nuxt/ui": "^2.11.0",
+    "@popperjs/core": "^2.11.8",
+    "@vueuse/core": "^10.7.0",
+    "@vueuse/nuxt": "^10.7.0",
+    "bootstrap": "^5.3.2",
+    "bootstrap-icons": "^1.11.2",
+    "vuex": "^4.1.0"
+  }
 }
