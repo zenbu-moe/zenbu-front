@@ -1,37 +1,75 @@
-# Zenbu - a modern anime, manga, and light novel database and tracking platform.
+# Nuxt 3 Minimal Starter
 
-Thank you for checking out Zenbu. This repository contains all front-end source code for __zenbu.moe__.
-The website is accessible through [`zenbu.moe`](https://zenbu.moe)
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-Join our [Discord](https://discord.gg/mVpKe4y)
+## Setup
 
-## Table of contents
+Make sure to install the dependencies:
 
-- [What is it about?](https://github.com/zenbu-moe/zenbu-front#what-is-it-about)
-- [GitHub repositories](https://github.com/zenbu-moe/zenbu-front/tree/main#other-github-repositories)
-- [Front-end changelog](https://github.com/zenbu-moe/zenbu-front/tree/main#changelog)
-- [Copyright and project team](https://github.com/zenbu-moe/zenbu-front/tree/main#copyright)
+```bash
+# npm
+npm install
 
-## What is it about?
+# pnpm
+pnpm install
 
-Zenbu is a new, completely open-source database and tracking platform for all sorts of Japanese, Korean, and Chinese media, including but not limited to anime, manga, light novels, etc. We started as a team working on a project for AniList, but then had an idea of making an entire platform based around that project idea.
+# yarn
+yarn install
 
-## Other GitHub repositories
+# bun
+bun install
+```
 
-Development of Zenbu is split into 2 separate parts: front-end and back-end. The development happens in separate repositories
+## Development Server
 
-- [`zenbu-front`](https://github.com/zenbu-moe/zenbu-front/) - front-end development repo for __zenbu.moe__
-- [`zenbu-back`](https://github.com/zenbu-moe/zenbu-back/) - back-end development repo for __zenbu.moe__
+Start the development server on `http://localhost:3000`:
 
-Each repository contains a `main` branch for stable version deployment, as well as `dev-max` and `dev-kex` branches for development and testing. `zenbu-front` also has `landing` branch which houses the source code of the splash page that is currently (as of April 4, 2021) accessible through [`zenbu.moe`](https://zenbu.moe).
+```bash
+# npm
+npm run dev
 
-## Changelog
+# pnpm
+pnpm run dev
 
-[Changelog and version history](https://github.com/zenbu-moe/zenbu-front/blob/main/CHANGELOG.md)
+# yarn
+yarn dev
 
-## Copyright
+# bun
+bun run dev
+```
 
-This project is served under GNU General Public License v3.0. 
-`This project` contains but is not limited to code, graphics, videos, and art
+## Production
 
-Zenbu is developed and maintaned by [Sigma](https://github.com/dizzyatlovich) and [cakes](https://github.com/Kex1016).
+Build the application for production:
+
+```bash
+# npm
+npm run build
+
+# pnpm
+pnpm run build
+
+# yarn
+yarn build
+
+# bun
+bun run build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm run preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
