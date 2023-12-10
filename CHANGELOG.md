@@ -1,5 +1,25 @@
 ## Changelog
 
+### 0.5.4 - December 9, 2023
+
+- Submission page is 70% complete
+  - Added `General` tab
+  - Added `Attachments` tab
+  - Added `Characters` tab
+
+- Updated `roadmap.md`
+
+### 0.5.1 - December 3, 2023
+
+- First rewrite attempt
+  - Initial API and DB schema
+
+### 0.5.0 - December 1, 2023
+
+- Complete Zenbu redesign and rewrite.
+  - Redesign Figma file is available at [Figma](https://www.figma.com/file/ldG1ET3HkR0LPBokXWwHF6/Zenbu-v2?type=design&node-id=0%3A1&mode=design&t=AwTFmkztVNI0B8TR-1)
+  - Rewrite is from scratch, both frontend and backend
+
 ### 0.1.5 - April 3, 2021
 
 April Fools' - Got'em _(aka disregard v0.1.4)_
