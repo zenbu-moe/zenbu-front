@@ -25,13 +25,17 @@ Development of Zenbu is split into 2 separate parts: front-end and back-end. The
 
 Each repository contains a `main` branch for stable version deployment, as well as `dev-max` and `dev-kex` branches for development and testing. `zenbu-front` also has `landing` branch which houses the source code of the splash page that is currently (as of April 4, 2021) accessible through [`zenbu.moe`](https://zenbu.moe).
 
+## Roadmap
+
+Take a look at the updated roadmap [here](https://github.com/zenbu-moe/zenbu-front/blob/main/ROADMAP.md).
+
 ## Changelog
 
-[Changelog and version history](https://github.com/zenbu-moe/zenbu-front/blob/main/CHANGELOG.md)
+[Changelog and version history](https://github.com/zenbu-moe/zenbu-front/blob/main/CHANGELOG.md).
 
 ## Copyright
 
 This project is served under GNU General Public License v3.0. 
 `This project` contains but is not limited to code, graphics, videos, and art
 
-Zenbu is developed and maintaned by [Sigma](https://github.com/dizzyatlovich) and [cakes](https://github.com/Kex1016).
+Zenbu is developed and maintaned by [sigma](https://github.com/sigmacw) and [cakes](https://github.com/Kex1016).
