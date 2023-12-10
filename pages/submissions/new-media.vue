@@ -43,7 +43,15 @@
 
                         <CharacterUpload :inputs="inputs"
                             @value-change="handleValueChange"
+                            @char-delete="handleCharacterDelete"
+                            @va-change="handleVaChange"
+                            @char-role-change="handleCharRoleChange"
                             v-if="category.toLowerCase() === activeView && category == 'Characters'" />
+
+                        <StaffUpload :inputs="inputs"
+                            @value-change="handleValueChange"
+                            @char-delete="handleCharacterDelete"
+                            v-if="category.toLowerCase() === activeView && category == 'Staff'" />
                     </div>
                 </div>
             </transition>
@@ -79,7 +87,6 @@ type CategoryModel = {
 }
 
 const handleNavEvent = (data: string) => {
-    console.log('Changing active view to', data);
     activeView.value = data;
 };
 
@@ -113,6 +120,9 @@ const categories: CategoryModel[] = [
         to: 'technical'
     }
 ]
+
+// i wonder if this object can be pushed somewhere else
+// its annoying as shitters here
 
 const inputs: InputParams[] = [
     {
@@ -375,6 +385,58 @@ const handleOptionsChange = (id: number, value: any) => {
     }
 };
 
+const handleVaChange = (id: number, value: any, action: String) => {
+    // this function is kind of a mess because i rewrote a lot of 
+    // logic, but i decided to keep using it because everything works fine
+
+    // it's a mess though... value can be literally anything and 
+    // god only knows that it's supposed to be
+
+    const characterArr = inputs.find(item => item.id === 100);
+
+    if (!characterArr.value) {
+        return;
+    }
+
+    const character = characterArr.value.find(el => el.uid === id);
+
+    if (!character) {
+        return;
+    }
+
+    if (action === 'add') {
+        // here `value` is a voice actor object
+        character.voice_actors.push(value);
+    }
+
+    else if (action === 'remove') {
+        // here `value` is a string
+        const vaObj = character.voice_actors.find(el => el.name === value);
+        const index = character.voice_actors.indexOf(vaObj);
+        character.voice_actors.splice(index, 1);
+    }
+
+    else if (action === 'role') {
+        // here `value` is an array of [string, string] that contains
+        // VA name and VA role respectively
+        //console.log(character.voice_actors.find(el => el.name === value[0]))
+        character.voice_actors.find(el => el.name === value[0]).role = value[1];
+    }
+}
+
+const handleCharRoleChange = (uid: string, value: any) => {
+    inputs.find(el => el.id === 100)
+        .value
+        .find(el => el.uid === uid).role = value;
+}
+
+const handleCharacterDelete = (uid: string, value?: any) => {
+    const charArr = inputs.find(el => el.id === 100).value;
+    const charObj = charArr.find(el => el.uid === uid);
+    const index = charArr.indexOf(charObj);
+    inputs.find(el => el.id === 100).value.splice(index, 1);
+}
+
 function computeGroups(inputs: InputParams[], category: string): [string] | [] {
     const inputsFiltered: InputParams[] = inputs
         .filter((el) => el.category === category)
@@ -416,6 +478,10 @@ async function fetchGenres() {
 onMounted(() => {
     fetchGenres();
 });
+
+onUpdated(() => {
+    /* console.log(inputs); */
+})
 </script>
 
 <style lang="scss" scoped>
@@ -483,6 +549,7 @@ h1 {
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.2s;
+    pointer-events: none;
 }
 
 .fade-enter,

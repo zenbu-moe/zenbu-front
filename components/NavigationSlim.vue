@@ -1,5 +1,10 @@
 <template>
-    <div class="navigation" :class="{ expand: focused }">
+    <div class="navigation" :class="{
+        expand: focused,
+        hidden: !isScrolled,
+        navShow: isScrolled,
+        fadeNav: !scrollDirection && isScrolled
+    }">
         <div class="wrapper">
             <div class="links">
                 <div class="logo">全</div>
@@ -21,7 +26,7 @@
         <div class="wrapper ">
             <i class="bi bi-inbox"></i>
             <i class="bi bi-bell"></i>
-            <UserAvatar :mode="'normal'" />
+            <UserAvatar :mode="'slim'" />
             <i class="bi bi-chevron-down"></i>
         </div>
     </div>
@@ -31,8 +36,43 @@
 
 const search = ref();
 const { focused } = useFocus(search, { initialValue: false })
-watch(focused, (newCount, oldCOunt) => {
+watch(focused, (newCount, oldCount) => {
+    if (newCount) {
+        scrollDirection.value = false;
+    } else {
+        scrollDirection.value = true;
+    }
+
     console.log(newCount);
+})
+
+const { x, y } = useWindowScroll()
+const scrollDirection = ref(false);
+const isScrolled = ref(false);
+
+/* const handleScroll = () => {
+    console.log(window.scrollY);
+    scrollPosition.value = window.scrollY;
+
+    if (scrollPosition.value > 100) {
+        isScrolled.value = true;
+    } else {
+        isScrolled.value = false;
+    }
+}; */
+
+watch(y, (newCount, oldCount) => {
+    if (newCount > 180) {
+        isScrolled.value = true;
+    } else {
+        isScrolled.value = false;
+    }
+
+    if (newCount > oldCount) {
+        scrollDirection.value = true;
+    } else {
+        scrollDirection.value = false;
+    }
 })
 </script>
 
@@ -49,7 +89,7 @@ a {
 }
 
 .expand {
-    grid-template-columns: 88px 672px 300px !important;
+    grid-template-columns: 76px 684px 300px !important;
 }
 
 .fade {
@@ -57,7 +97,7 @@ a {
 }
 
 .navigation {
-    position: absolute;
+    position: fixed;
     display: grid;
     justify-content: space-between;
     grid-template-columns: 540px 220px 300px;
@@ -65,11 +105,16 @@ a {
     width: 100%;
     margin-top: 20px;
     margin-bottom: 40px;
-    animation: fade-in-bottom 0.5s ease-out;
-    transition: all 0.5s;
+    transition: all 0.25s;
     z-index: 1000;
     width: 1100px;
     top: 0px;
+    filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.15));
+    opacity: 0;
+
+    &:hover {
+        opacity: 1 !important;
+    }
 }
 
 .wrapper {
@@ -77,8 +122,8 @@ a {
     align-items: center;
     justify-content: space-between;
     background-color: var(--foreground);
-    border-radius: 8px;
-    padding: 14px 14px;
+    border-radius: 24px;
+    padding: 8px 12px;
     overflow: hidden;
 }
 
@@ -96,8 +141,9 @@ a {
     }
 
     a {
-        margin: 0 14px;
+        margin: 0 16px;
         white-space: nowrap;
+        font-size: 0.925rem;
     }
 }
 
@@ -106,8 +152,20 @@ a {
     height: 32px;
     margin: 0 14px;
     font-family: "Dela Gothic One";
-    font-size: 32px;
-    margin-top: -16px;
+    font-size: 24px;
+    margin-top: -8px;
+}
+
+.hidden {
+    pointer-events: none;
+}
+
+.navShow {
+    opacity: 0.3;
+}
+
+.fadeNav {
+    opacity: 1;
 }
 
 .search {
@@ -127,13 +185,13 @@ a {
     }
 
     i {
-        margin: 0 12px;
+        margin: 4px 12px 0px 12px;
     }
 }
 
 .wrapper {
     i {
-        margin: 0 12px;
+        margin: 3px 12px 0px 12px;
         font-size: 18px;
     }
 }

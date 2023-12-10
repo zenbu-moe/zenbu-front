@@ -1,5 +1,5 @@
 <template>
-    <div class="user">
+    <div class="user" :class="{ slim: mode === 'slim' }">
         <div class="user-avatar">
 
         </div>
@@ -10,36 +10,55 @@
     </div>
 </template>
 
-<script lang="ts">
-
+<script lang="ts" setup>
+const props = defineProps<{
+    mode: String
+}>();
 </script>
 
 <style lang="scss" scoped>
-    .user {
-        display: grid;
-        grid-template-columns: 36px auto;
-        column-gap: 12px;
-        margin: 0 12px;
-        align-items: center;
-    }
+.user {
+    display: grid;
+    grid-template-columns: 36px auto;
+    column-gap: 12px;
+    margin: 0 12px;
+    align-items: center;
+}
 
+.user-avatar {
+    background-color: var(--placeholder-fill);
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+}
+
+p {
+    margin: 0;
+}
+
+.display-name {
+    font-weight: 500;
+}
+
+.user-handle {
+    color: var(--link-inactive);
+    font-size: 0.85em;
+}
+
+.slim {
     .user-avatar {
         background-color: var(--placeholder-fill);
-        width: 36px;
-        height: 36px;
+        width: 24px;
+        height: 24px;
         border-radius: 18px;
     }
 
-    p {
-        margin: 0;
-    }
-
-    .display-name {
-        font-weight: 500;
-    }
-
     .user-handle {
-        color: var(--link-inactive);
-        font-size: 0.85em;
+        display: none;
     }
+}
+
+.slim.user {
+    column-gap: 4px;
+}
 </style>

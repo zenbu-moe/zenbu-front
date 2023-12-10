@@ -18,39 +18,44 @@
                                 :label="item" :value="item" />
                         </el-select>
                         <el-button class="delete-button" type="danger" plain
-                            :icon="Delete">
+                            @click="deleteCharacter(character.uid)" :icon="Delete">
                         </el-button>
                     </div>
                     <div class="va__input">
                         <el-input ref="search_va" v-model="value_va"
                             placeholder="Search a voice actor"
-                            class="input-with-select">
+                            class="input-with-select"
+                            :disabled="vaAdded ? true : false">
                             <template #prepend>
-                                <el-button :icon="Search" />
+                                <el-button @click="handleSearchButton"
+                                    ref="searchButton" :icon="searchIcon" />
                             </template>
                         </el-input>
 
-                        <el-input style="margin-left: 12px; width: 192px;"
-                            v-model="va_role"
-                            placeholder="Role? Leave empty for main"
-                            class="input-with-select">
+                        <el-input style="margin-left: 8px; width: 192px;"
+                            v-model="va_role" :disabled="vaAdded ? false : true"
+                            placeholder="VA role" class="input-with-select">
                         </el-input>
 
                         <transition name="fade" mode="out-in">
                             <div v-if="isSearchOpenVA"
                                 class="character__search-results">
+
                                 <div v-if="searchResultsVA[0]"
                                     class="character__item"
                                     v-for="staff in searchResultsVA"
                                     @click="addVA(staff, character)">
+
                                     <div class="item__avatar">
                                         <img src="">
                                     </div>
+
                                     <div class="item__content">
                                         <p class="content__name">
                                             {{ staff.name }}
                                         </p>
                                     </div>
+
                                 </div>
                                 <div v-else
                                     class="search-results__placeholder character__item">
@@ -73,6 +78,8 @@
 <script lang="ts" setup>
 import { Delete } from '@element-plus/icons-vue'
 import { Search } from '@element-plus/icons-vue'
+import { Select } from '@element-plus/icons-vue'
+import { CircleCloseFilled } from '@element-plus/icons-vue'
 
 const roleOptions = ['Main', 'Supporting', 'Cameo', 'Background'];
 
@@ -80,10 +87,20 @@ const props = defineProps<{
     character: any
 }>();
 
+const emits = defineEmits<{
+    vaChange: [id: number, value: any, action: String]
+    charDelete: [uid: string, value: any]
+    charRoleChange: [uid: string, value: any]
+}>();
+
 const value_va = ref('');
 const va_role = ref('');
 const characterRole = ref('');
 const searchResultsVA = ref<any[]>([]);
+const addingVA = ref(false);
+const searchIcon = shallowRef(Search);
+
+const vaAdded = ref(false);
 
 const isSearchOpenVA = ref(false);
 
@@ -95,16 +112,45 @@ const openSearchVA = () => {
     isSearchOpenVA.value = true;
 }
 
+const searchButton = ref();
+const isHovered = useElementHover(searchButton);
+
 const search_va = ref(null);
 onClickOutside(search_va, (evt) => closeSearchVA());
 
 onMounted(() => {
+    // console.log(props.character);
+
+    if (props.character.voice_actors[0]) {
+        addingVA.value = true;
+
+        value_va.value = props.character.voice_actors[0].name
+
+        vaAdded.value = true;
+        searchIcon.value = Select;
+    }
+
     searchResultsVA.value = [];
 });
 
 const addVA = (staff: any, char: any) => {
-    char.voice_actors.push()
+    addingVA.value = true;
+    value_va.value = staff.name;
+    vaAdded.value = true;
+
+    searchIcon.value = Select;
+    emits("vaChange", props.character.uid, staff, 'add');
 };
+
+const handleSearchButton = () => {
+    if (vaAdded.value) {
+        vaAdded.value = false;
+        searchIcon.value = Search;
+        const name = value_va.value;
+        emits("vaChange", props.character.uid, name, 'remove');
+        value_va.value = '';
+    }
+}
 
 const debouncedFn = useDebounceFn((type) => {
     switch (type) {
@@ -112,15 +158,42 @@ const debouncedFn = useDebounceFn((type) => {
             fetchStaff(value_va.value);
             break;
     }
-}, 1000)
+}, 1000);
+
+const deleteCharacter = (uid: string) => {
+    emits("charDelete", uid, null);
+};
 
 watch(value_va, (newCount, oldCount) => {
+
+    if (addingVA.value) {
+        addingVA.value = false;
+        return;
+    }
+
     if (oldCount === '' || newCount === '') {
         searchResultsVA.value = [];
     }
     openSearchVA();
     debouncedFn('staff');
 })
+
+watch(isHovered, (newCount, oldCOunt) => {
+    if (newCount && vaAdded.value) {
+        searchIcon.value = CircleCloseFilled;
+    }
+    else if (!newCount && vaAdded.value) {
+        searchIcon.value = Select;
+    }
+});
+
+watch(va_role, (newCount, oldCOunt) => {
+    emits("vaChange", props.character.id, [value_va.value, newCount], 'role');
+});
+
+watch(characterRole, (newCount, oldCOunt) => {
+    emits("charRoleChange", props.character.uid, newCount);
+});
 
 async function fetchStaff(val: String, charid?: Number) {
     fetch(`http://localhost:3069/staff/search`, {
@@ -139,7 +212,7 @@ async function fetchStaff(val: String, charid?: Number) {
             type: 'voice-actor'
         })
     })
-        .then(res => res.json())
+        .then(res => { return res.json() })
         .then(obj => {
             searchResultsVA.value = obj;
             const VA = searchResultsVA.value.find(el => el.name === value_va);
@@ -304,8 +377,14 @@ async function fetchStaff(val: String, charid?: Number) {
         align-self: center;
 
         .delete-button {
-            margin-left: 12px;
+            margin-left: 8px;
         }
     }
+}
+</style>
+
+<style lang="scss">
+.va_input {
+    .el-input-group__prepend {}
 }
 </style>

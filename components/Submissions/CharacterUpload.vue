@@ -35,12 +35,14 @@
         </transition>
 
         <CharacterItem v-for="character in characterList" :key="character.id"
-            :character="character" />
+            :character="character" @char-role-change="handleCharRoleChange" @va-change="handleVaChange" @char-delete="deleteCharacter"/>
     </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup generic="T">
 import { Search } from '@element-plus/icons-vue'
+
+// TODO: this whole section needs to be cleaned up
 
 const characterList = ref<any[]>([]); // iterable, for frontend
 
@@ -77,13 +79,48 @@ const props = defineProps<{
     inputs: InputParams[]
 }>();
 
+const emits = defineEmits<{
+    vaChange: [id: number, value: any, action: String];
+    valueChange: [id: number, value: any];
+    charDelete: [uid: string, value: any]
+    charRoleChange: [uid: string, value: any]
+}>();
+
 const outputArr = [];
+
+onBeforeMount(() => {
+    characterList.value =
+        props.inputs.find(el => el.label === "Characters")!.value!;
+
+    outList.value =
+        props.inputs.find(el => el.label === "Characters")!.value!;
+
+    // characterList.value = displayCharacters(characterList.value);
+});
 
 onMounted(() => {
     searchResults.value = [];
-    characterList.value =
-        props.inputs.find(el => el.label === "Characters")!.value!;
 });
+
+// unused function, but im keeping it here anyways
+
+/* const displayCharacters = (arr: Array<T>) => {
+    // this function iterates over characters array and reassigns them
+    // to a new array to link each character with each voice actor
+
+    const newArr: Array<T> = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        const char: any = arr[i];
+        const charVA: Array<T> = char.voice_actors;
+
+        for (let j = 0; j < charVA.length; j++) {
+            const VA: any = charVA[j];
+            newArr.push({ ...char, voice_actors: [VA] });
+        }
+    }
+    return newArr;
+} */
 
 const debouncedFn = useDebounceFn((type) => {
     switch (type) {
@@ -94,18 +131,34 @@ const debouncedFn = useDebounceFn((type) => {
 }, 1000)
 
 const addCharacter = (character: any) => {
-    characterList.value.push(character);
+    characterList.value.push({...character, uid: generateUUID()});
+    searchResults.value = [];
+    value.value = '';
 
-    if (outList.value.find(el => el.id === character.id)) {
+    /* if (outList.value.find(el => el.id === character.id)) {
         return
     }
 
-    outList.value.push(character);
+    outList.value.push(character); */
+    emits("valueChange", 100, characterList.value);
 };
+
+const handleVaChange = (id: number, value: any, action: String) => {
+    emits("vaChange", id, value, action);
+}
+
+const deleteCharacter = (uid: string) => {
+    emits("charDelete", uid, null);
+};
+
+const handleCharRoleChange = (uid: string, value: any) => {
+    emits("charRoleChange", uid, value);
+}
 
 watch(value, (newCount, oldCount) => {
     if (oldCount === '' || newCount === '') {
         searchResults.value = [];
+        return;
     }
     openSearch();
     debouncedFn('char');
@@ -129,6 +182,24 @@ async function fetchCharacters(val: String) {
     })
         .then(res => res.json())
         .then(obj => { searchResults.value = obj });
+}
+
+// generateUUID() taken from https://stackoverflow.com/a/8809472
+
+function generateUUID() { // Public Domain/MIT
+    var d = new Date().getTime();//Timestamp
+    var d2 = ((typeof performance !== 'undefined') && performance.now && (performance.now()*1000)) || 0;//Time in microseconds since page-load or 0 if unsupported
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16;//random number between 0 and 16
+        if(d > 0){//Use timestamp until depleted
+            r = (d + r)%16 | 0;
+            d = Math.floor(d/16);
+        } else {//Use microseconds since page-load if supported
+            r = (d2 + r)%16 | 0;
+            d2 = Math.floor(d2/16);
+        }
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
 }
 
 </script>

@@ -1,13 +1,12 @@
 <template>
-    <el-scrollbar height="100vh">
-        <div id="zenbu" class="site-theme-dark">
-            <div class="zenbu__content">
-                <Navigation />
-                <NuxtPage :api="api" />
-                <FooterComponent />
-            </div>
+    <div id="zenbu" class="site-theme-dark">
+        <div class="zenbu__content">
+            <Navigation />
+            <NavigationSlim" />
+            <NuxtPage :api="api" />
+            <FooterComponent />
         </div>
-    </el-scrollbar>
+    </div>
 </template>
 
 <script lang="ts" setup>
@@ -15,8 +14,6 @@ import { useDark, useToggle } from '@vueuse/core';
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
-
-console.log(isDark);
 
 const api = 'http://127.0.0.1:3069';
 useState('API', () => {
@@ -71,6 +68,7 @@ body {
     position: relative;
     margin: 0 auto;
     padding-bottom: 200px;
+    padding-top: 140px;
 }
 
 #zenbu {
@@ -98,5 +96,16 @@ i {
 
 .el-popper {
     border-radius: 0.375rem !important;
+}
+
+.nav-enter-active,
+.nav-leave-active {
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+.nav-enter,
+.nav-leave-to {
+    opacity: 0;
 }
 </style>
