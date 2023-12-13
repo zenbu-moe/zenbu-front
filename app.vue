@@ -1,16 +1,19 @@
 <template>
     <div id="zenbu" class="site-theme-dark">
         <div class="zenbu__content">
-            <Navigation />
-            <NavigationSlim" />
+            <Navigation :slimSearchData="slimSearchData" />
+            <NavigationSlim @move-search="handleSearchTransfer"
+                @focus-search="handleFocusSearch" />
             <NuxtPage :api="api" />
             <FooterComponent />
         </div>
     </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup generic="T">
 import { useDark, useToggle } from '@vueuse/core';
+
+const slimSearchData = ref(['', [], false, '']);
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
@@ -20,6 +23,18 @@ useState('API', () => {
     const api = 'http://127.0.0.1:3069';
     return api
 });
+
+const handleSearchTransfer = (input: string, results: any) => {
+    // console.log('Scrolled all the way up while searchin', input, results);
+    slimSearchData.value[0] = input;
+    slimSearchData.value[1] = results;
+    slimSearchData.value[3] = 'move';
+}
+
+const handleFocusSearch = (val: boolean) => {
+    slimSearchData.value[2] = val;
+    slimSearchData.value[3] = 'expand';
+}
 </script>
 
 <style lang="scss">
@@ -100,12 +115,40 @@ i {
 
 .nav-enter-active,
 .nav-leave-active {
-    transition: opacity 0.2s;
+    transition: all 0.3s;
     pointer-events: none;
 }
 
 .nav-enter,
 .nav-leave-to {
-    opacity: 0;
+    transform: translateY(-20px) !important;
+    opacity: 0 !important;
+}
+
+.nav-leave {
+    transform: translateY(0px) !important;
+}
+
+.navactive-enter-to {
+    opacity: 1 !important;
+}
+
+.navactive-enter-active,
+.navactive-leave-active {
+    pointer-events: none;
+}
+
+.navactive-enter,
+.navactive-leave-to {
+    transform: translateY(-20px) !important;
+    opacity: 0 !important;
+}
+
+.navactive-leave {
+    transform: translateY(0px) !important;
+}
+
+.navactive-enter-to {
+    opacity: 1 !important;
 }
 </style>

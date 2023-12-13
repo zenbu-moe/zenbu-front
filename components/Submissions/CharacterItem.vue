@@ -87,6 +87,8 @@ const props = defineProps<{
     character: any
 }>();
 
+const API = useState('API');
+
 const emits = defineEmits<{
     vaChange: [id: number, value: any, action: String]
     charDelete: [uid: string, value: any]
@@ -196,7 +198,7 @@ watch(characterRole, (newCount, oldCOunt) => {
 });
 
 async function fetchStaff(val: String, charid?: Number) {
-    fetch(`http://localhost:3069/staff/search`, {
+    fetch(`${API.value}/staff/search`, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -226,6 +228,7 @@ async function fetchStaff(val: String, charid?: Number) {
 </script>
 
 <style lang="scss" scoped>
+// TODO: Role in the story for the character is still not done
 .character-submission__wrapper {
     position: relative;
 }
@@ -309,7 +312,7 @@ async function fetchStaff(val: String, charid?: Number) {
     display: grid;
     grid-template-columns: 64px auto 400px;
     column-gap: 20px;
-    padding: 0.75rem;
+    padding: 0.5rem;
     border-radius: 8px;
     background: var(--foreground);
     margin-top: 20px;
@@ -318,7 +321,7 @@ async function fetchStaff(val: String, charid?: Number) {
     .character__avatar {
         width: 64px;
         height: 84px;
-        border-radius: 6px;
+        border-radius: 4px;
         background: var(--placeholder-fill);
     }
 
@@ -367,7 +370,7 @@ async function fetchStaff(val: String, charid?: Number) {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        padding-right: 10px;
+        padding-right: 5px;
     }
 
     .character__settings {

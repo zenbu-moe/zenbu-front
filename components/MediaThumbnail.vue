@@ -1,6 +1,6 @@
 <template>
     <div class="thumbnail__wrapper">
-        <div class="thumbnail__image">
+        <div :class="{ medium: size === 'medium' }" class="thumbnail__image">
             <img src="">
         </div>
 
@@ -68,7 +68,8 @@ type MediaEntry = {
 } */
 
 const props = defineProps<{
-    data: any
+    data: any,
+    size?: string
 }>();
 
 </script>
@@ -81,7 +82,17 @@ const props = defineProps<{
     border-radius: 8px;
 }
 
+.medium {
+    width: 100px;
+    height: 137px;
+}
+
 .thumbnail__content {
+    max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
     display: grid;
     grid-template-rows: auto auto;
     margin-top: 8px;
@@ -90,7 +101,12 @@ const props = defineProps<{
         margin: 0;
     }
 
-    .content__title {}
+    .content__title {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
+    }
 
     .content__subtitle {
         color: var(--text-secondary);

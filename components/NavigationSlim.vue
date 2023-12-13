@@ -1,49 +1,152 @@
 <template>
-    <div class="navigation" :class="{
-        expand: focused,
-        hidden: !isScrolled,
-        navShow: isScrolled,
-        fadeNav: !scrollDirection && isScrolled
-    }">
-        <div class="wrapper">
-            <div class="links">
-                <div class="logo">全</div>
-                <div class="links__inner" :class="{ fade: focused }">
-                    <NuxtLink to="/feed">Feed</NuxtLink>
-                    <NuxtLink to="/anime">Anime</NuxtLink>
-                    <NuxtLink to="/manga">Manga</NuxtLink>
-                    <NuxtLink to="/light-novels">Light Novels</NuxtLink>
-                    <NuxtLink to="/community">Community</NuxtLink>
+    <transition name="navactive" mode="out-in">
+        <div class="nav-slim__wrapper"  v-if="isScrolled" :class="{
+            navShow: isSearching,
+        }">
+            <div class="navigation" :class="{
+                fadeNav: scrollDirection,
+                navShow: !scrollDirection,
+                expand: isSearching
+            }">
+                <div class="wrapper">
+                    <div class="links">
+                        <div class="logo">全</div>
+                        <div class="links__inner" :class="{ fade: focused }">
+                            <NuxtLink to="/feed">Feed</NuxtLink>
+                            <NuxtLink to="/anime">Anime</NuxtLink>
+                            <NuxtLink to="/manga">Manga</NuxtLink>
+                            <NuxtLink to="/light-novels">Light Novels</NuxtLink>
+                            <NuxtLink to="/community">Community</NuxtLink>
+                        </div>
+                    </div>
+                </div>
+
+                <div ref="search__wrapper" class="wrapper search">
+                    <input ref="search" placeholder="Search" id="search"
+                        autocomplete="off" v-model="searchInput">
+                    <i class="bi bi-search"></i>
+                </div>
+
+                <MainSearch :look="'slim'" :activeTab="activeTab"
+                    @change-tab="handleTabChange" ref="searchWrapper"
+                    :results="searchResults" :isOpen="isSearchOpen" />
+
+                <div class="wrapper ">
+                    <i class="bi bi-inbox"></i>
+                    <i class="bi bi-bell"></i>
+                    <UserAvatar :mode="'slim'" />
+                    <i class="bi bi-chevron-down"></i>
                 </div>
             </div>
         </div>
-
-        <div class="wrapper search">
-            <input ref="search" placeholder="Search" id="search" autocomplete="off">
-            <i class="bi bi-search"></i>
-        </div>
-
-        <div class="wrapper ">
-            <i class="bi bi-inbox"></i>
-            <i class="bi bi-bell"></i>
-            <UserAvatar :mode="'slim'" />
-            <i class="bi bi-chevron-down"></i>
-        </div>
-    </div>
+    </transition>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup generic="T">
 
 const search = ref();
+const searchInput = ref('');
+const searchWrapper = ref(null);
+const searchResults = ref([]);
+const search__wrapper = ref();
+
+const emits = defineEmits<{
+    moveSearch: [input: string, results: Array<T>]
+    focusSearch: [val: boolean]
+}>();
+
+const activeTab = ref('anime');
+
+const handleTabChange = (tab: string): any => {
+    activeTab.value = tab;
+}
+
+const isSearchOpen = ref(false);
+const isSearching = ref(false);
+
 const { focused } = useFocus(search, { initialValue: false })
+
+const toggleSearch = (state: boolean) => {
+    isSearchOpen.value = state;
+}
+
+onClickOutside(searchWrapper, event => {
+    if (event.target === search__wrapper.value ||
+        Array.from(search__wrapper.value.childNodes)
+            .includes(event.target)
+    ) {
+        return;
+    }
+    if (isSearchOpen.value) {
+        toggleSearch(false);
+        focused.value = false;
+        isSearching.value = false;
+        searchInput.value = '';
+        searchResults.value = [];
+    }
+});
+
+const API = useState('API');
+
+const debouncedFn = useDebounceFn((val, type) => {
+    $fetch(`${API.value}/${type}/search`, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({
+            name: val
+        })
+    }).then(res => searchResults.value = res);
+}, 1000);
+
+watch(searchInput, (val) => {
+    if (isSearching.value) {
+        debouncedFn(val, activeTab.value);
+    }
+});
+
+watch(searchResults, (val) => {
+    /*  console.log(val); */
+})
+
+watch(activeTab, (tab) => {
+    searchResults.value = [];
+    debouncedFn(searchInput.value, tab);
+})
+
+watch(focused, (newCount, oldCOunt) => {
+    if (!isSearchOpen.value) {
+        isSearching.value = newCount;
+    }
+
+    emits("focusSearch", newCount);
+
+    /* if (!newCount) {
+        toggleSearch(false);
+        searchInput.value = '';
+    } */
+});
+
+watch(searchInput, (newCount, oldCount) => {
+    if (newCount !== '') {
+        toggleSearch(true);
+    }
+});
+
+
 watch(focused, (newCount, oldCount) => {
     if (newCount) {
         scrollDirection.value = false;
     } else {
         scrollDirection.value = true;
     }
-
-    console.log(newCount);
 })
 
 const { x, y } = useWindowScroll()
@@ -65,6 +168,16 @@ watch(y, (newCount, oldCount) => {
     if (newCount > 180) {
         isScrolled.value = true;
     } else {
+        toggleSearch(false);
+        focused.value = false;
+
+        if (isSearching.value) {
+            emits("moveSearch", searchInput.value, searchResults.value);
+        }
+
+        isSearching.value = false;
+        searchInput.value = '';
+        searchResults.value = [];
         isScrolled.value = false;
     }
 
@@ -96,8 +209,17 @@ a {
     opacity: 0;
 }
 
-.navigation {
+.nav-slim__wrapper {
     position: fixed;
+    width: 100%;
+    z-index: 1000;
+    width: 1100px;
+    top: 0px;
+    transition: all 0.3s;
+    animation: fade-in-bottom 0.3s ease;
+}
+
+.navigation {
     display: grid;
     justify-content: space-between;
     grid-template-columns: 540px 220px 300px;
@@ -105,12 +227,11 @@ a {
     width: 100%;
     margin-top: 20px;
     margin-bottom: 40px;
-    transition: all 0.25s;
     z-index: 1000;
     width: 1100px;
+    transition: all 0.3s;
     top: 0px;
     filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.15));
-    opacity: 0;
 
     &:hover {
         opacity: 1 !important;
@@ -160,11 +281,11 @@ a {
     pointer-events: none;
 }
 
-.navShow {
+.fadeNav {
     opacity: 0.3;
 }
 
-.fadeNav {
+.navShow {
     opacity: 1;
 }
 
@@ -175,9 +296,13 @@ a {
         border: none;
         font-family: "Nunito";
         font-size: 1em;
-        font-weight: 700;
+        font-weight: 500;
         margin: 0 12px;
         width: 100%;
+    }
+
+    &::placeholder {
+        font-weight: 700;
     }
 
     input:focus {

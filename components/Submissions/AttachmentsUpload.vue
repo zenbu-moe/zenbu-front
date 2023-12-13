@@ -267,13 +267,19 @@ h1 {
             text-align: center;
         }
 
+        .el-upload {
+            border: none !important;
+        }
+
         .el-upload-dragger {
             height: 140px;
             padding: unset;
-            transition: opacity 0.5s;
+            transition: all 0.3s;
+            border: dashed 1px var(--text-gray);
 
             &:hover {
                 opacity: 0.5;
+                border: dashed 1px var(--accent);
             }
         }
 
@@ -281,8 +287,7 @@ h1 {
             box-sizing: border-box;
             z-index: 10;
             opacity: 0.5;
-            border-width: 1px !important;
-            border-style: solid !important;
+            border: solid 1px var(--accent) !important;
         }
     }
 
@@ -308,13 +313,19 @@ h1 {
             text-align: center;
         }
 
+        .el-upload {
+            border: none !important;
+        }
+
         .el-upload-dragger {
             height: 192px;
             padding: unset;
-            transition: opacity 0.5s;
+            transition: all 0.3s;
+            border: dashed 1px var(--text-gray);
 
             &:hover {
                 opacity: 0.5;
+                border: dashed 1px var(--accent);
             }
         }
 
@@ -322,8 +333,7 @@ h1 {
             box-sizing: border-box;
             z-index: 10;
             opacity: 0.5;
-            border-width: 1px !important;
-            border-style: solid !important;
+            border: solid 1px var(--accent) !important;
         }
     }
 

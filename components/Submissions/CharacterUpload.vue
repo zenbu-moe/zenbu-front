@@ -52,6 +52,8 @@ const searchResults = ref<any[]>([]);
 
 const value = ref('');
 
+const API = useState('API');
+
 const search = ref(null);
 onClickOutside(search, (evt) => closeSearch());
 
@@ -165,7 +167,7 @@ watch(value, (newCount, oldCount) => {
 })
 
 async function fetchCharacters(val: String) {
-    fetch(`http://localhost:3069/characters/search`, {
+    fetch(`${API.value}/characters/search`, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached

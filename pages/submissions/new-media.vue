@@ -62,7 +62,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 const activeView = ref('general');
-const mediaType = useState('mediaType', '');
+const mediaType = useState('mediaType', () => '');
 const genresArr = useState('genresArr', () => []);
 
 const api = useState('API');
@@ -393,11 +393,11 @@ const handleVaChange = (id: number, value: any, action: String) => {
     // god only knows that it's supposed to be
 
     const characterArr = inputs.find(item => item.id === 100);
-
+    // @ts-ignore
     if (!characterArr.value) {
         return;
     }
-
+    // @ts-ignore
     const character = characterArr.value.find(el => el.uid === id);
 
     if (!character) {
@@ -411,7 +411,7 @@ const handleVaChange = (id: number, value: any, action: String) => {
 
     else if (action === 'remove') {
         // here `value` is a string
-        const vaObj = character.voice_actors.find(el => el.name === value);
+        const vaObj = character.voice_actors.find((el: any) => el.name === value);
         const index = character.voice_actors.indexOf(vaObj);
         character.voice_actors.splice(index, 1);
     }
@@ -420,20 +420,23 @@ const handleVaChange = (id: number, value: any, action: String) => {
         // here `value` is an array of [string, string] that contains
         // VA name and VA role respectively
         //console.log(character.voice_actors.find(el => el.name === value[0]))
-        character.voice_actors.find(el => el.name === value[0]).role = value[1];
+        character.voice_actors.find((el: any) => el.name === value[0]).role = value[1];
     }
 }
 
 const handleCharRoleChange = (uid: string, value: any) => {
-    inputs.find(el => el.id === 100)
+    // @ts-ignore
+    inputs.find((el: any) => el.id === 100)
         .value
-        .find(el => el.uid === uid).role = value;
+        .find((el: any) => el.uid === uid).role = value;
 }
 
 const handleCharacterDelete = (uid: string, value?: any) => {
-    const charArr = inputs.find(el => el.id === 100).value;
-    const charObj = charArr.find(el => el.uid === uid);
+    // @ts-ignore
+    const charArr = inputs.find((el: any) => el.id === 100).value;
+    const charObj = charArr.find((el: any) => el.uid === uid);
     const index = charArr.indexOf(charObj);
+    // @ts-ignore
     inputs.find(el => el.id === 100).value.splice(index, 1);
 }
 

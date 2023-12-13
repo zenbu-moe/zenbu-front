@@ -1,9 +1,9 @@
 <template>
-    <div class="navigation" :class="{ expand: focused }">
+    <div class="navigation" :class="{ expand: isSearching }">
         <div class="wrapper">
             <div class="links">
                 <div class="logo">全</div>
-                <div class="links__inner" :class="{ fade: focused }">
+                <div class="links__inner" :class="{ fade: isSearching }">
                     <NuxtLink to="/feed">Feed</NuxtLink>
                     <NuxtLink to="/anime">Anime</NuxtLink>
                     <NuxtLink to="/manga">Manga</NuxtLink>
@@ -13,10 +13,15 @@
             </div>
         </div>
 
-        <div class="wrapper search">
-            <input ref="search" placeholder="Search" id="search" autocomplete="off">
+        <div ref="search__wrapper" class="wrapper search">
+            <input ref="search" placeholder="Search" id="search" autocomplete="off"
+                v-model="searchInput">
             <i class="bi bi-search"></i>
         </div>
+
+        <MainSearch :look="'regular'" :activeTab="activeTab"
+            @change-tab="handleTabChange" ref="searchWrapper"
+            :results="searchResults" :isOpen="isSearchOpen" />
 
         <div class="wrapper ">
             <i class="bi bi-inbox"></i>
@@ -27,12 +32,126 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup generic="T">
+const props = defineProps<{
+    slimSearchData: any
+}>();
 
 const search = ref();
+const searchInput = ref('');
+const searchWrapper = ref(null);
+const searchResults = ref([]);
+const search__wrapper = ref();
+const slimSearchData = ref(props.slimSearchData);
+
+const activeTab = ref('anime');
+
+const handleTabChange = (tab: string): any => {
+    activeTab.value = tab;
+}
+
+const isSearchOpen = ref(false);
+const isSearching = ref(false);
+
+const ignoreSearchValueChange = ref(false);
+
 const { focused } = useFocus(search, { initialValue: false })
+
+const toggleSearch = (state: boolean) => {
+    isSearchOpen.value = state;
+}
+
+onClickOutside(searchWrapper, event => {
+    if (event.target === search__wrapper.value ||
+        Array.from(search__wrapper.value.childNodes)
+            .includes(event.target)
+    ) {
+        return;
+    }
+    if (isSearchOpen.value) {
+        toggleSearch(false);
+        focused.value = false;
+        isSearching.value = false;
+        searchInput.value = '';
+        searchResults.value = [];
+    }
+});
+
+const API = useState('API');
+
+const debouncedFn = useDebounceFn((val, type) => {
+    $fetch(`${API.value}/${type}/search`, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({
+            name: val
+        })
+    }).then(res => searchResults.value = res);
+}, 1000);
+
+watch(searchInput, (val) => {
+
+    if (ignoreSearchValueChange.value) {
+        ignoreSearchValueChange.value = false;
+        return;
+    }
+
+    if (val !== '') {
+        toggleSearch(true);
+    }
+
+    if (isSearching.value) {
+        debouncedFn(val, activeTab.value);
+    }
+});
+
+watch(searchResults, (val) => {
+    /*  console.log(val); */
+})
+
+watch(activeTab, (tab) => {
+    searchResults.value = [];
+    debouncedFn(searchInput.value, tab);
+})
+
 watch(focused, (newCount, oldCOunt) => {
-    console.log(newCount);
+    if (!isSearchOpen.value) {
+        isSearching.value = newCount;
+    }
+
+    /* if (!newCount) {
+        toggleSearch(false);
+        searchInput.value = '';
+    } */
+});
+
+watch(props, (val) => {
+
+    console.log(val.slimSearchData[3]);
+
+    if (val.slimSearchData[3] === 'expand') {
+        isSearching.value = val.slimSearchData[3];
+    }
+
+    if (val.slimSearchData[3] === 'move') {
+        /* focused.value = true; */
+        toggleSearch(true);
+
+        ignoreSearchValueChange.value = true;
+
+        isSearching.value = true;
+        searchInput.value = val.slimSearchData[0];
+        searchResults.value = val.slimSearchData[1];
+    }
+
 })
 </script>
 
@@ -117,9 +236,13 @@ a {
         border: none;
         font-family: "Nunito";
         font-size: 1em;
-        font-weight: 700;
+        font-weight: 500;
         margin: 0 12px;
         width: 100%;
+
+        &::placeholder {
+            font-weight: 700;
+        }
     }
 
     input:focus {
